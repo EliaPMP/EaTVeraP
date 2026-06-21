@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EatVera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* palette */
+    --green-50:#eefaf2; --green-100:#d8f3e3; --green-200:#aee6c4;
+    --green-500:#1faa57; --green-600:#15974b; --green-700:#0f7c3d; --green-800:#0a5e2f;
+    --ink:#0d1c14; --ink-2:#274034; --muted:#5d6f65; --faint:#92a39a;
+    --bg:#f4f7f5; --card:#ffffff; --line:#e8eeea;
+    --amber:#e2900f; --amber-bg:#fff5e3; --red:#d94b40; --red-bg:#fdecea;
+    --blue:#2f6fc7; --blue-bg:#eaf1fb; --pink:#b03a6e; --pink-bg:#fbeaf2;
+    /* spacing */
+    --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s8:32px;
+    /* radius */
+    --r1:12px; --r2:16px; --r3:20px; --r4:26px;
+    /* shadow */
+    --sh-sm:0 1px 2px rgba(13,40,26,.05);
+    --sh:0 1px 2px rgba(13,40,26,.04),0 6px 18px rgba(13,40,26,.07);
+    --sh-lg:0 18px 40px rgba(13,40,26,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--ink);
+    background:
+      radial-gradient(900px 500px at 12% -8%, #d6efe0 0%, rgba(214,239,224,0) 55%),
+      radial-gradient(900px 500px at 100% 0%, #e7f6ee 0%, rgba(231,246,238,0) 50%),
+      #dde6e0;
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;
+    padding:34px 16px 56px;line-height:1.5;
+  }
+
+  /* ---------- intro / page header ---------- */
+  .intro{max-width:720px;text-align:center;margin-bottom:28px}
+  .intro h1{font-size:25px;font-weight:800;letter-spacing:-.025em}
+  .intro h1 span{color:var(--green-600)}
+  .intro p{color:var(--muted);font-size:15px;margin-top:9px;line-height:1.6}
+  .badge-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:12.5px;color:var(--green-700);font-weight:600;box-shadow:var(--sh-sm)}
+
+  /* ---------- phone shell ---------- */
+  .phone{
+    width:392px;max-width:100%;height:812px;background:#0a0d0b;border-radius:52px;
+    padding:12px;box-shadow:var(--sh-lg),0 2px 6px rgba(0,0,0,.4);position:relative;
+  }
+  .screen{position:absolute;inset:12px;background:var(--bg);border-radius:40px;overflow:hidden;display:flex;flex-direction:column}
+  .notch{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:122px;height:30px;background:#0a0d0b;border-radius:0 0 18px 18px;z-index:60}
+  .statusbar{position:absolute;top:18px;left:0;right:0;z-index:55;display:flex;justify-content:space-between;padding:0 30px;font-size:13px;font-weight:600;color:var(--ink);pointer-events:none}
+  .statusbar .r{display:flex;gap:6px;align-items:center;font-size:12px}
+
+  .app{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .app::-webkit-scrollbar{display:none}
+  .view{display:none;padding:54px 18px 110px;animation:fade .28s ease}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* ---------- shared bits ---------- */
+  .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .brand{display:flex;align-items:center;gap:9px}
+  .leaf{width:34px;height:34px;border-radius:11px;background:linear-gradient(140deg,var(--green-500),var(--green-700));display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;box-shadow:0 6px 14px rgba(15,124,61,.35)}
+  .brand b{font-size:19px;font-weight:800;letter-spacing:-.03em}
+  .brand b i{color:var(--green-600);font-style:normal}
+  .brand .sub{font-size:18px;font-weight:800;letter-spacing:-.03em}
+  .avatar{width:38px;height:38px;border-radius:50%;background:#dfeae3 center/cover;display:flex;align-items:center;justify-content:center;color:var(--green-700);font-weight:700;font-size:14px;border:1.5px solid #fff;box-shadow:var(--sh-sm);overflow:hidden}
+  .avatar img{width:100%;height:100%;object-fit:cover}
+
+  .greet{margin:0 2px 16px}
+  .greet .hi{font-size:13.5px;color:var(--muted);font-weight:500}
+  .greet h1{font-size:23px;font-weight:800;letter-spacing:-.03em;margin-top:1px}
+
+  .sectlabel{display:flex;align-items:center;justify-content:space-between;margin:26px 2px 12px}
+  .sectlabel h3{font-size:15.5px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+  .sectlabel a{font-size:13px;color:var(--green-600);font-weight:700;text-decoration:none;cursor:pointer}
+
+  /* image helper: gradient+emoji fallback sits behind <img>; img removed on error */
+  .ph{position:relative;overflow:hidden;background:linear-gradient(140deg,#dbeede,#c2e6d1)}
+  .ph::before{content:attr(data-emoji);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:34px;opacity:.85}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+  /* ---------- HERO (scan label) ---------- */
+  .hero{
+    position:relative;width:100%;text-align:left;cursor:pointer;border:none;
+    border-radius:var(--r4);overflow:hidden;color:#fff;padding:0;display:block;
+    box-shadow:0 16px 34px rgba(13,80,40,.34);min-height:208px;
+  }
+  .hero .bg{position:absolute;inset:0}
+  .hero .bg img{width:100%;height:100%;object-fit:cover}
+  .hero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,40,22,.18) 0%,rgba(7,52,28,.55) 55%,rgba(6,46,25,.86) 100%)}
+  .hero .inner{position:relative;padding:20px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;min-height:208px}
+  .hero .kick{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#aef0c6;margin-bottom:auto}
+  .hero h2{font-size:24px;font-weight:800;letter-spacing:-.02em}
+  .hero p{font-size:13.5px;opacity:.95;margin-top:5px;max-width:80%}
+  .hero .cta{margin-top:15px;display:inline-flex;align-items:center;gap:9px;align-self:flex-start;background:#fff;color:var(--green-700);font-weight:800;font-size:14.5px;padding:11px 18px;border-radius:999px;box-shadow:0 8px 18px rgba(0,0,0,.18)}
+
+  /* secondary action */
+  .second{border:1px solid var(--line);width:100%;text-align:left;cursor:pointer;background:var(--card);border-radius:var(--r3);padding:12px;margin-top:13px;display:flex;align-items:center;gap:14px;box-shadow:var(--sh)}
+  .second .thumb{width:62px;height:62px;border-radius:var(--r2);flex-shrink:0}
+  .second .thumb::before{font-size:26px}
+  .second h2{font-size:16px;font-weight:700;letter-spacing:-.01em}
+  .second p{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .second .go{margin-left:auto;width:32px;height:32px;border-radius:50%;background:var(--green-50);color:var(--green-600);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;flex-shrink:0}
+
+  /* quick stats strip */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:12px 10px;text-align:center;box-shadow:var(--sh-sm)}
+  .stat b{font-size:18px;font-weight:800;letter-spacing:-.02em;display:block}
+  .stat small{font-size:10.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+
+  /* ---------- category cards ---------- */
+  .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .cat{border:1px solid var(--line);background:var(--card);border-radius:var(--r3);overflow:hidden;cursor:pointer;text-align:left;box-shadow:var(--sh);display:flex;flex-direction:column}
+  .cat .cat-img{width:100%;aspect-ratio:16/10}
+  .cat .cat-img::before{font-size:30px}
+  .cat .cat-body{padding:11px 12px 13px;position:relative}
+  .cat .tag{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;padding:3px 8px;border-radius:7px;margin-bottom:7px}
+  .tag.seed{background:var(--amber-bg);color:#a96807}
+  .tag.add{background:var(--red-bg);color:#b0322a}
+  .tag.ewg{background:var(--green-50);color:var(--green-700)}
+  .tag.sugar{background:var(--pink-bg);color:var(--pink)}
+  .tag.data{background:var(--blue-bg);color:var(--blue)}
+  .cat h4{font-size:14.5px;font-weight:700;letter-spacing:-.01em}
+  .cat p{font-size:11.5px;color:var(--muted);margin-top:2px}
+
+  /* ---------- tip ---------- */
+  .tip{position:relative;border-radius:var(--r3);overflow:hidden;margin-top:14px;min-height:150px;color:#eafaf0;box-shadow:var(--sh)}
+  .tip .bg{position:absolute;inset:0}
+  .tip .bg img{width:100%;height:100%;object-fit:cover}
+  .tip .scrim{position:absolute;inset:0;background:linear-gradient(115deg,rgba(7,40,23,.92) 0%,rgba(9,52,30,.78) 45%,rgba(10,60,34,.4) 100%)}
+  .tip .inner{position:relative;padding:18px}
+  .tip span{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:#8fdcab;font-weight:800}
+  .tip h4{font-size:17px;font-weight:800;margin-top:7px;letter-spacing:-.02em}
+  .tip p{font-size:12.5px;color:#cfe6d8;margin-top:6px;line-height:1.55;max-width:86%}
+
+  .disc{font-size:10.5px;color:var(--faint);text-align:center;margin-top:24px;line-height:1.55;padding:0 10px}
+
+  /* ---------- explore ---------- */
+  .search{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:12px 16px;box-shadow:var(--sh-sm);margin-bottom:6px;color:var(--faint);font-size:14px}
+  .search .ic{font-size:16px}
+  .filters{display:flex;gap:8px;overflow-x:auto;padding:14px 0 4px;scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .filters button{flex:none;border:1px solid var(--line);background:#fff;color:var(--muted);font-family:inherit;font-size:12.5px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer}
+  .filters button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* ---------- scan chooser ---------- */
+  .bigchoice{position:relative;width:100%;text-align:left;cursor:pointer;border:none;border-radius:var(--r3);overflow:hidden;margin-top:14px;box-shadow:var(--sh);min-height:150px;color:#fff;display:block}
+  .bigchoice .bg{position:absolute;inset:0}
+  .bigchoice .bg img{width:100%;height:100%;object-fit:cover}
+  .bigchoice .scrim{position:absolute;inset:0}
+  .bigchoice.label .scrim{background:linear-gradient(180deg,rgba(6,40,22,.15),rgba(7,60,32,.82))}
+  .bigchoice.meal .scrim{background:linear-gradient(180deg,rgba(60,38,4,.12),rgba(70,44,6,.8))}
+  .bigchoice .inner{position:relative;padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end}
+  .bigchoice .pill{align-self:flex-start;background:rgba(255,255,255,.22);backdrop-filter:blur(4px);border-radius:999px;padding:6px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:auto}
+  .bigchoice h3{font-size:20px;font-weight:800;letter-spacing:-.02em}
+  .bigchoice p{font-size:13px;opacity:.94;margin-top:5px;max-width:90%}
+
+  .steps{margin-top:26px;background:var(--card);border:1px solid var(--line);border-radius:var(--r3);padding:18px;box-shadow:var(--sh)}
+  .steps h3{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--faint);margin-bottom:14px}
+  .step{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px}
+  .step:last-child{margin-bottom:0}
+  .step .n{width:30px;height:30px;border-radius:10px;background:var(--green-50);color:var(--green-700);font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step b{font-size:14px;font-weight:700;display:block}
+  .step p{font-size:12.5px;color:var(--muted);margin-top:1px;line-height:1.5}
+
+  /* ---------- result ---------- */
+  .back{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;box-shadow:var(--sh-sm)}
+  .product{display:flex;gap:14px;align-items:center;margin-top:16px}
+  .product .pimg{width:88px;height:88px;border-radius:var(--r2);flex-shrink:0;box-shadow:var(--sh)}
+  .product .pimg::before{font-size:32px}
+  .product .brandname{font-size:12px;color:var(--muted);font-weight:600}
+  .product h2{font-size:19px;font-weight:800;letter-spacing:-.02em;line-height:1.25;margin-top:2px}
+  .product .verdict{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;padding:4px 10px;border-radius:8px;background:var(--amber-bg);color:#a96807}
+
+  .scorecard{background:var(--card);border:1px solid var(--line);border-radius:var(--r3);padding:20px;box-shadow:var(--sh);margin-top:18px;display:flex;align-items:center;gap:18px}
+  .ring{position:relative;flex-shrink:0}
+  .ring svg{transform:rotate(-90deg);display:block}
+  .ring .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .center b{font-size:30px;font-weight:900;letter-spacing:-.03em;line-height:1}
+  .ring .center small{font-size:10px;color:var(--muted);margin-top:2px}
+  .scorecard .meta b{font-size:15px;font-weight:800;display:block}
+  .scorecard .meta p{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.5}
+
+  .flags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .flag{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;padding:8px 12px;border-radius:11px}
+  .flag.bad{background:var(--red-bg);color:#b0322a}
+  .flag.warn{background:var(--amber-bg);color:#a96807}
+  .flag.good{background:var(--green-50);color:var(--green-700)}
+
+  .ingredients{background:var(--card);border:1px solid var(--line);border-radius:var(--r3);padding:8px 16px;box-shadow:var(--sh);margin-top:14px}
+  .ing{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .ing:last-child{border-bottom:none}
+  .ing .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+  .ing .dot.g{background:var(--green-500)} .ing .dot.a{background:var(--amber)} .ing .dot.r{background:var(--red)}
+  .ing b{font-size:14px;font-weight:600}
+  .ing small{display:block;font-size:11.5px;color:var(--muted);margin-top:1px}
+  .ing .badge{margin-left:auto;font-size:11px;font-weight:700;color:var(--muted)}
+
+  /* ---------- track ---------- */
+  .ring-wrap{display:flex;justify-content:center;margin:8px 0 4px}
+  .macros{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:18px}
+  .macro{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:13px 12px;box-shadow:var(--sh-sm)}
+  .macro .lab{font-size:11px;color:var(--muted);font-weight:600}
+  .macro b{font-size:17px;font-weight:800;letter-spacing:-.02em;display:block;margin-top:2px}
+  .macro b span{font-size:11px;font-weight:600;color:var(--faint)}
+  .macro .bar{height:6px;border-radius:4px;background:#eef2ef;margin-top:9px;overflow:hidden}
+  .macro .bar i{display:block;height:100%;border-radius:4px}
+
+  .meal{background:var(--card);border:1px solid var(--line);border-radius:var(--r3);padding:10px;box-shadow:var(--sh);display:flex;gap:13px;align-items:center;margin-bottom:11px}
+  .meal .mimg{width:58px;height:58px;border-radius:var(--r2);flex-shrink:0}
+  .meal .mimg::before{font-size:24px}
+  .meal h4{font-size:15px;font-weight:700;letter-spacing:-.01em}
+  .meal p{font-size:12px;color:var(--muted);margin-top:2px}
+  .meal .sc{margin-left:auto;background:var(--green-50);color:var(--green-700);font-weight:800;font-size:14px;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .emptylog{background:var(--card);border:1.5px dashed #c8d8cf;border-radius:var(--r3);padding:24px;text-align:center;color:var(--muted);font-size:13px;margin-top:8px}
+  .emptylog .big{font-size:30px;margin-bottom:8px}
+
+  /* ---------- bottom nav ---------- */
+  .nav{position:absolute;left:12px;right:12px;bottom:12px;height:78px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-top:1px solid var(--line);border-radius:0 0 40px 40px;display:flex;align-items:center;justify-content:space-around;padding:0 8px 10px;z-index:40}
+  .nav button{border:none;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--faint);font-size:10.5px;font-weight:700;padding:6px 8px;flex:1;font-family:inherit}
+  .nav button .gi{font-size:22px;line-height:1}
+  .nav button.on{color:var(--green-600)}
+  .nav .scanbtn{margin-top:-30px;flex:0 0 auto;color:var(--green-700)}
+  .nav .scanbtn .gi{width:58px;height:58px;border-radius:50%;background:linear-gradient(140deg,#23bd61,#0f7c3d);color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 10px 22px rgba(15,124,61,.45);border:4px solid #fff}
+
+  /* ---------- intro overlay ---------- */
+  .overlay{position:absolute;inset:12px;border-radius:40px;background:rgba(7,22,14,.6);backdrop-filter:blur(4px);z-index:70;display:flex;align-items:flex-end;justify-content:center;padding:16px;animation:fade .3s ease}
+  .overlay.hide{display:none}
+  .sheet{background:#fff;border-radius:32px;padding:0 22px 22px;width:100%;text-align:center;overflow:hidden}
+  .sheet .cover{margin:0 -22px 18px;height:150px;position:relative}
+  .sheet .cover img{width:100%;height:100%;object-fit:cover}
+  .sheet .cover .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,40,22,.15),rgba(255,255,255,.96))}
+  .sheet .cover .logo{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;align-items:center;gap:8px}
+  .sheet .cover .logo .leaf{width:30px;height:30px;font-size:15px}
+  .sheet .cover .logo b{font-size:18px;font-weight:800;letter-spacing:-.03em}
+  .sheet .cover .logo b i{color:var(--green-600);font-style:normal}
+  .sheet h2{font-size:21px;font-weight:800;letter-spacing:-.02em}
+  .sheet>p{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.55}
+  .feat{display:flex;gap:13px;align-items:center;text-align:left;background:#f6faf7;border:1px solid var(--line);border-radius:16px;padding:12px;margin-top:11px}
+  .feat .ic{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .feat:nth-of-type(1) .ic{background:var(--green-50)}
+  .feat:nth-of-type(2) .ic{background:var(--amber-bg)}
+  .feat:nth-of-type(3) .ic{background:var(--blue-bg)}
+  .feat b{font-size:14px;font-weight:700}
+  .feat p{font-size:12px;color:var(--muted);margin-top:1px}
+  .cta-btn{margin-top:18px;width:100%;border:none;cursor:pointer;background:linear-gradient(140deg,#23bd61,#0f7c3d);color:#fff;font-size:16px;font-weight:800;padding:16px;border-radius:16px;font-family:inherit;box-shadow:0 12px 24px rgba(15,124,61,.34)}
+
+  .replay{position:absolute;top:58px;right:18px;z-index:35;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;font-size:11px;font-weight:700;color:var(--green-700);padding:6px 11px;cursor:pointer;box-shadow:var(--sh-sm)}
+</style>
+</head>
+<body>
+
+  <div class="intro">
+    <h1>Eat<span>Vera</span> — redesigned</h1>
+    <p>A clean, professional rebuild: real food photography, one dominant action, clearly separated scan tools, and a scan-result screen that finally shows the payoff.</p>
+    <div class="badge-row">
+      <div class="chip">Real photography</div>
+      <div class="chip">One primary action</div>
+      <div class="chip">Scan result screen</div>
+      <div class="chip">Consistent design system</div>
+      <div class="chip">Graceful image fallbacks</div>
+    </div>
+  </div>
+
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="statusbar"><span>9:41</span><span class="r">5G &nbsp; ▮▮▮ &nbsp; 86%</span></div>
+    <div class="screen">
+
+      <button class="replay" onclick="showIntro()">↺ Replay intro</button>
+
+      <div class="app" id="app">
+
+        <!-- ============ HOME ============ -->
+        <section class="view active" id="home">
+          <div class="topbar">
+            <div class="brand"><div class="leaf">🌿</div><b>Eat<i>Vera</i></b></div>
+            <div class="avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&q=80" alt="Your profile" loading="lazy" onerror="this.replaceWith(document.createTextNode('Y'))"></div>
+          </div>
+
+          <div class="greet">
+            <div class="hi">Good morning, Yara 👋</div>
+            <h1>Know what's really<br>in your food.</h1>
+          </div>
+
+          <button class="hero" onclick="go('result')">
+            <div class="bg"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=760&h=440&fit=crop&q=80" alt="Fresh groceries on a counter" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🛒');this.remove()"></div>
+            <div class="scrim"></div>
+            <div class="inner">
+              <div class="kick">Primary tool</div>
+              <h2>Scan a label</h2>
+              <p>Instant 0–100 clean score, seed-oil &amp; additive flags for any packaged product.</p>
+              <span class="cta">📷 Open scanner →</span>
+            </div>
+          </button>
+
+          <button class="second" onclick="go('track')">
+            <div class="ph thumb" data-emoji="🍽️"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=160&h=160&fit=crop&q=80" alt="A healthy plated meal" loading="lazy" onerror="this.remove()"></div>
+            <div>
+              <h2>Snap a meal</h2>
+              <p>Track calories &amp; macros from a photo</p>
+            </div>
+            <div class="go">→</div>
+          </button>
+
+          <div class="stats">
+            <div class="stat"><b>661</b><small>Foods rated</small></div>
+            <div class="stat"><b>14</b><small>Categories</small></div>
+            <div class="stat"><b>88</b><small>Avg score</small></div>
+          </div>
+
+          <div class="sectlabel"><h3>Browse guides</h3><a onclick="go('explore')">See all 14 →</a></div>
+          <div class="cgrid" id="homeCats"></div>
+
+          <div class="tip">
+            <div class="bg"><img src="https://images.unsplash.com/photo-1506617420156-8e4536971650?w=760&h=400&fit=crop&q=80" alt="Reading a product ingredient label" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🔍');this.remove()"></div>
+            <div class="scrim"></div>
+            <div class="inner">
+              <span>Today's tip</span>
+              <h4>Read ingredients, not marketing</h4>
+              <p>"Natural," "healthy," and "organic" on the front mean nothing. The truth is in the ingredients list — always flip the package.</p>
+            </div>
+          </div>
+
+          <p class="disc">Scores are informational only and not medical advice. Always consult a healthcare professional for dietary guidance.</p>
+        </section>
+
+        <!-- ============ EXPLORE ============ -->
+        <section class="view" id="explore">
+          <div class="topbar"><div class="brand"><div class="leaf">🌿</div><b class="sub">Explore</b></div>
+            <div class="avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&q=80" alt="Your profile" loading="lazy" onerror="this.replaceWith(document.createTextNode('Y'))"></div></div>
+          <div class="search"><span class="ic">🔍</span><span>Search 661 products &amp; brands…</span></div>
+          <div class="filters">
+            <button class="on">All</button>
+            <button>Seed-oil free</button>
+            <button>No additives</button>
+            <button>Low sugar</button>
+            <button>EWG verified</button>
+          </div>
+          <div class="cgrid" id="exploreCats" style="margin-top:8px"></div>
+        </section>
+
+        <!-- ============ SCAN ============ -->
+        <section class="view" id="scan">
+          <div class="topbar"><div class="brand"><div class="leaf">🌿</div><b class="sub">Scan</b></div>
+            <div class="avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&q=80" alt="Your profile" loading="lazy" onerror="this.replaceWith(document.createTextNode('Y'))"></div></div>
+          <div class="greet" style="margin-bottom:4px"><h1 style="font-size:25px">What are you<br>scanning?</h1><div class="hi" style="margin-top:6px">Two tools, one tap away.</div></div>
+
+          <button class="bigchoice label" onclick="go('result')">
+            <div class="bg"><img src="https://images.unsplash.com/photo-1556767576-cf0a4a80e5b8?w=760&h=420&fit=crop&q=80" alt="Packaged products on a shelf" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🏷️');this.remove()"></div>
+            <div class="scrim"></div>
+            <div class="inner"><div class="pill">📷 Label</div><h3>Scan a label</h3><p>Get an instant clean-score, seed-oil &amp; additive flags, and a full ingredient breakdown.</p></div>
+          </button>
+
+          <button class="bigchoice meal" onclick="go('track')">
+            <div class="bg"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=760&h=420&fit=crop&q=80" alt="A plated meal photographed from above" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🍽️');this.remove()"></div>
+            <div class="scrim"></div>
+            <div class="inner"><div class="pill">🍽️ Meal</div><h3>Snap a meal</h3><p>Photograph your plate and AI estimates calories, protein, carbs &amp; fat — then logs your day.</p></div>
+          </button>
+
+          <div class="steps">
+            <h3>How it works</h3>
+            <div class="step"><div class="n">1</div><div><b>Take or upload a photo</b><p>Point at a label or your plate.</p></div></div>
+            <div class="step"><div class="n">2</div><div><b>AI reads it instantly</b><p>Identifies each item and estimates portions.</p></div></div>
+            <div class="step"><div class="n">3</div><div><b>See score, macros &amp; flags</b><p>Clear results you can act on right away.</p></div></div>
+          </div>
+        </section>
+
+        <!-- ============ RESULT ============ -->
+        <section class="view" id="result">
+          <button class="back" onclick="go('home')">← Back</button>
+          <div class="product">
+            <div class="ph pimg" data-emoji="🥜"><img src="https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=200&h=200&fit=crop&q=80" alt="Packaged snack product" loading="lazy" onerror="this.remove()"></div>
+            <div>
+              <div class="brandname">NatureHarvest</div>
+              <h2>Honey Oat<br>Granola Bars</h2>
+              <span class="verdict">⚠︎ Moderate — eat occasionally</span>
+            </div>
+          </div>
+
+          <div class="scorecard">
+            <div class="ring">
+              <svg width="104" height="104" viewBox="0 0 104 104">
+                <circle cx="52" cy="52" r="44" fill="none" stroke="#eef2ef" stroke-width="11"/>
+                <circle cx="52" cy="52" r="44" fill="none" stroke="#e2900f" stroke-width="11" stroke-linecap="round" stroke-dasharray="276" stroke-dashoffset="77"/>
+              </svg>
+              <div class="center"><b>72</b><small>/ 100</small></div>
+            </div>
+            <div class="meta">
+              <b>Clean score: 72</b>
+              <p>Decent base ingredients, but added sugars and a refined oil pull the score down.</p>
+            </div>
+          </div>
+
+          <div class="flags">
+            <span class="flag bad">⛔ Seed oil</span>
+            <span class="flag warn">⚠︎ Added sugar</span>
+            <span class="flag good">✓ No artificial colors</span>
+          </div>
+
+          <div class="sectlabel"><h3>Ingredient breakdown</h3><a>6 items</a></div>
+          <div class="ingredients">
+            <div class="ing"><span class="dot g"></span><div><b>Whole grain oats</b><small>Wholesome complex carbs &amp; fiber</small></div><span class="badge">Good</span></div>
+            <div class="ing"><span class="dot g"></span><div><b>Almonds</b><small>Healthy fats &amp; protein</small></div><span class="badge">Good</span></div>
+            <div class="ing"><span class="dot a"></span><div><b>Honey</b><small>Natural, but still added sugar</small></div><span class="badge">Caution</span></div>
+            <div class="ing"><span class="dot a"></span><div><b>Cane sugar</b><small>Added sweetener</small></div><span class="badge">Caution</span></div>
+            <div class="ing"><span class="dot r"></span><div><b>Sunflower oil</b><small>Refined seed oil, high omega-6</small></div><span class="badge">Avoid</span></div>
+            <div class="ing"><span class="dot g"></span><div><b>Sea salt</b><small>In moderation, fine</small></div><span class="badge">Good</span></div>
+          </div>
+          <p class="disc">Scores are informational only and not medical advice.</p>
+        </section>
+
+        <!-- ============ TRACK ============ -->
+        <section class="view" id="track">
+          <div class="topbar"><div class="brand"><div class="leaf">🌿</div><b class="sub">Today</b></div>
+            <div class="avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&q=80" alt="Your profile" loading="lazy" onerror="this.replaceWith(document.createTextNode('Y'))"></div></div>
+
+          <div class="ring-wrap">
+            <div class="ring">
+              <svg width="176" height="176" viewBox="0 0 176 176">
+                <circle cx="88" cy="88" r="76" fill="none" stroke="#eef2ef" stroke-width="15"/>
+                <circle cx="88" cy="88" r="76" fill="none" stroke="#15974b" stroke-width="15" stroke-linecap="round" stroke-dasharray="477" stroke-dashoffset="308"/>
+              </svg>
+              <div class="center"><b style="font-size:36px">710</b><small>of 2,000 kcal</small></div>
+            </div>
+          </div>
+
+          <div class="macros">
+            <div class="macro"><div class="lab">Protein</div><b>48<span>/150g</span></b><div class="bar"><i style="width:32%;background:#15974b"></i></div></div>
+            <div class="macro"><div class="lab">Carbs</div><b>74<span>/200g</span></b><div class="bar"><i style="width:37%;background:#e2900f"></i></div></div>
+            <div class="macro"><div class="lab">Fat</div><b>22<span>/65g</span></b><div class="bar"><i style="width:34%;background:#d94b40"></i></div></div>
+          </div>
+
+          <div class="sectlabel"><h3>Logged today</h3><a onclick="go('scan')">+ Add meal</a></div>
+          <div class="meal">
+            <div class="ph mimg" data-emoji="🥗"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=140&h=140&fit=crop&q=80" alt="Chicken and quinoa bowl" loading="lazy" onerror="this.remove()"></div>
+            <div><h4>Chicken &amp; quinoa bowl</h4><p>710 kcal · 12:30 PM</p></div>
+            <div class="sc">88</div>
+          </div>
+          <div class="meal">
+            <div class="ph mimg" data-emoji="🫐"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=140&h=140&fit=crop&q=80" alt="Greek yogurt with berries" loading="lazy" onerror="this.remove()"></div>
+            <div><h4>Greek yogurt &amp; berries</h4><p>210 kcal · 8:05 AM</p></div>
+            <div class="sc">94</div>
+          </div>
+          <div class="emptylog"><div class="big">📸</div>Snap your next meal to keep the streak going.</div>
+        </section>
+
+      </div>
+
+      <!-- BOTTOM NAV -->
+      <nav class="nav">
+        <button data-t="home" class="on" onclick="go('home')"><span class="gi">⌂</span>Home</button>
+        <button data-t="explore" onclick="go('explore')"><span class="gi">⊞</span>Explore</button>
+        <button data-t="scan" class="scanbtn" onclick="go('scan')"><span class="gi">＋</span></button>
+        <button data-t="track" onclick="go('track')"><span class="gi">◷</span>Track</button>
+        <button data-t="profile" onclick="go('home')"><span class="gi">○</span>Profile</button>
+      </nav>
+
+      <!-- INTRO OVERLAY -->
+      <div class="overlay" id="overlay">
+        <div class="sheet">
+          <div class="cover">
+            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=760&h=300&fit=crop&q=80" alt="Healthy food spread" loading="lazy" onerror="this.closest('.cover').classList.add('ph');this.closest('.cover').setAttribute('data-emoji','🥗');this.remove()">
+            <div class="scrim"></div>
+            <div class="logo"><div class="leaf">🌿</div><b>Eat<i>Vera</i></b></div>
+          </div>
+          <h2>Welcome to EatVera</h2>
+          <p>Three simple things you can do — pick any to start.</p>
+          <div class="feat"><div class="ic">📷</div><div><b>Scan a label</b><p>Instant clean-score for any product</p></div></div>
+          <div class="feat"><div class="ic">🍽️</div><div><b>Snap a meal</b><p>Track calories &amp; macros from a photo</p></div></div>
+          <div class="feat"><div class="ic">⊞</div><div><b>Browse guides</b><p>661 foods rated across 14 categories</p></div></div>
+          <button class="cta-btn" onclick="hideIntro()">Get started</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  // ---- category data (drives Home preview + full Explore grid) ----
+  const CATS = [
+    {emoji:'🍎', img:'photo-1610832958506-aa56368176cf', name:'Fruits',            rated:67, tag:'ewg',  tagText:'EWG data'},
+    {emoji:'🥩', img:'photo-1607623814075-e51df1bdc82f', name:'Meats',             rated:58, tag:'ewg',  tagText:'Grass-fed'},
+    {emoji:'🍿', img:'photo-1566478989037-eec170784d0b', name:'Snacks',            rated:64, tag:'seed', tagText:'Seed oil'},
+    {emoji:'🥦', img:'photo-1540420773420-3366772f4999', name:'Vegetables',        rated:51, tag:'ewg',  tagText:'EWG data'},
+    {emoji:'🥛', img:'photo-1550583724-b2692b85b150',    name:'Dairy & eggs',      rated:39, tag:'data', tagText:'A1 / A2'},
+    {emoji:'🫙', img:'photo-1474979266404-7eaacbcd87c5', name:'Condiments & oils', rated:41, tag:'seed', tagText:'Seed oil'},
+    {emoji:'💧', img:'photo-1548839140-29a749e1cf4d',    name:'Water',             rated:31, tag:'data', tagText:'pH & TDS'},
+    {emoji:'🌾', img:'photo-1509440159596-0249088772ff', name:'Bread & grains',    rated:66, tag:'add',  tagText:'Gluten'},
+    {emoji:'🧃', img:'photo-1437418747212-8d9709afab22', name:'Beverages',         rated:53, tag:'sugar',tagText:'Sugar alert'},
+    {emoji:'💊', img:'photo-1584308666744-24d5c474f2ae', name:'Supplements',       rated:42, tag:'add',  tagText:'Filler alert'},
+    {emoji:'👶', img:'photo-1492725764893-90b379c2b6e7', name:'Baby & kids',       rated:35, tag:'ewg',  tagText:'Safe for kids'},
+    {emoji:'🍷', img:'photo-1510812431401-41d2bd2722f3', name:'Alcohol',           rated:30, tag:'add',  tagText:'Additives'}
+  ];
+
+  function catCard(c){
+    const url = `https://images.unsplash.com/${c.img}?w=360&h=230&fit=crop&q=80`;
+    return `<button class="cat" onclick="go('explore')">
+      <div class="ph cat-img" data-emoji="${c.emoji}">
+        <img src="${url}" alt="${c.name}" loading="lazy" onerror="this.remove()">
+      </div>
+      <div class="cat-body">
+        <span class="tag ${c.tag}">${c.tagText}</span>
+        <h4>${c.name}</h4>
+        <p>${c.rated} rated</p>
+      </div>
+    </button>`;
+  }
+
+  document.getElementById('homeCats').innerHTML    = CATS.slice(0,4).map(catCard).join('');
+  document.getElementById('exploreCats').innerHTML = CATS.map(catCard).join('');
+
+  // ---- view router ----
+  function go(id){
+    document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));
+    // map result -> highlight Scan tab; default highlight self
+    const tab = (id==='result') ? 'scan' : id;
+    document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===tab));
+    document.getElementById('app').scrollTop=0;
+  }
+  function showIntro(){document.getElementById('overlay').classList.remove('hide')}
+  function hideIntro(){document.getElementById('overlay').classList.add('hide')}
+</script>
+</body>
+</html>
