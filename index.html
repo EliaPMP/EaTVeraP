@@ -74,6 +74,8 @@
   .greet{margin:0 2px 16px}
   .greet .hi{font-size:13.5px;color:var(--muted);font-weight:500}
   .greet h1{font-size:23px;font-weight:800;letter-spacing:-.03em;margin-top:1px}
+  .orient{font-size:14.5px;color:var(--muted);line-height:1.55;margin:2px 2px 18px}
+  .orient b{color:var(--ink);font-weight:700}
 
   .sectlabel{display:flex;align-items:center;justify-content:space-between;margin:26px 2px 12px}
   .sectlabel h3{font-size:15.5px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
@@ -92,7 +94,7 @@
   }
   .hero .bg{position:absolute;inset:0}
   .hero .bg img{width:100%;height:100%;object-fit:cover}
-  .hero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,40,22,.18) 0%,rgba(7,52,28,.55) 55%,rgba(6,46,25,.86) 100%)}
+  .hero .scrim{position:absolute;inset:0;background:linear-gradient(160deg,rgba(31,170,87,.28) 0%,rgba(15,124,61,.66) 52%,rgba(10,94,47,.92) 100%)}
   .hero .inner{position:relative;padding:20px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;min-height:208px}
   .hero .kick{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#aef0c6;margin-bottom:auto}
   .hero h2{font-size:24px;font-weight:800;letter-spacing:-.02em}
@@ -202,6 +204,13 @@
   .ing .badge{margin-left:auto;font-size:11px;font-weight:700;color:var(--muted)}
 
   /* ---------- track ---------- */
+  .daystrip{display:flex;gap:6px;justify-content:space-between;margin:2px 0 6px}
+  .daystrip .day{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;padding:9px 0;border-radius:14px;cursor:pointer;border:1px solid transparent}
+  .daystrip .day small{font-size:10.5px;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:.03em}
+  .daystrip .day b{font-size:14px;font-weight:700;color:var(--ink)}
+  .daystrip .day.on{background:var(--green-600);box-shadow:0 8px 16px rgba(15,124,61,.3)}
+  .daystrip .day.on small,.daystrip .day.on b{color:#fff}
+  .daystrip .day.on small{opacity:.85}
   .ring-wrap{display:flex;justify-content:center;margin:8px 0 4px}
   .macros{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:18px}
   .macro{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:13px 12px;box-shadow:var(--sh-sm)}
@@ -212,11 +221,16 @@
   .macro .bar i{display:block;height:100%;border-radius:4px}
 
   .meal{background:var(--card);border:1px solid var(--line);border-radius:var(--r3);padding:10px;box-shadow:var(--sh);display:flex;gap:13px;align-items:center;margin-bottom:11px}
-  .meal .mimg{width:58px;height:58px;border-radius:var(--r2);flex-shrink:0}
+  .meal .mimg{width:64px;height:64px;border-radius:var(--r2);flex-shrink:0}
   .meal .mimg::before{font-size:24px}
+  .meal .body{min-width:0;flex:1}
   .meal h4{font-size:15px;font-weight:700;letter-spacing:-.01em}
-  .meal p{font-size:12px;color:var(--muted);margin-top:2px}
-  .meal .sc{margin-left:auto;background:var(--green-50);color:var(--green-700);font-weight:800;font-size:14px;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .meal p{font-size:12px;color:var(--muted);margin-top:1px}
+  .mpills{display:flex;gap:6px;margin-top:7px;flex-wrap:wrap}
+  .mpill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:var(--ink-2);background:#f3f7f4;border-radius:999px;padding:3px 8px}
+  .mpill i{width:7px;height:7px;border-radius:50%;display:inline-block}
+  .mpill.p i{background:#15974b} .mpill.c i{background:#e2900f} .mpill.f i{background:#d94b40}
+  .meal .sc{margin-left:auto;align-self:flex-start;background:var(--green-50);color:var(--green-700);font-weight:800;font-size:14px;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
   .emptylog{background:var(--card);border:1.5px dashed #c8d8cf;border-radius:var(--r3);padding:24px;text-align:center;color:var(--muted);font-size:13px;margin-top:8px}
   .emptylog .big{font-size:30px;margin-bottom:8px}
 
@@ -256,13 +270,13 @@
 <body>
 
   <div class="intro">
-    <h1>Eat<span>Vera</span> — redesigned</h1>
-    <p>A clean, professional rebuild: real food photography, one dominant action, clearly separated scan tools, and a scan-result screen that finally shows the payoff.</p>
+    <h1>Eat<span>Vera</span> — refined</h1>
+    <p>The original layout, made more appealing and user-friendly — green-forward styling with real food photography and Cal AI / Scout-style polish on tracking and scan results.</p>
     <div class="badge-row">
+      <div class="chip">Original layout, elevated</div>
       <div class="chip">Real photography</div>
-      <div class="chip">One primary action</div>
+      <div class="chip">Day strip + macro pills</div>
       <div class="chip">Scan result screen</div>
-      <div class="chip">Consistent design system</div>
       <div class="chip">Graceful image fallbacks</div>
     </div>
   </div>
@@ -283,10 +297,7 @@
             <div class="avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&q=80" alt="Your profile" loading="lazy" onerror="this.replaceWith(document.createTextNode('Y'))"></div>
           </div>
 
-          <div class="greet">
-            <div class="hi">Good morning, Yara 👋</div>
-            <h1>Know what's really<br>in your food.</h1>
-          </div>
+          <p class="orient"><b>Know what's really in your food.</b> Scan a label for an instant clean-score, or snap a meal to track calories &amp; macros.</p>
 
           <button class="hero" onclick="go('result')">
             <div class="bg"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=760&h=440&fit=crop&q=80" alt="Fresh groceries on a counter" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🛒');this.remove()"></div>
@@ -307,12 +318,6 @@
             </div>
             <div class="go">→</div>
           </button>
-
-          <div class="stats">
-            <div class="stat"><b>661</b><small>Foods rated</small></div>
-            <div class="stat"><b>14</b><small>Categories</small></div>
-            <div class="stat"><b>88</b><small>Avg score</small></div>
-          </div>
 
           <div class="sectlabel"><h3>Browse guides</h3><a onclick="go('explore')">See all 14 →</a></div>
           <div class="cgrid" id="homeCats"></div>
@@ -420,6 +425,16 @@
           <div class="topbar"><div class="brand"><div class="leaf">🌿</div><b class="sub">Today</b></div>
             <div class="avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&q=80" alt="Your profile" loading="lazy" onerror="this.replaceWith(document.createTextNode('Y'))"></div></div>
 
+          <div class="daystrip">
+            <div class="day"><small>Mon</small><b>23</b></div>
+            <div class="day"><small>Tue</small><b>24</b></div>
+            <div class="day"><small>Wed</small><b>25</b></div>
+            <div class="day"><small>Thu</small><b>26</b></div>
+            <div class="day"><small>Fri</small><b>27</b></div>
+            <div class="day on"><small>Sat</small><b>28</b></div>
+            <div class="day"><small>Sun</small><b>29</b></div>
+          </div>
+
           <div class="ring-wrap">
             <div class="ring">
               <svg width="176" height="176" viewBox="0 0 176 176">
@@ -439,12 +454,20 @@
           <div class="sectlabel"><h3>Logged today</h3><a onclick="go('scan')">+ Add meal</a></div>
           <div class="meal">
             <div class="ph mimg" data-emoji="🥗"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=140&h=140&fit=crop&q=80" alt="Chicken and quinoa bowl" loading="lazy" onerror="this.remove()"></div>
-            <div><h4>Chicken &amp; quinoa bowl</h4><p>710 kcal · 12:30 PM</p></div>
+            <div class="body">
+              <h4>Chicken &amp; quinoa bowl</h4>
+              <p>710 kcal · 12:30 PM</p>
+              <div class="mpills"><span class="mpill p"><i></i>42g P</span><span class="mpill c"><i></i>58g C</span><span class="mpill f"><i></i>18g F</span></div>
+            </div>
             <div class="sc">88</div>
           </div>
           <div class="meal">
             <div class="ph mimg" data-emoji="🫐"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=140&h=140&fit=crop&q=80" alt="Greek yogurt with berries" loading="lazy" onerror="this.remove()"></div>
-            <div><h4>Greek yogurt &amp; berries</h4><p>210 kcal · 8:05 AM</p></div>
+            <div class="body">
+              <h4>Greek yogurt &amp; berries</h4>
+              <p>210 kcal · 8:05 AM</p>
+              <div class="mpills"><span class="mpill p"><i></i>15g P</span><span class="mpill c"><i></i>22g C</span><span class="mpill f"><i></i>4g F</span></div>
+            </div>
             <div class="sc">94</div>
           </div>
           <div class="emptylog"><div class="big">📸</div>Snap your next meal to keep the streak going.</div>
