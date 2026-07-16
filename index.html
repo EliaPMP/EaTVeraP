@@ -336,6 +336,68 @@
   .ing small{display:block;font-size:11.5px;color:var(--muted);margin-top:1px}
   .ing .badge{margin-left:auto;font-size:10px;font-weight:700;font-family:'JetBrains Mono';letter-spacing:.05em;text-transform:uppercase;color:var(--faint)}
 
+  /* ---------- RESULT v2 (Yuka-inspired) ---------- */
+  .rnav{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .rcirc{width:42px;height:42px;border-radius:50%;border:none;background:var(--card);color:var(--ink);font-size:17px;cursor:pointer;box-shadow:var(--sh);display:flex;align-items:center;justify-content:center}
+  .rcirc.fav{color:var(--red)}
+  .rnav b{font-family:'Space Grotesk';font-size:17px;letter-spacing:-.01em}
+  .rnav b i{color:var(--acc);font-style:normal}
+  .rhero{background:var(--card);border-radius:26px;padding:12px;box-shadow:var(--sh)}
+  .rhero .ph{border-radius:18px;aspect-ratio:16/10;position:relative}
+  .rhero .ph::before{font-size:44px}
+  .rtitle{margin:16px 4px 0}
+  .rtitle h2{font-size:23px;letter-spacing:-.02em;line-height:1.2}
+  .rtitle p{font-size:13.5px;color:var(--muted);margin-top:3px}
+  .rchips{display:flex;gap:8px;margin-top:11px}
+  .rchip{background:var(--card);border-radius:999px;padding:7px 13px;font-size:12px;font-weight:600;box-shadow:var(--sh)}
+  .rchip.price{background:rgba(251,191,36,.14);color:var(--amber);box-shadow:none}
+  .scorecard2{background:var(--card);border-radius:26px;padding:22px 20px;box-shadow:var(--sh);margin-top:16px;display:flex;align-items:center;gap:20px}
+  .scorecard2 .grade{font-family:'Space Grotesk';font-size:13px;font-weight:700;color:var(--amber)}
+  .scorecard2 .meta{flex:1}
+  .scorecard2 .meta b{font-family:'Space Grotesk';font-size:22px;font-weight:700;display:block;letter-spacing:-.01em}
+  .scorecard2 .meta b.warn{color:var(--amber)} .scorecard2 .meta b.good{color:var(--acc)} .scorecard2 .meta b.bad{color:var(--red)}
+  .scorecard2 .meta p{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.55}
+  /* mascot */
+  .mascotrow{display:flex;align-items:center;gap:12px;margin:16px 2px 0}
+  .mascot{flex-shrink:0;filter:drop-shadow(0 4px 10px rgba(0,0,0,.2))}
+  .bubble{position:relative;background:var(--card);border-radius:999px;padding:11px 17px;font-size:13.5px;font-weight:700;box-shadow:var(--sh)}
+  .bubble::before{content:"";position:absolute;left:-7px;top:50%;transform:translateY(-50%);border:8px solid transparent;border-right-color:var(--card);border-left:none}
+  .stattiles{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:16px}
+  .stattile{background:rgba(74,222,128,.09);border-radius:18px;padding:14px 6px;text-align:center}
+  .screen[data-theme="light"] .stattile{background:#e4f2e6}
+  .stattile b{font-family:'Space Grotesk';font-size:19px;font-weight:700;display:block;color:var(--acc-deep)}
+  .screen[data-theme="dark"] .stattile b{color:var(--acc)}
+  .stattile.warn b{color:var(--amber)}
+  .stattile small{font-size:8.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:block;margin-top:3px}
+  .rtabs{display:flex;margin:20px 2px 0;border-bottom:1.5px solid var(--line)}
+  .rtabs button{flex:1;border:none;background:none;color:var(--faint);font-family:'Space Grotesk';font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:12px 4px;cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1.5px}
+  .rtabs button.on{color:var(--ink);border-bottom-color:var(--acc)}
+  .tabpane{margin-top:14px}
+  .chkrow{display:flex;align-items:center;gap:12px;background:rgba(74,222,128,.09);border-radius:17px;padding:14px 15px;margin-bottom:9px;font-size:14px;font-weight:600}
+  .screen[data-theme="light"] .chkrow{background:#e4f2e6}
+  .chkrow .ci{width:24px;height:24px;border-radius:50%;background:var(--acc);color:var(--ongreen);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .chkrow.warn{background:rgba(251,191,36,.1)}
+  .screen[data-theme="light"] .chkrow.warn{background:#f8ecd7}
+  .chkrow.warn .ci{background:var(--amber);color:#221600}
+  .ingcard{background:var(--card);border-radius:20px;padding:15px 16px;box-shadow:var(--sh);margin-bottom:10px}
+  .ingcard .irow{display:flex;align-items:center;gap:10px}
+  .ingcard .irow b{font-size:14.5px;font-weight:700;flex:1}
+  .ibadge{font-size:11px;font-weight:700;border-radius:999px;padding:5px 11px}
+  .ibadge.clean{background:var(--acc);color:var(--ongreen)}
+  .ibadge.caution{background:var(--amber);color:#221600}
+  .ibadge.avoid{background:var(--red);color:#fff}
+  .ingcard .ibar{height:7px;border-radius:4px;background:var(--wash);margin-top:11px;overflow:hidden}
+  .ingcard .ibar i{display:block;height:100%;border-radius:4px}
+  .ingcard p{font-size:12px;color:var(--muted);margin-top:9px}
+  .nutlabel{font-family:'JetBrains Mono';font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--faint);margin:4px 2px 12px}
+  .nutrow{margin-bottom:15px}
+  .nutrow .nr{display:flex;align-items:baseline;justify-content:space-between}
+  .nutrow .nr b{font-size:15px;font-weight:700}
+  .nutrow .nr span{font-family:'Space Grotesk';font-size:16px;font-weight:700}
+  .nutrow .nr span small{font-size:11px;color:var(--faint);font-weight:600;font-family:'Inter'}
+  .nutrow .nbar{height:7px;border-radius:4px;background:var(--wash);margin-top:8px;overflow:hidden}
+  .nutrow .nbar i{display:block;height:100%;border-radius:4px;background:var(--acc-2)}
+
   .toast{position:absolute;left:50%;bottom:112px;transform:translateX(-50%) translateY(16px);background:var(--raise);color:var(--ink);font-size:13px;font-weight:600;border-radius:999px;padding:11px 19px;z-index:50;opacity:0;pointer-events:none;transition:all .3s ease;white-space:nowrap;box-shadow:0 12px 32px rgba(0,0,0,.4)}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
   .toast b{color:var(--acc)}
@@ -476,6 +538,16 @@
       <circle cx="32" cy="32" r="32" fill="#143d2a"/>
       <path d="M46 17 C52 28 50 40 40 46 C31 51 21 47 20 38 C19 28 30 20 46 17 Z" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M42 24 C34 30 28 36 14 50" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="ev-mascot" viewBox="0 0 48 58">
+      <defs><linearGradient id="mleaf" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#86efac"/><stop offset="100%" stop-color="#22c55e"/></linearGradient></defs>
+      <path d="M24 3 C38 9 43 25 35 39 C31 47 17 47 13 39 C5 25 10 9 24 3 Z" fill="url(#mleaf)" stroke="#15803d" stroke-width="1.5"/>
+      <path d="M24 45 Q23 51 25 56" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="18.5" cy="24" r="2.1" fill="#0d2b1d"/>
+      <circle cx="29.5" cy="24" r="2.1" fill="#0d2b1d"/>
+      <path d="M18 30.5 Q24 35.5 30 30.5" fill="none" stroke="#0d2b1d" stroke-width="2.2" stroke-linecap="round"/>
+      <circle cx="14" cy="28.5" r="2.2" fill="#f9a8d4" opacity=".55"/>
+      <circle cx="34" cy="28.5" r="2.2" fill="#f9a8d4" opacity=".55"/>
     </symbol>
     <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20a1 1 0 0 0 1 1H10v-5.5a2 2 0 0 1 4 0V21h3.5a1 1 0 0 0 1-1V9.5"/></symbol>
     <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5C10 5 7.5 4.4 4 4.4V19c3.5 0 6 .6 8 2.1 2-1.5 4.5-2.1 8-2.1V4.4c-3.5 0-6 .6-8 2.1z"/><path d="M12 6.5V21"/></symbol>
@@ -710,41 +782,109 @@
           <p class="disc">Your camera feed stays on your device — nothing is uploaded in this prototype.</p>
         </section>
 
-        <!-- ============ RESULT ============ -->
+        <!-- ============ RESULT (Yuka-inspired) ============ -->
         <section class="view" id="result">
-          <button class="back" onclick="go('scan')">← Scanner</button>
-          <div class="analyzed"><span class="dot"></span>Analysis complete · 0.8s</div>
-          <div class="product">
-            <div class="ph pimg" data-emoji="🥜" id="resPimg"><img src="https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=200&h=200&fit=crop&q=80" alt="Packaged snack product" loading="lazy" onerror="this.remove()"></div>
-            <div>
-              <div class="brandname" id="resBrand">NatureHarvest</div>
-              <h2 id="resName">Honey Oat<br>Granola Bars</h2>
-              <span class="verdict">⚠︎ Moderate — eat occasionally</span>
-            </div>
+          <div class="rnav">
+            <button class="rcirc" onclick="go('scan')">←</button>
+            <b>Eat<i>Vera</i></b>
+            <button class="rcirc" id="favBtn" onclick="fav(this)">♡</button>
           </div>
 
-          <div class="scorecard">
+          <div class="rhero">
+            <div class="ph" data-emoji="🥜" id="resPimg"><img src="https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=700&h=440&fit=crop&q=80" alt="Packaged snack product" loading="lazy" onerror="this.remove()"></div>
+          </div>
+
+          <div class="rtitle">
+            <h2 id="resName">Honey Oat Granola Bars</h2>
+            <p id="resBrand">NatureHarvest (Whole Foods)</p>
+            <div class="rchips"><span class="rchip">6 bars · 210 g</span><span class="rchip price">$4.99 est.</span></div>
+          </div>
+
+          <div class="scorecard2">
             <div class="ring">
               <svg width="104" height="104" viewBox="0 0 104 104">
-                <circle class="track" cx="52" cy="52" r="44" fill="none" stroke-width="11"/>
-                <circle class="val" cx="52" cy="52" r="44" fill="none" stroke="#fbbf24" stroke-width="11" stroke-linecap="round" stroke-dasharray="276" stroke-dashoffset="276" data-off="77"/>
+                <circle class="track" cx="52" cy="52" r="44" fill="none" stroke-width="10"/>
+                <circle class="val" cx="52" cy="52" r="44" fill="none" stroke="#fbbf24" stroke-width="10" stroke-linecap="round" stroke-dasharray="276" stroke-dashoffset="276" data-off="77"/>
               </svg>
-              <div class="center"><b data-count="72">0</b><small>/ 100</small></div>
+              <div class="center"><b data-count="72">0</b><span class="grade">B</span></div>
             </div>
             <div class="meta">
-              <b>Clean score</b>
-              <p>Decent base ingredients, but added sugars and a refined oil pull the score down.</p>
-              <div class="conf">MODEL CONFIDENCE <b>96.4%</b></div>
+              <b class="warn">Good</b>
+              <p>Decent base ingredients, but added sugar and a refined seed oil hold it back from great.</p>
             </div>
           </div>
 
-          <div class="flags">
-            <span class="flag bad">⛔ Seed oil</span>
-            <span class="flag warn">⚠︎ Added sugar</span>
-            <span class="flag good">✓ No artificial colors</span>
+          <div class="mascotrow">
+            <svg class="mascot" width="46" height="56"><use href="#ev-mascot"/></svg>
+            <span class="bubble">Solid pick — one swap makes it great!</span>
           </div>
 
           <button class="logbtn" onclick="logIt()">＋ Log to today <small>190 kcal · 4P / 29C / 7F</small></button>
+
+          <div class="stattiles">
+            <div class="stattile warn"><b>2</b><small>Flags</small></div>
+            <div class="stattile"><b>C</b><small>Nutri-score</small></div>
+            <div class="stattile"><b>3</b><small>NOVA</small></div>
+            <div class="stattile"><b>6</b><small>Ingredients</small></div>
+          </div>
+
+          <div class="rtabs">
+            <button class="on" onclick="resTab('ov',this)">Overview</button>
+            <button onclick="resTab('ig',this)">Ingredients</button>
+            <button onclick="resTab('nu',this)">Nutrition</button>
+          </div>
+
+          <div class="tabpane" id="tab-ov">
+            <div class="chkrow"><span class="ci">✓</span>Whole-grain oat base</div>
+            <div class="chkrow"><span class="ci">✓</span>No artificial colors or dyes</div>
+            <div class="chkrow"><span class="ci">✓</span>Real almonds &amp; honey</div>
+            <div class="chkrow warn"><span class="ci">!</span>Contains sunflower (seed) oil</div>
+            <div class="chkrow warn"><span class="ci">!</span>12 g added sugar per serving</div>
+          </div>
+
+          <div class="tabpane" id="tab-ig" hidden>
+            <div class="ingcard">
+              <div class="irow"><b>Whole grain oats</b><span class="ibadge clean">Clean</span></div>
+              <div class="ibar"><i style="width:92%;background:var(--acc-2)"></i></div>
+              <p>Wholesome complex carbs &amp; fiber — great base.</p>
+            </div>
+            <div class="ingcard">
+              <div class="irow"><b>Almonds</b><span class="ibadge clean">Clean</span></div>
+              <div class="ibar"><i style="width:88%;background:var(--acc-2)"></i></div>
+              <p>Healthy fats and a little extra protein.</p>
+            </div>
+            <div class="ingcard">
+              <div class="irow"><b>Honey</b><span class="ibadge caution">Caution</span></div>
+              <div class="ibar"><i style="width:55%;background:var(--amber)"></i></div>
+              <p>Natural, but it still counts as added sugar.</p>
+            </div>
+            <div class="ingcard">
+              <div class="irow"><b>Cane sugar</b><span class="ibadge caution">Caution</span></div>
+              <div class="ibar"><i style="width:42%;background:var(--amber)"></i></div>
+              <p>Second added sweetener — pushes sugar to 12 g per bar.</p>
+            </div>
+            <div class="ingcard">
+              <div class="irow"><b>Sunflower oil</b><span class="ibadge avoid">Avoid</span></div>
+              <div class="ibar"><i style="width:20%;background:var(--red)"></i></div>
+              <p>Refined seed oil, high in omega-6 — the main score penalty.</p>
+            </div>
+            <div class="ingcard">
+              <div class="irow"><b>Sea salt</b><span class="ibadge clean">Clean</span></div>
+              <div class="ibar"><i style="width:80%;background:var(--acc-2)"></i></div>
+              <p>Fine in moderation.</p>
+            </div>
+          </div>
+
+          <div class="tabpane" id="tab-nu" hidden>
+            <div class="nutlabel">PER BAR (35 G)</div>
+            <div class="nutrow"><div class="nr"><b>Calories</b><span>190 <small>kcal</small></span></div><div class="nbar"><i style="width:38%"></i></div></div>
+            <div class="nutrow"><div class="nr"><b>Protein</b><span>4 <small>g</small></span></div><div class="nbar"><i style="width:16%"></i></div></div>
+            <div class="nutrow"><div class="nr"><b>Carbs</b><span>29 <small>g</small></span></div><div class="nbar"><i style="width:58%;background:var(--amber)"></i></div></div>
+            <div class="nutrow"><div class="nr"><b>&nbsp;&nbsp;of which sugar</b><span>12 <small>g</small></span></div><div class="nbar"><i style="width:48%;background:var(--red)"></i></div></div>
+            <div class="nutrow"><div class="nr"><b>Fat</b><span>7 <small>g</small></span></div><div class="nbar"><i style="width:28%"></i></div></div>
+            <div class="nutrow"><div class="nr"><b>Fiber</b><span>2 <small>g</small></span></div><div class="nbar"><i style="width:14%"></i></div></div>
+            <div class="nutrow"><div class="nr"><b>Sodium</b><span>105 <small>mg</small></span></div><div class="nbar"><i style="width:22%"></i></div></div>
+          </div>
 
           <div class="sectlabel"><h3>Cleaner swaps</h3><a>Score 85+</a></div>
           <div class="swaps">
@@ -762,15 +902,6 @@
             </button>
           </div>
 
-          <div class="sectlabel"><h3>Ingredients</h3><a>6 detected</a></div>
-          <div class="ingredients">
-            <div class="ing"><span class="dot g"></span><div><b>Whole grain oats</b><small>Wholesome complex carbs &amp; fiber</small></div><span class="badge">Good</span></div>
-            <div class="ing"><span class="dot g"></span><div><b>Almonds</b><small>Healthy fats &amp; protein</small></div><span class="badge">Good</span></div>
-            <div class="ing"><span class="dot a"></span><div><b>Honey</b><small>Natural, but still added sugar</small></div><span class="badge">Caution</span></div>
-            <div class="ing"><span class="dot a"></span><div><b>Cane sugar</b><small>Added sweetener</small></div><span class="badge">Caution</span></div>
-            <div class="ing"><span class="dot r"></span><div><b>Sunflower oil</b><small>Refined seed oil, high omega-6</small></div><span class="badge">Avoid</span></div>
-            <div class="ing"><span class="dot g"></span><div><b>Sea salt</b><small>In moderation, fine</small></div><span class="badge">Good</span></div>
-          </div>
           <p class="disc">Scores are informational only and not medical advice.</p>
         </section>
 
@@ -1197,6 +1328,17 @@
         go('track');
       }
     }, 800);
+  }
+
+  // ---- result tabs + favorite ----
+  function resTab(t, btn){
+    ['ov','ig','nu'].forEach(k => document.getElementById('tab-'+k).hidden = (k !== t));
+    document.querySelectorAll('.rtabs button').forEach(b => b.classList.toggle('on', b === btn));
+  }
+  function fav(btn){
+    const on = btn.classList.toggle('fav');
+    btn.textContent = on ? '❤' : '♡';
+    toast(on ? 'Saved to favorites ✓' : 'Removed from favorites');
   }
 
   // ---- report share ----
