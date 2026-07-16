@@ -141,17 +141,16 @@
   .newsrow::-webkit-scrollbar{display:none}
   .news{flex:0 0 200px;border:none;background:var(--card);border-radius:20px;overflow:hidden;cursor:pointer;text-align:left;box-shadow:var(--sh);color:var(--ink);transition:transform .15s ease}
   .news:active{transform:scale(.97)}
-  .news .nimg{width:100%;aspect-ratio:16/8.5;position:relative}
-  .news .ntag{position:absolute;top:9px;left:9px;background:rgba(4,8,6,.65);backdrop-filter:blur(6px);color:#c9f7d8;font-family:'JetBrains Mono';font-size:8.5px;font-weight:700;letter-spacing:.08em;border-radius:999px;padding:4px 9px}
-  .news .nbody{padding:11px 13px 13px}
+  .news .nimg{display:block;width:100%;aspect-ratio:16/8.5;position:relative}
+  .news .ntag{position:absolute;top:9px;left:9px;background:rgba(4,8,6,.65);backdrop-filter:blur(6px);color:#c9f7d8;font-family:'JetBrains Mono';font-size:8.5px;font-weight:700;letter-spacing:.08em;border-radius:999px;padding:4px 9px;z-index:2}
+  .news .nbody{display:block;padding:11px 13px 13px}
+  .news h4,.news .nbody p{display:block}
   .news h4{font-size:13.5px;line-height:1.35}
   .news p{font-size:11px;color:var(--muted);margin-top:3px}
 
-  .tip{position:relative;border-radius:24px;overflow:hidden;margin-top:14px;min-height:150px;color:#eafaf0;box-shadow:var(--sh)}
-  .tip .bg{position:absolute;inset:0}
-  .tip .bg img{width:100%;height:100%;object-fit:cover}
-  .tip .scrim{position:absolute;inset:0;background:linear-gradient(115deg,rgba(12,32,21,.96) 0%,rgba(12,32,21,.8) 45%,rgba(12,32,21,.3) 100%)}
-  .tip .inner{position:relative;padding:18px}
+  .tip{position:relative;border-radius:24px;overflow:hidden;margin-top:14px;color:#eafaf0;box-shadow:var(--sh);background:linear-gradient(140deg,#1a4d31,#123a25)}
+  .tip::before{content:"";position:absolute;width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.05);top:-70px;right:-50px}
+  .tip .inner{position:relative;padding:20px}
   .tip span{font-family:'JetBrains Mono';font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#4ade80;font-weight:700}
   .tip h4{font-size:18px;margin-top:7px}
   .tip p{font-size:12.5px;color:#c2d8ca;margin-top:6px;line-height:1.55;max-width:88%}
@@ -502,7 +501,17 @@
   .wshare:active{transform:scale(.97)}
   .repback{position:absolute;top:56px;left:18px;z-index:5;background:rgba(0,0,0,.3);backdrop-filter:blur(8px);color:#fff;border:none;border-radius:999px;padding:9px 15px;font-size:13px;font-weight:600;cursor:pointer}
 
-  /* ---------- PROFILE ---------- */
+  /* ---------- PROFILE (simple) ---------- */
+  .pcard{display:flex;align-items:center;gap:15px;background:var(--card);border-radius:24px;padding:18px;box-shadow:var(--sh)}
+  .pcard .pav{width:60px;height:60px;border-radius:50%;overflow:hidden;background:var(--raise);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--acc);font-weight:700;font-size:20px}
+  .pcard .pav img{width:100%;height:100%;object-fit:cover}
+  .pcard h2{font-size:19px}
+  .pcard p{font-size:12px;color:var(--muted);margin-top:2px}
+  .pcard .streak{margin-left:auto}
+  .pstats2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
+  .pstat2{background:var(--card);border-radius:18px;padding:16px 12px;text-align:center;box-shadow:var(--sh)}
+  .pstat2 b{font-family:'Space Grotesk';font-size:22px;font-weight:700;display:block;line-height:1.1}
+  .pstat2 small{font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.05em;display:block;margin-top:4px}
   .pcover{position:relative;height:110px;margin:-58px -20px 0;background:linear-gradient(120deg,#0e2f1f,#14532d 45%,#0e2f1f);overflow:hidden}
   .pcover::after{content:"";position:absolute;inset:0;background:radial-gradient(300px 120px at 80% 0%,rgba(74,222,128,.25),transparent)}
   .phead2{display:flex;align-items:flex-end;gap:16px;margin-top:-38px;position:relative;z-index:2;padding:0 2px}
@@ -671,8 +680,6 @@
           </div>
 
           <div class="tip">
-            <div class="bg"><img src="https://images.unsplash.com/photo-1506617420156-8e4536971650?w=760&h=400&fit=crop&q=80" alt="Reading a product ingredient label" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🔍');this.remove()"></div>
-            <div class="scrim"></div>
             <div class="inner">
               <span>Today's tip</span>
               <h4>Read ingredients, not marketing</h4>
@@ -1093,47 +1100,33 @@
           </div>
         </section>
 
-        <!-- ============ PROFILE ============ -->
+        <!-- ============ PROFILE (simple, Cal AI style) ============ -->
         <section class="view" id="profile">
-          <div class="pcover"></div>
-          <div class="phead2">
-            <div class="bigavatar"><div class="in"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&q=80" alt="Yara's profile photo" loading="lazy" onerror="this.remove()"></div></div>
-            <div class="pstats">
-              <div class="pstat"><b>128</b><small>Scans</small></div>
-              <div class="pstat"><b>84</b><small>Avg score</small></div>
-              <div class="pstat"><b>12</b><small>Streak</small></div>
-            </div>
+          <div class="thead">
+            <div><h1>Profile</h1><p>Your stats &amp; settings</p></div>
           </div>
-          <div class="pname">
-            <h2>Yara Saldanha</h2>
-            <div class="handle">@yara.eats</div>
-            <p class="bio">Eating cleaner one scan at a time 🌿 No seed oils · high protein</p>
+
+          <div class="pcard">
+            <div class="pav"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=160&h=160&fit=crop&q=80" alt="Your photo" loading="lazy" onerror="this.replaceWith(document.createTextNode('Y'))"></div>
+            <div><h2>Yara</h2><p>Member since June 2026</p></div>
+            <span class="streak">🔥 12 days</span>
           </div>
-          <div class="pbtns">
-            <button class="pbtn acc" onclick="toast('Profile editing coming soon')">Edit profile</button>
-            <button class="pbtn" onclick="go('report')">📊 My report</button>
-            <button class="pbtn" onclick="toast('Share link copied ✓')">Share</button>
+
+          <div class="pstats2">
+            <div class="pstat2"><b>128</b><small>Scans</small></div>
+            <div class="pstat2"><b>84</b><small>Avg score</small></div>
+            <div class="pstat2"><b>86%</b><small>Seed-oil free</small></div>
           </div>
-          <div class="sectlabel"><h3>Trophies</h3><a>4 / 12</a></div>
-          <div class="trophies">
-            <div class="trophy"><div class="te">🏆</div><b>First scan</b></div>
-            <div class="trophy"><div class="te">🔥</div><b>7-day streak</b></div>
-            <div class="trophy"><div class="te">💧</div><b>Hydration hero</b></div>
-            <div class="trophy"><div class="te">🥇</div><b>Found a 95+</b></div>
-            <div class="trophy locked"><div class="te">🌿</div><b>30 clean days</b></div>
-            <div class="trophy locked"><div class="te">🧠</div><b>Label expert</b></div>
-            <div class="trophy locked"><div class="te">💪</div><b>Protein goal ×30</b></div>
-          </div>
-          <div class="sectlabel"><h3>Scan history</h3><a onclick="go('track')">See log →</a></div>
-          <div class="hgrid" id="hgrid"></div>
+
           <div class="setrows">
             <button class="setrow" onclick="toast('Goals coming soon')"><span class="se">🎯</span>Goals &amp; targets<span class="chev">›</span></button>
+            <button class="setrow" onclick="go('report')"><span class="se">📊</span>Weekly Clean Report<span class="chev">›</span></button>
             <button class="setrow" onclick="toggleTheme()"><span class="se">🌗</span>Appearance<span class="chev" id="themeLabel">Dark ›</span></button>
-            <button class="setrow" onclick="showIntro()"><span class="se">↺</span>Replay intro<span class="chev">›</span></button>
             <button class="setrow" onclick="toast('Notifications coming soon')"><span class="se">🔔</span>Notifications<span class="chev">›</span></button>
+            <button class="setrow" onclick="showIntro()"><span class="se">↺</span>Replay intro<span class="chev">›</span></button>
             <button class="setrow" onclick="toast('Help center coming soon')"><span class="se">💬</span>Help &amp; support<span class="chev">›</span></button>
           </div>
-          <p class="disc">EatVera v0.7 · Scores are informational only and not medical advice.</p>
+          <p class="disc">EatVera v0.8 · Scores are informational only and not medical advice.</p>
         </section>
 
       </div>
@@ -1254,20 +1247,6 @@
     document.getElementById('zipInput').value='';
     toast(`Showing cleanest spots near <b>${label}</b>`);
   }
-
-  // ---- profile grid ----
-  const HISTORY = [
-    ['photo-1512621776951-a57141f2eefd',88],['photo-1599490659213-e2b9527bd087',72],
-    ['photo-1488477181946-6428a0291777',94],['photo-1517093157656-b9eccef91cb1',92],
-    ['photo-1508061253366-f7da158b6d46',95],['photo-1606312619070-d48b4c652a52',88],
-    ['photo-1568702846914-96b305d2aaeb',97],['photo-1550583724-b2692b85b150',81],
-    ['photo-1437418747212-8d9709afab22',43]
-  ];
-  document.getElementById('hgrid').innerHTML = HISTORY.map(([img,sc])=>
-    `<button class="hcell" onclick="go('result')">
-      <span class="ph" data-emoji="🍽️"><img src="${U(img,240,240)}" alt="Scanned item, score ${sc}" loading="lazy" onerror="this.remove()"></span>
-      <span class="hsc">${sc}</span>
-    </button>`).join('');
 
   // ---- theme ----
   const screenEl = document.getElementById('screen');
