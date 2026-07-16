@@ -110,13 +110,35 @@
   .hero p{font-size:13.5px;opacity:.92;margin-top:5px;max-width:82%}
   .hero .cta{margin-top:15px;display:inline-flex;align-items:center;gap:9px;align-self:flex-start;background:linear-gradient(135deg,var(--mint),var(--mint-2));color:#06130c;font-weight:800;font-size:14.5px;padding:12px 20px;border-radius:999px;box-shadow:var(--glow)}
 
-  /* secondary action */
-  .second{border:1px solid var(--line);width:100%;text-align:left;cursor:pointer;background:var(--card);border-radius:var(--r3);padding:12px;margin-top:13px;display:flex;align-items:center;gap:14px;box-shadow:var(--sh)}
-  .second .thumb{width:62px;height:62px;border-radius:var(--r2);flex-shrink:0;border:1px solid var(--line)}
-  .second .thumb::before{font-size:26px}
-  .second h2{font-size:16px;font-weight:700;letter-spacing:-.01em}
-  .second p{font-size:12.5px;color:var(--muted);margin-top:2px}
-  .second .go{margin-left:auto;width:34px;height:34px;border-radius:50%;background:rgba(62,230,134,.12);color:var(--mint);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;flex-shrink:0;border:1px solid rgba(62,230,134,.25)}
+  /* today snapshot (Cal AI-style) */
+  .today{width:100%;text-align:left;cursor:pointer;border:1px solid var(--line-2);background:linear-gradient(160deg,var(--card-2),var(--card));border-radius:var(--r3);padding:14px;display:flex;align-items:center;gap:16px;box-shadow:var(--sh)}
+  .today .miniring{position:relative;flex-shrink:0}
+  .today .miniring .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .today .miniring b{font-size:16px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1}
+  .today .miniring small{font-size:8px;color:var(--muted);font-family:var(--mono);margin-top:2px}
+  .today .tbody{flex:1;min-width:0}
+  .today .trow{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .today .trow h4{font-size:14.5px;font-weight:800;letter-spacing:-.01em}
+  .streak{display:inline-flex;align-items:center;gap:5px;background:rgba(242,169,59,.12);border:1px solid rgba(242,169,59,.3);color:var(--amber);font-size:11px;font-weight:800;border-radius:999px;padding:4px 10px}
+  .minibars{display:flex;flex-direction:column;gap:6px}
+  .minibar{display:flex;align-items:center;gap:8px}
+  .minibar small{width:14px;font-family:var(--mono);font-size:9px;font-weight:700;color:var(--faint)}
+  .minibar .bar{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.06);overflow:hidden}
+  .minibar .bar i{display:block;height:100%;border-radius:3px}
+  .minibar b{font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--muted);width:52px;text-align:right}
+  .today .chev{color:var(--faint);font-size:18px;flex-shrink:0}
+
+  /* two equal action tiles: quality scan + meal log */
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+  .tile{position:relative;border:none;border-radius:var(--r3);overflow:hidden;cursor:pointer;min-height:180px;text-align:left;color:#fff;padding:0;display:block;
+    box-shadow:0 14px 30px rgba(0,0,0,.45),0 0 0 1px rgba(62,230,134,.14)}
+  .tile .bg{position:absolute;inset:0}
+  .tile .bg img{width:100%;height:100%;object-fit:cover}
+  .tile .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,43,29,.2) 0%,rgba(7,22,15,.92) 100%)}
+  .tile .inner{position:relative;padding:14px;min-height:180px;display:flex;flex-direction:column;justify-content:flex-end}
+  .tile .ic{width:38px;height:38px;border-radius:12px;background:rgba(7,22,15,.6);backdrop-filter:blur(6px);border:1px solid rgba(62,230,134,.35);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:auto}
+  .tile h3{font-size:16.5px;font-weight:800;letter-spacing:-.01em}
+  .tile p{font-size:11.5px;opacity:.9;margin-top:3px;line-height:1.4}
 
   /* ---------- category cards ---------- */
   .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -205,6 +227,34 @@
   .flag.warn{background:rgba(242,169,59,.1);color:var(--amber);border-color:rgba(242,169,59,.3)}
   .flag.good{background:rgba(62,230,134,.1);color:var(--mint);border-color:rgba(62,230,134,.3)}
 
+  /* cleaner swaps (Scout-style) */
+  .swaps{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+  .swaps::-webkit-scrollbar{display:none}
+  .swap{flex:0 0 158px;background:var(--card);border:1px solid var(--line);border-radius:var(--r2);overflow:hidden;cursor:pointer;text-align:left;box-shadow:var(--sh)}
+  .swap .simg{width:100%;aspect-ratio:16/10}
+  .swap .simg::before{font-size:26px}
+  .swap .sbody{padding:10px 11px 12px;display:flex;align-items:center;gap:8px}
+  .swap h5{font-size:12.5px;font-weight:700;line-height:1.3;flex:1}
+  .swap .ssc{background:rgba(62,230,134,.12);border:1px solid rgba(62,230,134,.35);color:var(--mint);font-weight:800;font-size:12px;font-family:var(--mono);border-radius:9px;padding:4px 7px;flex-shrink:0}
+
+  /* log-to-today CTA — the scanner ↔ logger bridge */
+  .logbtn{margin-top:16px;width:100%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(135deg,var(--mint),var(--mint-2));color:#06130c;font-size:15px;font-weight:900;padding:15px;border-radius:16px;font-family:inherit;box-shadow:var(--glow)}
+  .logbtn small{font-weight:700;font-size:11px;opacity:.75}
+
+  /* toast */
+  .toast{position:absolute;left:50%;bottom:106px;transform:translateX(-50%) translateY(16px);background:var(--card-2);border:1px solid rgba(62,230,134,.4);color:var(--ink);font-size:13px;font-weight:700;border-radius:999px;padding:10px 18px;z-index:50;opacity:0;pointer-events:none;transition:all .3s ease;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .toast b{color:var(--mint)}
+
+  /* water tracker (Oasis-style) */
+  .water{background:var(--card);border:1px solid var(--line);border-radius:var(--r3);padding:14px 16px;box-shadow:var(--sh);margin-top:14px}
+  .water .wrow{display:flex;align-items:center;justify-content:space-between}
+  .water h4{font-size:14.5px;font-weight:800}
+  .water .wcount{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--blue)}
+  .cups{display:flex;gap:8px;margin-top:12px}
+  .cup{flex:1;height:34px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;opacity:.4;transition:all .15s ease}
+  .cup.full{background:rgba(90,162,240,.16);border-color:rgba(90,162,240,.45);opacity:1}
+
   .ingredients{background:var(--card);border:1px solid var(--line);border-radius:var(--r3);padding:8px 16px;box-shadow:var(--sh);margin-top:14px}
   .ing{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
   .ing:last-child{border-bottom:none}
@@ -289,13 +339,13 @@
       <svg class="logo" width="42" height="42"><use href="#ev-logo"/></svg>
       <h1>Eat<span>Vera</span></h1>
     </div>
-    <p>Rebuilt as a dark, tech-forward experience — live viewfinder scanning, animated AI analysis, glowing score rings, and the EatVera leaf everywhere it counts.</p>
+    <p>Food quality scanner + macro logger in one. Two-tap home, today snapshot with streak, cleaner swaps after every scan, one-tap log-to-today, and water tracking.</p>
     <div class="badge-row">
-      <div class="chip"><b>●</b> Brand logo integrated</div>
-      <div class="chip">Viewfinder scan UI</div>
-      <div class="chip">Animated rings &amp; counters</div>
-      <div class="chip">Real photography</div>
-      <div class="chip">Dark tech theme</div>
+      <div class="chip"><b>●</b> Quality scan + macro log</div>
+      <div class="chip">Today snapshot &amp; streak</div>
+      <div class="chip">Cleaner swaps</div>
+      <div class="chip">Log-to-today bridge</div>
+      <div class="chip">Water tracker</div>
     </div>
   </div>
 
@@ -318,29 +368,49 @@
             <div class="avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&q=80" alt="Your profile" loading="lazy" onerror="this.replaceWith(document.createTextNode('Y'))"></div>
           </div>
 
-          <p class="orient"><b>Know what's really in your food.</b> Scan a label for an instant clean-score, or snap a meal to track calories &amp; macros.</p>
+          <p class="orient"><b>Check quality. Log macros.</b> Two taps, that's the whole app.</p>
 
-          <button class="hero" onclick="go('result')">
-            <div class="bg"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=760&h=460&fit=crop&q=80" alt="Fresh groceries on a counter" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🛒');this.remove()"></div>
-            <div class="scrim"></div>
-            <div class="corners"><i></i><i></i><i></i><i></i></div>
-            <div class="scanline"></div>
-            <div class="inner">
-              <span class="ai-chip"><span class="dot"></span>AI VISION · READY</span>
-              <h2>Scan a label</h2>
-              <p>Instant 0–100 clean score, seed-oil &amp; additive flags for any product.</p>
-              <span class="cta">Open scanner →</span>
+          <!-- Today snapshot (Cal AI-style) -->
+          <button class="today" onclick="go('track')">
+            <div class="miniring">
+              <svg width="62" height="62" viewBox="0 0 62 62" style="transform:rotate(-90deg)">
+                <circle cx="31" cy="31" r="26" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="6"/>
+                <circle cx="31" cy="31" r="26" fill="none" stroke="#3ee686" stroke-width="6" stroke-linecap="round" stroke-dasharray="163" stroke-dashoffset="105"/>
+              </svg>
+              <div class="center"><b>710</b><small>KCAL</small></div>
             </div>
+            <div class="tbody">
+              <div class="trow"><h4>Today</h4><span class="streak">🔥 12-day streak</span></div>
+              <div class="minibars">
+                <div class="minibar"><small>P</small><div class="bar"><i style="width:32%;background:var(--mint)"></i></div><b>48/150g</b></div>
+                <div class="minibar"><small>C</small><div class="bar"><i style="width:37%;background:var(--amber)"></i></div><b>74/200g</b></div>
+                <div class="minibar"><small>F</small><div class="bar"><i style="width:34%;background:var(--red)"></i></div><b>22/65g</b></div>
+              </div>
+            </div>
+            <span class="chev">›</span>
           </button>
 
-          <button class="second" onclick="go('track')">
-            <div class="ph thumb" data-emoji="🍽️"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=160&h=160&fit=crop&q=80" alt="A healthy plated meal" loading="lazy" onerror="this.remove()"></div>
-            <div>
-              <h2>Snap a meal</h2>
-              <p>Track calories &amp; macros from a photo</p>
-            </div>
-            <div class="go">→</div>
-          </button>
+          <!-- The two things this app does -->
+          <div class="tiles">
+            <button class="tile" onclick="startScan('label')">
+              <div class="bg"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&h=460&fit=crop&q=80" alt="Packaged groceries" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🛒');this.remove()"></div>
+              <div class="scrim"></div>
+              <div class="inner">
+                <span class="ic">📷</span>
+                <h3>Check quality</h3>
+                <p>Scan a label → 0–100 clean score</p>
+              </div>
+            </button>
+            <button class="tile" onclick="startScan('meal')">
+              <div class="bg"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=460&fit=crop&q=80" alt="A healthy plated meal" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🍽️');this.remove()"></div>
+              <div class="scrim"></div>
+              <div class="inner">
+                <span class="ic">🍽️</span>
+                <h3>Log a meal</h3>
+                <p>Snap your plate → macros logged</p>
+              </div>
+            </button>
+          </div>
 
           <div class="sectlabel"><h3>Browse guides</h3><a onclick="go('explore')">See all 14 →</a></div>
           <div class="cgrid" id="homeCats"></div>
@@ -442,6 +512,24 @@
             <span class="flag good">✓ No artificial colors</span>
           </div>
 
+          <button class="logbtn" onclick="logIt()">＋ Log to today <small>190 kcal · 4P / 29C / 7F</small></button>
+
+          <div class="sectlabel"><h3>Cleaner swaps</h3><a class="mono">Score 85+</a></div>
+          <div class="swaps">
+            <button class="swap" onclick="toast('Swap saved to your list ✓')">
+              <div class="ph simg" data-emoji="🥣"><img src="https://images.unsplash.com/photo-1517093157656-b9eccef91cb1?w=320&h=200&fit=crop&q=80" alt="Plain rolled oats" loading="lazy" onerror="this.remove()"></div>
+              <div class="sbody"><h5>Purely Oats &amp; Honey Bar</h5><span class="ssc">92</span></div>
+            </button>
+            <button class="swap" onclick="toast('Swap saved to your list ✓')">
+              <div class="ph simg" data-emoji="🌰"><img src="https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=320&h=200&fit=crop&q=80" alt="Mixed raw nuts" loading="lazy" onerror="this.remove()"></div>
+              <div class="sbody"><h5>Raw Almond &amp; Date Bites</h5><span class="ssc">95</span></div>
+            </button>
+            <button class="swap" onclick="toast('Swap saved to your list ✓')">
+              <div class="ph simg" data-emoji="🍫"><img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=320&h=200&fit=crop&q=80" alt="Dark chocolate squares" loading="lazy" onerror="this.remove()"></div>
+              <div class="sbody"><h5>85% Cacao Snack Squares</h5><span class="ssc">88</span></div>
+            </button>
+          </div>
+
           <div class="sectlabel"><h3>Ingredient breakdown</h3><a class="mono">6 detected</a></div>
           <div class="ingredients">
             <div class="ing"><span class="dot g"></span><div><b>Whole grain oats</b><small>Wholesome complex carbs &amp; fiber</small></div><span class="badge">Good</span></div>
@@ -492,7 +580,12 @@
             <div class="macro"><div class="lab">Fat</div><b data-count="22">0</b><div class="bar"><i data-w="34%" style="width:0;background:var(--red)"></i></div></div>
           </div>
 
-          <div class="sectlabel"><h3>Logged today</h3><a onclick="go('scan')">+ Add meal</a></div>
+          <div class="water">
+            <div class="wrow"><h4>💧 Water</h4><span class="wcount" id="wCount">5 / 8 GLASSES</span></div>
+            <div class="cups" id="cups"></div>
+          </div>
+
+          <div class="sectlabel"><h3>Logged today</h3><a onclick="startScan('meal')">+ Add meal</a></div>
           <div class="meal">
             <div class="ph mimg" data-emoji="🥗"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=140&h=140&fit=crop&q=80" alt="Chicken and quinoa bowl" loading="lazy" onerror="this.remove()"></div>
             <div class="body">
@@ -519,7 +612,7 @@
       <!-- BOTTOM NAV -->
       <nav class="nav">
         <button data-t="home" class="on" onclick="go('home')"><span class="gi">⌂</span>Home</button>
-        <button data-t="explore" onclick="go('explore')"><span class="gi">⊞</span>Explore</button>
+        <button data-t="explore" onclick="go('explore')"><span class="gi">⊞</span>Guides</button>
         <button data-t="scan" class="scanbtn" onclick="go('scan')">
           <span class="fab"><svg width="30" height="30"><use href="#ev-logo"/></svg></span>
         </button>
@@ -527,15 +620,17 @@
         <button data-t="profile" onclick="go('home')"><span class="gi">○</span>Profile</button>
       </nav>
 
+      <div class="toast" id="toast"></div>
+
       <!-- INTRO OVERLAY -->
       <div class="overlay" id="overlay">
         <div class="sheet">
           <div class="biglogo"><svg width="64" height="64"><use href="#ev-logo"/></svg></div>
           <h2>Welcome to Eat<i>Vera</i></h2>
-          <p>AI-powered food intelligence. Three things you can do — pick any to start.</p>
-          <div class="feat"><div class="ic">📷</div><div><b>Scan a label</b><p>Instant clean-score for any product</p></div></div>
-          <div class="feat"><div class="ic">🍽️</div><div><b>Snap a meal</b><p>Track calories &amp; macros from a photo</p></div></div>
-          <div class="feat"><div class="ic">⊞</div><div><b>Browse guides</b><p>661 foods rated across 14 categories</p></div></div>
+          <p>One app, two jobs: check how clean your food is, and log your macros — in two taps.</p>
+          <div class="feat"><div class="ic">📷</div><div><b>Check quality</b><p>Scan a label → instant 0–100 clean score + swaps</p></div></div>
+          <div class="feat"><div class="ic">🍽️</div><div><b>Log a meal</b><p>Snap your plate → calories &amp; macros tracked</p></div></div>
+          <div class="feat"><div class="ic">🔥</div><div><b>Stay on streak</b><p>Daily rings, water, and 661 rated foods</p></div></div>
           <button class="cta-btn" onclick="hideIntro()">Get started</button>
         </div>
       </div>
@@ -625,6 +720,32 @@
     s.textContent = 'AI VISION · ANALYZING…';
     setTimeout(()=>{ s.textContent = 'AI VISION · READY'; go(mode==='label' ? 'result' : 'track'); }, 650);
   }
+  // one-tap entry from the Home tiles: open the scanner pre-set to the right mode
+  function startScan(m){ setMode(m); go('scan'); }
+
+  // ---- toast + scanner→logger bridge ----
+  let toastTimer;
+  function toast(msg){
+    const t = document.getElementById('toast');
+    t.innerHTML = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>t.classList.remove('show'), 1800);
+  }
+  function logIt(){
+    toast('Logged to today <b>+190 kcal</b>');
+    setTimeout(()=>go('track'), 900);
+  }
+
+  // ---- water tracker ----
+  let glasses = 5;
+  function renderCups(){
+    document.getElementById('cups').innerHTML = Array.from({length:8},(_,i)=>
+      `<button class="cup ${i<glasses?'full':''}" onclick="setGlasses(${i+1})" aria-label="Glass ${i+1}">💧</button>`).join('');
+    document.getElementById('wCount').textContent = `${glasses} / 8 GLASSES`;
+  }
+  function setGlasses(n){ glasses = (n===glasses) ? n-1 : n; renderCups(); }
+  renderCups();
 
   function showIntro(){document.getElementById('overlay').classList.remove('hide')}
   function hideIntro(){document.getElementById('overlay').classList.add('hide')}
