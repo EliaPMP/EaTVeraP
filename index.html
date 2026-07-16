@@ -19,7 +19,7 @@
     --line:rgba(255,255,255,.055); --line-2:rgba(255,255,255,.12);
     --wash:rgba(255,255,255,.055); --wash-2:rgba(255,255,255,.08);
     --ink:#f2f7f3; --muted:#9db3a6; --faint:#647a6d;
-    --amber:#fbbf24; --red:#fb7185; --blue:#60a5fa; --violet:#a78bfa;
+    --amber:#fbbf24; --red:#fb7185; --blue:#60a5fa;
     --sh:0 12px 32px rgba(0,0,0,.35);
     --glow:0 8px 28px rgba(74,222,128,.28);
     --glow-o:0 8px 28px rgba(251,146,60,.3);
@@ -33,7 +33,7 @@
     --line:rgba(13,38,26,.08); --line-2:rgba(13,38,26,.16);
     --wash:rgba(13,38,26,.06); --wash-2:rgba(13,38,26,.09);
     --ink:#10241a; --muted:#5b6f62; --faint:#8ea296;
-    --amber:#d97706; --red:#e11d48; --blue:#2563eb; --violet:#7c3aed;
+    --amber:#d97706; --red:#e11d48; --blue:#2563eb;
     --sh:0 10px 28px rgba(20,50,35,.12);
     --glow:0 8px 24px rgba(22,163,74,.25);
     --glow-o:0 8px 24px rgba(234,88,12,.25);
@@ -129,10 +129,9 @@
   .tile .inner{position:relative;padding:15px;min-height:186px;display:flex;flex-direction:column;justify-content:flex-end}
   .tile .ic{width:38px;height:38px;border-radius:13px;background:rgba(8,15,11,.55);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:auto}
   .tile .kind{position:absolute;top:15px;right:15px;font-family:'JetBrains Mono';font-size:8.5px;font-weight:700;letter-spacing:.1em;color:#dff5e6;background:rgba(8,15,11,.55);backdrop-filter:blur(8px);border-radius:999px;padding:5px 9px}
-  .tile h3{font-size:17px;letter-spacing:-.01em}
+  .tile h3{font-size:17px}
   .tile p{font-size:11.5px;color:#c3d6ca;margin-top:3px;line-height:1.4}
 
-  /* wrapped-style report banner */
   .repbanner{position:relative;width:100%;border:none;border-radius:22px;overflow:hidden;cursor:pointer;margin-top:14px;padding:16px 18px;text-align:left;color:#fff;display:flex;align-items:center;gap:14px;
     background:linear-gradient(115deg,#6d28d9 0%,#7c3aed 35%,#15803d 80%,#22c55e 100%);box-shadow:0 14px 34px rgba(109,40,217,.35);transition:transform .15s ease}
   .repbanner:active{transform:scale(.98)}
@@ -156,7 +155,6 @@
   .stories::-webkit-scrollbar{display:none}
   .story{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:7px;border:none;background:none;cursor:pointer;width:66px}
   .story .ringy{display:block;width:64px;height:64px;border-radius:50%;padding:2.5px;background:conic-gradient(var(--acc),#8ef0b6,var(--acc-2),var(--acc))}
-  .story.orange .ringy{background:conic-gradient(#fb923c,#fde68a,#f97316,#fb923c)}
   .story .ph{display:block;width:100%;height:100%;border-radius:50%;border:2.5px solid var(--bg)}
   .story .ph::before{font-size:22px}
   .story span{font-size:10.5px;color:var(--muted);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:66px}
@@ -172,46 +170,17 @@
 
   .disc{font-size:10.5px;color:var(--faint);text-align:center;margin-top:24px;line-height:1.55;padding:0 10px}
 
-  /* ---------- FEED (IG / TikTok / Snap) ---------- */
-  .fstories .ringy{padding:2.5px}
-  .fstory-add .ringy{background:var(--raise)!important;display:flex;align-items:center;justify-content:center}
-  .fstory-add .plus{width:58px;height:58px;border-radius:50%;border:2px dashed var(--faint);display:flex;align-items:center;justify-content:center;color:var(--acc);font-size:22px;font-weight:700}
+  /* ---------- GUIDES (products + restaurants) ---------- */
+  .seg{display:flex;background:var(--card);border-radius:999px;padding:4px;box-shadow:var(--sh);margin-bottom:14px}
+  .seg button{flex:1;border:none;background:none;color:var(--muted);font-size:13px;font-weight:600;padding:10px;border-radius:999px;cursor:pointer;transition:all .2s ease}
+  .seg button.on{background:var(--acc);color:var(--ongreen);font-weight:700}
 
-  .lboard{background:linear-gradient(150deg,var(--card-2),var(--card));border-radius:24px;padding:16px;box-shadow:var(--sh);margin-top:4px}
-  .lboard h4{font-size:15px;margin-bottom:12px}
-  .lrow{display:flex;align-items:center;gap:11px;padding:8px 0}
-  .lrow .rank{width:24px;font-size:15px;text-align:center}
-  .lrow .avatar{width:34px;height:34px}
-  .lrow b{font-size:13.5px;font-weight:600;flex:1}
-  .lrow .pts{font-family:'Space Grotesk';font-size:13.5px;font-weight:700;color:var(--acc)}
-  .lrow.me{background:var(--wash);border-radius:14px;padding:8px 10px;margin:2px -10px 0}
-
-  .post{background:var(--card);border-radius:24px;box-shadow:var(--sh);margin-bottom:16px;overflow:hidden}
-  .post .phead{display:flex;align-items:center;gap:11px;padding:13px 15px}
-  .post .phead .avatar{width:36px;height:36px}
-  .post .phead b{font-size:13.5px;font-weight:600;display:block}
-  .post .phead small{font-size:10.5px;color:var(--faint)}
-  .post .phead .streak{margin-left:auto}
-  .post .pmedia{position:relative;aspect-ratio:4/3;cursor:pointer;user-select:none}
-  .post .pmedia .ph{position:absolute;inset:0}
-  .post .pscore{position:absolute;top:12px;right:12px;background:rgba(4,8,6,.75);backdrop-filter:blur(8px);color:#4ade80;font-family:'Space Grotesk';font-weight:700;font-size:14px;border-radius:12px;padding:6px 10px}
-  .post .pscore.low{color:#fb7185}
-  .bigheart{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:74px;opacity:0;pointer-events:none;filter:drop-shadow(0 6px 18px rgba(0,0,0,.4))}
-  .bigheart.pop{animation:heartpop .8s ease}
-  @keyframes heartpop{0%{opacity:0;transform:scale(.4)}25%{opacity:1;transform:scale(1.15)}55%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.05)}}
-  .post .pacts{display:flex;align-items:center;gap:16px;padding:12px 16px 4px}
-  .post .pacts button{border:none;background:none;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
-  .post .pacts button.liked{color:var(--red)}
-  .post .pacts .sharea{margin-left:auto}
-  .post .pcap{padding:2px 16px 15px;font-size:12.5px;color:var(--muted);line-height:1.5}
-  .post .pcap b{color:var(--ink);font-weight:600}
-
-  /* ---------- EXPLORE ---------- */
   .search{display:flex;align-items:center;gap:10px;background:var(--card);border-radius:16px;padding:13px 16px;margin-bottom:4px;color:var(--faint);font-size:14px;box-shadow:var(--sh)}
   .filters{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none}
   .filters::-webkit-scrollbar{display:none}
   .filters button{flex:none;border:none;background:var(--card);color:var(--muted);font-size:12.5px;font-weight:600;padding:9px 15px;border-radius:999px;cursor:pointer}
   .filters button.on{background:var(--acc);color:var(--ongreen);font-weight:700}
+
   .featured{position:relative;border:none;width:100%;border-radius:24px;overflow:hidden;cursor:pointer;min-height:170px;text-align:left;color:#fff;margin-top:10px;box-shadow:var(--sh);display:block}
   .featured .bg{position:absolute;inset:0}
   .featured .bg img{width:100%;height:100%;object-fit:cover}
@@ -220,6 +189,7 @@
   .featured .fk{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.12em;color:#4ade80;font-weight:700;text-transform:uppercase}
   .featured h3{font-size:19px;margin-top:6px;line-height:1.25}
   .featured p{font-size:12px;color:#bcd2c3;margin-top:5px}
+
   .egrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
   .ecat{position:relative;border:none;border-radius:20px;overflow:hidden;cursor:pointer;aspect-ratio:1/1.05;text-align:left;color:#fff;padding:0;box-shadow:var(--sh)}
   .ecat .ph{position:absolute;inset:0}
@@ -233,6 +203,52 @@
   .tag.ewg{background:rgba(74,222,128,.22);color:#c9f7d8}
   .tag.sugar{background:rgba(244,114,182,.22);color:#fcd9ec}
   .tag.data{background:rgba(96,165,250,.22);color:#d4e6fd}
+
+  /* — restaurants (Uber/DoorDash/Zillow) — */
+  .locbar{display:flex;align-items:center;gap:11px;background:var(--card);border-radius:18px;padding:13px 15px;box-shadow:var(--sh)}
+  .locbar .lpin{width:36px;height:36px;border-radius:12px;background:rgba(74,222,128,.12);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+  .locbar .ltxt{flex:1;min-width:0}
+  .locbar .ltxt small{font-size:10px;color:var(--faint);font-weight:700;text-transform:uppercase;letter-spacing:.06em;display:block}
+  .locbar .ltxt b{font-size:14px;font-weight:600;display:block;margin-top:1px}
+  .locbar .lbtn{border:none;background:var(--wash);color:var(--acc);font-size:12px;font-weight:700;padding:8px 13px;border-radius:999px;cursor:pointer}
+  .zipedit{display:none;gap:8px;margin-top:10px}
+  .zipedit.show{display:flex}
+  .zipedit input{flex:1;border:none;outline:none;background:var(--card);color:var(--ink);border-radius:14px;padding:12px 15px;font-family:inherit;font-size:14px;box-shadow:var(--sh)}
+  .zipedit input::placeholder{color:var(--faint)}
+  .zipedit button{border:none;background:linear-gradient(135deg,var(--acc),var(--acc-2));color:var(--ongreen);font-weight:700;font-size:13px;padding:0 18px;border-radius:14px;cursor:pointer}
+
+  /* zillow-style mini map */
+  .mapcard{position:relative;border-radius:22px;overflow:hidden;margin-top:12px;height:150px;box-shadow:var(--sh);cursor:pointer;border:none;width:100%;display:block;padding:0;
+    background:linear-gradient(140deg,#16281c,#0f2016)}
+  .screen[data-theme="light"] .mapcard{background:linear-gradient(140deg,#dcefe0,#cfe8d6)}
+  .mapcard svg{position:absolute;inset:0;width:100%;height:100%}
+  .mappin{position:absolute;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;pointer-events:none}
+  .mappin .mv{background:var(--acc);color:var(--ongreen);font-family:'Space Grotesk';font-weight:700;font-size:12px;border-radius:11px;padding:5px 9px;box-shadow:0 6px 14px rgba(0,0,0,.35)}
+  .mappin .mv.low{background:var(--amber);color:#221600}
+  .mappin::after{content:"";width:2px;height:7px;background:var(--acc);opacity:.7}
+  .mappin.you .mv{background:var(--blue);color:#fff;border-radius:50%;width:16px;height:16px;padding:0;box-shadow:0 0 0 5px rgba(96,165,250,.25)}
+  .mappin.you::after{display:none}
+  .maplabel{position:absolute;right:12px;bottom:11px;background:rgba(4,8,6,.65);backdrop-filter:blur(8px);color:#dff0e5;font-size:11px;font-weight:600;border-radius:999px;padding:6px 12px}
+
+  .rest{background:var(--card);border-radius:22px;overflow:hidden;box-shadow:var(--sh);margin-bottom:14px;cursor:pointer;border:none;width:100%;text-align:left;color:var(--ink);padding:0;display:block;transition:transform .15s ease}
+  .rest:active{transform:scale(.98)}
+  .rest .rimg{position:relative;aspect-ratio:16/8}
+  .rest .rimg .ph{position:absolute;inset:0}
+  .rest .rsc{position:absolute;top:12px;right:12px;background:rgba(4,8,6,.75);backdrop-filter:blur(8px);color:#4ade80;font-family:'Space Grotesk';font-weight:700;font-size:14px;border-radius:12px;padding:6px 10px}
+  .rest .rsc.mid{color:#fbbf24}
+  .rest .reta{position:absolute;left:12px;bottom:-14px;background:var(--card);border-radius:999px;box-shadow:var(--sh);padding:7px 13px;font-size:11.5px;font-weight:700;display:flex;gap:6px;align-items:center}
+  .rest .rbody{padding:22px 15px 15px}
+  .rest h4{font-size:16.5px}
+  .rest .rmeta{font-size:12px;color:var(--muted);margin-top:3px}
+  .rest .rmeta b{color:var(--amber);font-weight:700}
+  .rest .rtags{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+  .rtag{font-size:10.5px;font-weight:700;padding:5px 10px;border-radius:999px}
+  .rtag.ok{background:rgba(74,222,128,.12);color:var(--acc)}
+  .rtag.info{background:var(--wash);color:var(--muted)}
+  .rtag.warn{background:rgba(251,191,36,.12);color:var(--amber)}
+  .rest .racts{display:flex;gap:9px;margin-top:13px}
+  .ract{flex:1;border:none;cursor:pointer;font-size:12.5px;font-weight:700;padding:11px;border-radius:13px;background:var(--wash);color:var(--ink)}
+  .ract.go{background:linear-gradient(135deg,var(--acc),var(--acc-2));color:var(--ongreen)}
 
   /* ---------- SCAN ---------- */
   .vf{position:relative;border-radius:26px;overflow:hidden;min-height:340px;box-shadow:var(--sh);background:#0a0f0c}
@@ -260,7 +276,7 @@
   .srcbtn.live{color:#4ade80}
   .shutter{width:70px;height:70px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(140deg,#4ade80,#22c55e);box-shadow:0 8px 28px rgba(74,222,128,.28),0 0 0 5px rgba(4,8,6,.6),0 0 0 6.5px rgba(74,222,128,.35);display:flex;align-items:center;justify-content:center;transition:transform .12s ease}
   .shutter:active{transform:scale(.92)}
-  .vf.mealmode ~ * .shutter, .shutter.meal{background:linear-gradient(140deg,#fb923c,#f97316);box-shadow:0 8px 28px rgba(251,146,60,.3),0 0 0 5px rgba(4,8,6,.6),0 0 0 6.5px rgba(251,146,60,.35)}
+  .shutter.meal{background:linear-gradient(140deg,#fb923c,#f97316);box-shadow:0 8px 28px rgba(251,146,60,.3),0 0 0 5px rgba(4,8,6,.6),0 0 0 6.5px rgba(251,146,60,.35)}
   .flashfx{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
   .flashfx.on{animation:flash .35s ease}
   @keyframes flash{0%{opacity:.85}100%{opacity:0}}
@@ -359,54 +375,32 @@
   .emptylog{background:var(--card);border:1.5px dashed var(--line-2);border-radius:22px;padding:24px;text-align:center;color:var(--muted);font-size:13px;margin-top:8px}
   .emptylog .big{font-size:30px;margin-bottom:8px}
 
-  /* ---------- RESTAURANT MODE (Tinder) ---------- */
-  .deckwrap{position:relative;height:430px;margin-top:6px}
-  .dish{position:absolute;inset:0;border-radius:26px;overflow:hidden;box-shadow:var(--sh);cursor:grab;background:var(--card);touch-action:none;transition:transform .18s ease,opacity .18s ease}
-  .dish.dragging{transition:none;cursor:grabbing}
-  .dish.fly{transition:transform .4s cubic-bezier(.22,.9,.35,1),opacity .4s ease}
-  .dish .ph{position:absolute;inset:0}
-  .dish .dscrim{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(6,10,8,.95) 100%)}
-  .dish .dinner{position:absolute;left:0;right:0;bottom:0;padding:18px;color:#fff}
-  .dish h3{font-size:21px}
-  .dish .dmeta{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
-  .dpill{background:rgba(4,8,6,.6);backdrop-filter:blur(6px);border-radius:999px;padding:6px 11px;font-size:11.5px;font-weight:600;color:#dcefe2}
-  .dish .dscore{position:absolute;top:14px;right:14px;background:rgba(4,8,6,.75);backdrop-filter:blur(8px);font-family:'Space Grotesk';font-weight:700;font-size:15px;border-radius:13px;padding:7px 11px;color:#4ade80}
-  .dish .dscore.low{color:#fb7185}
-  .stamp{position:absolute;top:22px;padding:8px 16px;border-radius:12px;font-family:'Space Grotesk';font-weight:700;font-size:19px;letter-spacing:.06em;border:3px solid;opacity:0;transform:rotate(-14deg)}
-  .stamp.yes{left:18px;color:#4ade80;border-color:#4ade80}
-  .stamp.no{right:18px;color:#fb7185;border-color:#fb7185;transform:rotate(14deg)}
-  .deckbtns{display:flex;justify-content:center;gap:22px;margin-top:16px}
-  .dbtn{width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh);transition:transform .12s ease}
-  .dbtn:active{transform:scale(.9)}
-  .dbtn.no{background:var(--card);color:var(--red)}
-  .dbtn.yes{background:linear-gradient(140deg,#4ade80,#22c55e);color:#04140a}
-  .picksbar{display:flex;align-items:center;justify-content:space-between;background:var(--card);border-radius:18px;padding:13px 16px;box-shadow:var(--sh);margin-top:16px}
-  .picksbar b{font-size:13.5px}
-  .picksbar .pk{font-family:'Space Grotesk';color:var(--acc);font-weight:700}
-  .deckdone{position:absolute;inset:0;border-radius:26px;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px}
-  .deckdone .de{font-size:44px}
-  .deckdone h3{font-size:19px}
-  .deckdone p{font-size:13px;color:var(--muted)}
-
-  /* ---------- WEEKLY REPORT (Wrapped) ---------- */
+  /* ---------- WEEKLY REPORT v2 ---------- */
   #report{padding:0 0 122px}
   .wrap{position:relative;min-height:640px;background:linear-gradient(160deg,#4c1d95 0%,#6d28d9 30%,#15803d 75%,#22c55e 100%);color:#fff;padding:74px 24px 30px;overflow:hidden}
   .wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(400px 220px at 85% 8%,rgba(255,255,255,.16),transparent),radial-gradient(300px 200px at 10% 90%,rgba(255,255,255,.1),transparent)}
   .wrap .wk{position:relative;font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.16em;font-weight:700;opacity:.85}
-  .wrap h1{position:relative;font-size:34px;line-height:1.1;margin-top:10px;letter-spacing:-.02em}
-  .wrap .bigscore{position:relative;margin:26px 0 6px;font-family:'Space Grotesk';font-size:96px;font-weight:700;line-height:1;letter-spacing:-.04em}
-  .wrap .bigscore small{font-size:20px;font-weight:600;opacity:.8;letter-spacing:0}
-  .wrap .sub{position:relative;font-size:14px;opacity:.9}
-  .wstats{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:26px}
-  .wstat{background:rgba(255,255,255,.13);backdrop-filter:blur(8px);border-radius:18px;padding:14px}
-  .wstat small{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
-  .wstat b{font-family:'Space Grotesk';font-size:19px;display:block;margin-top:3px;line-height:1.25}
-  .wdays{position:relative;display:flex;gap:7px;align-items:flex-end;height:74px;margin-top:26px}
-  .wday{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .wrap h1{position:relative;font-size:32px;line-height:1.1;margin-top:10px;letter-spacing:-.02em}
+  .wrap .bigscore{position:relative;margin:20px 0 4px;font-family:'Space Grotesk';font-size:88px;font-weight:700;line-height:1;letter-spacing:-.04em}
+  .wrap .bigscore small{font-size:19px;font-weight:600;opacity:.8;letter-spacing:0}
+  .wrap .sub{position:relative;font-size:13.5px;opacity:.9}
+  .wcards{position:relative;display:flex;flex-direction:column;gap:11px;margin-top:24px}
+  .wcard{display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.13);backdrop-filter:blur(10px);border-radius:20px;padding:12px 14px;text-align:left}
+  .wcard .wimg{width:54px;height:54px;border-radius:16px;flex-shrink:0;box-shadow:0 6px 16px rgba(0,0,0,.3)}
+  .wcard .wimg::before{font-size:22px}
+  .wcard small{font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.75;display:block}
+  .wcard b{font-family:'Space Grotesk';font-size:15px;display:block;margin-top:2px;line-height:1.3}
+  .wcard .wsc{margin-left:auto;font-family:'Space Grotesk';font-weight:700;font-size:17px;background:rgba(255,255,255,.18);border-radius:13px;padding:8px 12px;flex-shrink:0}
+  .wstats{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:13px}
+  .wstat{background:rgba(255,255,255,.13);backdrop-filter:blur(8px);border-radius:16px;padding:12px;text-align:center}
+  .wstat small{font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;opacity:.75;display:block}
+  .wstat b{font-family:'Space Grotesk';font-size:16px;display:block;margin-top:3px}
+  .wdays{position:relative;display:flex;gap:7px;align-items:flex-end;height:64px;margin-top:22px}
+  .wday{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
   .wday i{width:100%;border-radius:7px;background:rgba(255,255,255,.85);display:block}
   .wday.low i{background:rgba(255,255,255,.35)}
   .wday small{font-size:9px;font-weight:700;opacity:.8}
-  .wshare{position:relative;margin-top:26px;width:100%;border:none;cursor:pointer;background:#fff;color:#166534;font-family:'Space Grotesk';font-size:15.5px;font-weight:700;padding:16px;border-radius:17px;box-shadow:0 12px 30px rgba(0,0,0,.3);transition:transform .12s ease}
+  .wshare{position:relative;margin-top:24px;width:100%;border:none;cursor:pointer;background:#fff;color:#166534;font-family:'Space Grotesk';font-size:15.5px;font-weight:700;padding:16px;border-radius:17px;box-shadow:0 12px 30px rgba(0,0,0,.3);transition:transform .12s ease}
   .wshare:active{transform:scale(.97)}
   .repback{position:absolute;top:56px;left:18px;z-index:5;background:rgba(0,0,0,.3);backdrop-filter:blur(8px);color:#fff;border:none;border-radius:999px;padding:9px 15px;font-size:13px;font-weight:600;cursor:pointer}
 
@@ -444,12 +438,11 @@
   .setrow .se{width:34px;height:34px;border-radius:11px;background:var(--wash);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
   .setrow .chev{margin-left:auto;color:var(--faint)}
 
-  /* ---------- NAV: split scan actions ---------- */
+  /* ---------- NAV ---------- */
   .nav{position:absolute;left:12px;right:12px;bottom:12px;height:82px;background:var(--navbg);backdrop-filter:blur(18px);border-top:1px solid var(--line);border-radius:0 0 42px 42px;display:flex;align-items:center;justify-content:space-around;padding:0 6px 10px;z-index:40}
   .nav>button{border:none;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--faint);font-size:9.5px;font-weight:600;padding:6px 4px;flex:1}
   .nav button svg.ni{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
   .nav>button.on{color:var(--acc)}
-  .nav>button.on.mealtab{color:var(--mac)}
   .scanduo{display:flex;gap:10px;margin-top:-34px;flex:0 0 auto;padding:0 4px}
   .scanduo button{border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;background:none;color:var(--faint);font-size:9.5px;font-weight:600}
   .scanduo .fab{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:4px solid var(--bg);transition:transform .12s ease}
@@ -485,7 +478,7 @@
       <path d="M42 24 C34 30 28 36 14 50" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/>
     </symbol>
     <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20a1 1 0 0 0 1 1H10v-5.5a2 2 0 0 1 4 0V21h3.5a1 1 0 0 0 1-1V9.5"/></symbol>
-    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1.2-3 3.7-4.5 6.5-4.5s5.3 1.5 6.5 4.5"/><circle cx="17.5" cy="9" r="2.8"/><path d="M16.5 15.6c2.3.3 4.1 1.7 5 4"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5C10 5 7.5 4.4 4 4.4V19c3.5 0 6 .6 8 2.1 2-1.5 4.5-2.1 8-2.1V4.4c-3.5 0-6 .6-8 2.1z"/><path d="M12 6.5V21"/></symbol>
     <symbol id="i-chart" viewBox="0 0 24 24"><path d="M5 20v-6"/><path d="M12 20V5"/><path d="M19 20v-9"/><path d="M3.5 20h17"/></symbol>
     <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.4-3.4 4.2-5 7.5-5s6.1 1.6 7.5 5"/></symbol>
   </svg>
@@ -495,12 +488,12 @@
       <svg class="logo" width="42" height="42"><use href="#ev-logo"/></svg>
       <h1>Eat<span>Vera</span></h1>
     </div>
-    <p>Quality scanner + macro logger — now with a social feed, weekly Clean Report, Tinder-style restaurant mode, and separate one-tap scan buttons for each job.</p>
+    <p>Quality scanner + macro logger — now with a location-based clean-restaurant finder (Uber/DoorDash/Zillow style) and a photo-rich weekly Clean Report.</p>
     <div class="badge-row">
+      <div class="chip">📍 Restaurants near you</div>
+      <div class="chip">Map with score pins</div>
+      <div class="chip">Photo-rich Clean Report</div>
       <div class="chip">Split scan buttons</div>
-      <div class="chip">Friends feed + leaderboard</div>
-      <div class="chip">Weekly Clean Report</div>
-      <div class="chip">Restaurant swipe mode</div>
     </div>
   </div>
 
@@ -579,17 +572,17 @@
             <span class="chev">›</span>
           </button>
 
-          <button class="restbanner" onclick="go('menu')">
+          <button class="restbanner" onclick="openRestaurants()">
             <div class="bg"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=760&h=240&fit=crop&q=80" alt="Restaurant interior" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🍜');this.remove()"></div>
             <div class="scrim"></div>
             <div class="inner">
-              <span class="re">🍜</span>
-              <span><b>Eating out?</b><p>Scan the menu — swipe dishes worth ordering</p></span>
+              <span class="re">📍</span>
+              <span><b>Clean restaurants near you</b><p>Top-rated, seed-oil-free spots in 94110</p></span>
               <span class="chev">›</span>
             </div>
           </button>
 
-          <div class="sectlabel"><h3>Guides</h3><a onclick="go('explore')">See all →</a></div>
+          <div class="sectlabel"><h3>Guides</h3><a onclick="openProducts()">See all →</a></div>
           <div class="stories" id="homeStories"></div>
 
           <div class="tip">
@@ -605,113 +598,82 @@
           <p class="disc">Scores are informational only and not medical advice. Always consult a healthcare professional for dietary guidance.</p>
         </section>
 
-        <!-- ============ FEED ============ -->
-        <section class="view" id="feed">
-          <div class="pagetitle" style="margin-top:6px">
-            <h1>Friends</h1>
-            <p>See what your circle is scanning</p>
-          </div>
-
-          <div class="stories fstories" id="feedStories"></div>
-
-          <div class="lboard">
-            <h4>🏆 This week's leaderboard</h4>
-            <div class="lrow"><span class="rank">🥇</span><span class="avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&q=80" alt="Maya" loading="lazy" onerror="this.replaceWith(document.createTextNode('M'))"></span><b>Maya</b><span class="pts">91 avg</span></div>
-            <div class="lrow"><span class="rank">🥈</span><span class="avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&q=80" alt="Jake" loading="lazy" onerror="this.replaceWith(document.createTextNode('J'))"></span><b>Jake</b><span class="pts">87 avg</span></div>
-            <div class="lrow"><span class="rank">🥉</span><span class="avatar"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&q=80" alt="Sofia" loading="lazy" onerror="this.replaceWith(document.createTextNode('S'))"></span><b>Sofia</b><span class="pts">86 avg</span></div>
-            <div class="lrow me"><span class="rank">4</span><span class="avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&q=80" alt="You" loading="lazy" onerror="this.replaceWith(document.createTextNode('Y'))"></span><b>You</b><span class="pts">84 avg</span></div>
-          </div>
-
-          <div class="sectlabel"><h3>Latest scans</h3><a onclick="toast('Feed refreshed ✓')">Refresh</a></div>
-
-          <div class="post">
-            <div class="phead">
-              <span class="avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&q=80" alt="Maya" loading="lazy" onerror="this.replaceWith(document.createTextNode('M'))"></span>
-              <span><b>Maya</b><small>12 min ago · Whole Foods</small></span>
-              <span class="streak">🔥 21</span>
-            </div>
-            <div class="pmedia" ondblclick="heart(this,'l1')">
-              <span class="ph" data-emoji="🥣"><img src="https://images.unsplash.com/photo-1517093157656-b9eccef91cb1?w=760&h=570&fit=crop&q=80" alt="Overnight oats" loading="lazy" onerror="this.remove()"></span>
-              <span class="pscore">92</span>
-              <span class="bigheart">❤️</span>
-            </div>
-            <div class="pacts">
-              <button id="l1" onclick="like(this)">♡ <span>24</span></button>
-              <button onclick="toast('Comments coming soon')">💬 6</button>
-              <button onclick="toast('Swap saved to your list ✓')">🔁 Swap</button>
-              <button class="sharea" onclick="toast('Sent to 3 friends ✓')">↗</button>
-            </div>
-            <div class="pcap"><b>Maya</b> found a 92 — overnight oats with zero additives. double tap if you'd eat this 🌿</div>
-          </div>
-
-          <div class="post">
-            <div class="phead">
-              <span class="avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&q=80" alt="Jake" loading="lazy" onerror="this.replaceWith(document.createTextNode('J'))"></span>
-              <span><b>Jake</b><small>1 h ago · Trader Joe's</small></span>
-              <span class="streak">🔥 9</span>
-            </div>
-            <div class="pmedia" ondblclick="heart(this,'l2')">
-              <span class="ph" data-emoji="🧃"><img src="https://images.unsplash.com/photo-1437418747212-8d9709afab22?w=760&h=570&fit=crop&q=80" alt="Bottled smoothies" loading="lazy" onerror="this.remove()"></span>
-              <span class="pscore low">38</span>
-              <span class="bigheart">❤️</span>
-            </div>
-            <div class="pacts">
-              <button id="l2" onclick="like(this)">♡ <span>41</span></button>
-              <button onclick="toast('Comments coming soon')">💬 18</button>
-              <button onclick="toast('Swap saved to your list ✓')">🔁 Swap</button>
-              <button class="sharea" onclick="toast('Sent to 3 friends ✓')">↗</button>
-            </div>
-            <div class="pcap"><b>Jake</b> yikes — 38/100. "smoothie" with 42g added sugar 💀 check the swap</div>
-          </div>
-
-          <div class="post">
-            <div class="phead">
-              <span class="avatar"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&q=80" alt="Sofia" loading="lazy" onerror="this.replaceWith(document.createTextNode('S'))"></span>
-              <span><b>Sofia</b><small>3 h ago · homemade</small></span>
-              <span class="streak">🔥 33</span>
-            </div>
-            <div class="pmedia" ondblclick="heart(this,'l3')">
-              <span class="ph" data-emoji="🥗"><img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=760&h=570&fit=crop&q=80" alt="Fresh salad bowl" loading="lazy" onerror="this.remove()"></span>
-              <span class="pscore">96</span>
-              <span class="bigheart">❤️</span>
-            </div>
-            <div class="pacts">
-              <button id="l3" onclick="like(this)">♡ <span>67</span></button>
-              <button onclick="toast('Comments coming soon')">💬 12</button>
-              <button onclick="toast('Recipe saved ✓')">🔖 Save</button>
-              <button class="sharea" onclick="toast('Sent to 3 friends ✓')">↗</button>
-            </div>
-            <div class="pcap"><b>Sofia</b> 33-day streak 🧘 lunch was a 96 — 41g protein, logged in one snap</div>
-          </div>
-        </section>
-
-        <!-- ============ EXPLORE ============ -->
+        <!-- ============ GUIDES ============ -->
         <section class="view" id="explore">
           <div class="pagetitle" style="margin-top:6px">
             <h1>Guides</h1>
-            <p>661 products rated across 14 categories</p>
+            <p>661 products · 48 restaurants rated near you</p>
           </div>
-          <div class="search"><span>🔍</span><span>Search products &amp; brands…</span></div>
-          <div class="filters">
-            <button class="on">All</button>
-            <button>Seed-oil free</button>
-            <button>No additives</button>
-            <button>Low sugar</button>
-            <button>EWG verified</button>
+
+          <div class="seg">
+            <button class="on" id="segProducts" onclick="setGuide('products')">🛒 Products</button>
+            <button id="segRest" onclick="setGuide('rest')">📍 Restaurants</button>
           </div>
-          <button class="featured" onclick="go('result')">
-            <div class="bg"><img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=760&h=400&fit=crop&q=80" alt="Snack aisle products" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🍿');this.remove()"></div>
-            <div class="scrim"></div>
-            <div class="inner">
-              <span class="fk">This week</span>
-              <h3>Snacks under the microscope</h3>
-              <p>We rated 64 popular snacks — only 12 passed.</p>
+
+          <!-- products -->
+          <div id="gProducts">
+            <div class="search"><span>🔍</span><span>Search products &amp; brands…</span></div>
+            <div class="filters">
+              <button class="on">All</button>
+              <button>Seed-oil free</button>
+              <button>No additives</button>
+              <button>Low sugar</button>
+              <button>EWG verified</button>
             </div>
-          </button>
-          <div class="egrid" id="exploreCats"></div>
+            <button class="featured" onclick="go('result')">
+              <div class="bg"><img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=760&h=400&fit=crop&q=80" alt="Snack aisle products" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🍿');this.remove()"></div>
+              <div class="scrim"></div>
+              <div class="inner">
+                <span class="fk">This week</span>
+                <h3>Snacks under the microscope</h3>
+                <p>We rated 64 popular snacks — only 12 passed.</p>
+              </div>
+            </button>
+            <div class="egrid" id="exploreCats"></div>
+          </div>
+
+          <!-- restaurants -->
+          <div id="gRest" style="display:none">
+            <div class="locbar">
+              <span class="lpin">📍</span>
+              <span class="ltxt"><small>Delivering clean picks to</small><b id="locName">San Francisco · 94110</b></span>
+              <button class="lbtn" onclick="toggleZip()">Change</button>
+            </div>
+            <div class="zipedit" id="zipedit">
+              <input id="zipInput" inputmode="numeric" maxlength="10" placeholder="Enter ZIP code or city…">
+              <button onclick="setZip()">Go</button>
+            </div>
+
+            <button class="mapcard" onclick="toast('Full map coming soon')" aria-label="Map of clean restaurants near you">
+              <svg viewBox="0 0 360 150" preserveAspectRatio="none" aria-hidden="true">
+                <g stroke="rgba(128,180,150,.25)" stroke-width="3" fill="none">
+                  <path d="M0 40 H360"/><path d="M0 96 H360"/>
+                  <path d="M70 0 V150"/><path d="M160 0 V150"/><path d="M262 0 V150"/>
+                  <path d="M200 0 L330 150" stroke-width="5" stroke="rgba(128,180,150,.18)"/>
+                </g>
+                <circle cx="118" cy="120" r="26" fill="rgba(96,165,250,.10)"/>
+              </svg>
+              <span class="mappin" style="left:24%;top:38%"><span class="mv">96</span></span>
+              <span class="mappin" style="left:52%;top:62%"><span class="mv">93</span></span>
+              <span class="mappin" style="left:76%;top:34%"><span class="mv">91</span></span>
+              <span class="mappin" style="left:64%;top:88%"><span class="mv low">74</span></span>
+              <span class="mappin you" style="left:33%;top:86%"><span class="mv"></span></span>
+              <span class="maplabel">🗺️ Open map</span>
+            </button>
+
+            <div class="filters">
+              <button class="on">Best quality</button>
+              <button>No seed oils</button>
+              <button>90+ score</button>
+              <button>Open now</button>
+              <button>$$</button>
+            </div>
+
+            <div id="restList"></div>
+          </div>
         </section>
 
-        <!-- ============ SCAN (shared viewfinder, mode set by entry) ============ -->
+        <!-- ============ SCAN ============ -->
         <section class="view" id="scan">
           <div class="pagetitle" style="margin-top:6px">
             <h1 id="scanTitle">Check quality</h1>
@@ -879,41 +841,42 @@
           <div class="emptylog"><div class="big">📸</div>Snap your next meal to keep the streak going.</div>
         </section>
 
-        <!-- ============ RESTAURANT MODE (Tinder swipes) ============ -->
-        <section class="view" id="menu">
-          <button class="back" onclick="go('home')">← Home</button>
-          <div class="pagetitle" style="margin-top:14px">
-            <h1>Restaurant mode</h1>
-            <p>Menu scanned · 6 dishes found · swipe right on the ones worth ordering</p>
-          </div>
-          <div class="deckwrap" id="deck"></div>
-          <div class="deckbtns">
-            <button class="dbtn no" onclick="swipe(false)">✗</button>
-            <button class="dbtn yes" onclick="swipe(true)">♥</button>
-          </div>
-          <div class="picksbar">
-            <b>Your picks</b>
-            <span class="pk" id="pickCount">0 dishes</span>
-          </div>
-          <p class="disc">Estimates from menu text &amp; photos. Actual dishes vary by restaurant.</p>
-        </section>
-
-        <!-- ============ WEEKLY CLEAN REPORT (Wrapped) ============ -->
+        <!-- ============ WEEKLY CLEAN REPORT ============ -->
         <section class="view" id="report">
           <button class="repback" onclick="go('home')">← Close</button>
           <div class="wrap">
             <div class="wk">EATVERA · WEEK 26 · JUN 22–28</div>
             <h1>Your Clean<br>Report 🌿</h1>
             <div class="bigscore" data-count="84">0<small>&nbsp;avg score</small></div>
-            <div class="sub">Top 16% of EatVera this week. Maya is 7 points ahead — catch her.</div>
-            <div class="wstats">
-              <div class="wstat"><small>Scans</small><b>23 items</b></div>
-              <div class="wstat"><small>Streak</small><b>🔥 12 days</b></div>
-              <div class="wstat"><small>Best swap</small><b>Soda → kombucha<br>+41 pts</b></div>
-              <div class="wstat"><small>Worst offender</small><b>Neon Cola<br>12 / 100</b></div>
-              <div class="wstat"><small>Protein days hit</small><b>5 of 7</b></div>
-              <div class="wstat"><small>Seed-oil free</small><b>86% of scans</b></div>
+            <div class="sub">Top 16% of EatVera this week. One more clean day beats last week.</div>
+
+            <div class="wcards">
+              <div class="wcard">
+                <span class="ph wimg" data-emoji="🥗"><img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=140&h=140&fit=crop&q=80" alt="Garden salad, your best scan" loading="lazy" onerror="this.remove()"></span>
+                <span><small>Best scan</small><b>Garden greens bowl</b></span>
+                <span class="wsc">96</span>
+              </div>
+              <div class="wcard">
+                <span class="ph wimg" data-emoji="🍵"><img src="https://images.unsplash.com/photo-1517093157656-b9eccef91cb1?w=140&h=140&fit=crop&q=80" alt="Your best swap" loading="lazy" onerror="this.remove()"></span>
+                <span><small>Best swap</small><b>Soda → kombucha</b></span>
+                <span class="wsc">+41</span>
+              </div>
+              <div class="wcard">
+                <span class="ph wimg" data-emoji="🥤"><img src="https://images.unsplash.com/photo-1437418747212-8d9709afab22?w=140&h=140&fit=crop&q=80" alt="Worst offender drink" loading="lazy" onerror="this.remove()"></span>
+                <span><small>Worst offender</small><b>Neon Cola</b></span>
+                <span class="wsc">12</span>
+              </div>
             </div>
+
+            <div class="wstats">
+              <div class="wstat"><small>Scans</small><b>23</b></div>
+              <div class="wstat"><small>Streak</small><b>🔥 12</b></div>
+              <div class="wstat"><small>Protein days</small><b>5 / 7</b></div>
+              <div class="wstat"><small>Seed-oil free</small><b>86%</b></div>
+              <div class="wstat"><small>Water goal</small><b>6 / 7</b></div>
+              <div class="wstat"><small>Rank</small><b>Top 16%</b></div>
+            </div>
+
             <div class="wdays">
               <div class="wday"><i style="height:58%"></i><small>M</small></div>
               <div class="wday"><i style="height:72%"></i><small>T</small></div>
@@ -969,15 +932,15 @@
             <button class="setrow" onclick="toast('Notifications coming soon')"><span class="se">🔔</span>Notifications<span class="chev">›</span></button>
             <button class="setrow" onclick="toast('Help center coming soon')"><span class="se">💬</span>Help &amp; support<span class="chev">›</span></button>
           </div>
-          <p class="disc">EatVera v0.5 · Scores are informational only and not medical advice.</p>
+          <p class="disc">EatVera v0.6 · Scores are informational only and not medical advice.</p>
         </section>
 
       </div>
 
-      <!-- BOTTOM NAV: quality & meal scans are separate actions -->
+      <!-- BOTTOM NAV -->
       <nav class="nav">
         <button data-t="home" class="on" onclick="go('home')"><svg class="ni"><use href="#i-home"/></svg>Home</button>
-        <button data-t="feed" onclick="go('feed')"><svg class="ni"><use href="#i-users"/></svg>Friends</button>
+        <button data-t="explore" onclick="go('explore')"><svg class="ni"><use href="#i-book"/></svg>Guides</button>
         <div class="scanduo">
           <button data-t="qscan" onclick="startScan('label')">
             <span class="fab q"><svg width="28" height="28"><use href="#ev-logo"/></svg></span>Quality
@@ -997,10 +960,10 @@
         <div class="sheet">
           <div class="biglogo"><svg width="64" height="64"><use href="#ev-logo"/></svg></div>
           <h2>Welcome to Eat<i>Vera</i></h2>
-          <p>One app, two jobs — with your friends along for the ride.</p>
+          <p>One app, two jobs — plus the cleanest places to eat near you.</p>
           <div class="feat"><div class="ic">📷</div><div><b>Check quality</b><p>Green button → clean score, flags &amp; swaps</p></div></div>
           <div class="feat"><div class="ic">🍽️</div><div><b>Log a meal</b><p>Orange button → calories &amp; macros tracked</p></div></div>
-          <div class="feat"><div class="ic">🏆</div><div><b>Compete &amp; share</b><p>Friends feed, weekly Clean Report, restaurant mode</p></div></div>
+          <div class="feat"><div class="ic">📍</div><div><b>Eat out clean</b><p>Top-rated seed-oil-free restaurants near you</p></div></div>
           <button class="cta-btn" onclick="hideIntro()">Get started</button>
         </div>
       </div>
@@ -1028,34 +991,78 @@
   ];
 
   document.getElementById('homeStories').innerHTML = CATS.slice(0,8).map(c=>
-    `<button class="story" onclick="go('explore')">
+    `<button class="story" onclick="openProducts()">
       <span class="ringy"><span class="ph" data-emoji="${c.emoji}"><img src="${U(c.img,140,140)}" alt="${c.name}" loading="lazy" onerror="this.remove()"></span></span>
       <span>${c.name}</span>
     </button>`).join('');
 
   document.getElementById('exploreCats').innerHTML = CATS.map(c=>
-    `<button class="ecat" onclick="go('explore')">
+    `<button class="ecat" onclick="toast('${c.name} guide coming soon')">
       <span class="ph" data-emoji="${c.emoji}"><img src="${U(c.img,360,380)}" alt="${c.name}" loading="lazy" onerror="this.remove()"></span>
       <span class="scrim"></span>
       <span class="tag ${c.tag}">${c.tagText}</span>
       <span class="inner"><h4>${c.name}</h4><p>${c.rated} rated</p></span>
     </button>`).join('');
 
-  // ---- friends stories (feed) ----
-  const FRIENDS = [
-    ['You','photo-1438761681033-6461ffad8d80',''],
-    ['Maya','photo-1494790108377-be9c29b29330',''],
-    ['Jake','photo-1500648767791-00dcc994a43e','orange'],
-    ['Sofia','photo-1534528741775-53994a69daeb',''],
-    ['Leo','photo-1507003211169-0a1dd7228f2d','orange']
+  // ---- restaurants near you ----
+  const RESTAURANTS = [
+    {name:'Verde Kitchen',   img:'photo-1540189549336-e6e99c3679fe', score:96, stars:'4.9', reviews:412, cuisine:'Salads & grain bowls', dist:'0.4 mi', eta:'12 min', price:'$$',
+     tags:[['ok','✓ No seed oils'],['ok','✓ Organic sourcing'],['info','Olive oil only']]},
+    {name:'Ember & Oak',     img:'photo-1504674900247-0877df9cc836', score:93, stars:'4.8', reviews:318, cuisine:'Grass-fed grill', dist:'1.1 mi', eta:'18 min', price:'$$$',
+     tags:[['ok','✓ No seed oils'],['ok','✓ Grass-fed beef'],['info','Tallow-fried']]},
+    {name:'Tide Poke Co.',   img:'photo-1414235077428-338989a2e8c0', score:91, stars:'4.7', reviews:265, cuisine:'Wild-caught poke', dist:'1.6 mi', eta:'22 min', price:'$$',
+     tags:[['ok','✓ Wild-caught fish'],['info','Ask for no fried onions']]},
+    {name:'Golden Hour Café',img:'photo-1482049016688-2d3e1b311543', score:88, stars:'4.6', reviews:198, cuisine:'Brunch & sourdough', dist:'0.8 mi', eta:'15 min', price:'$$',
+     tags:[['ok','✓ Butter, not margarine'],['info','Pasture-raised eggs']]},
+    {name:'Luna Cantina',    img:'photo-1565299624946-b28f40a0ae38', score:74, stars:'4.5', reviews:530, cuisine:'Tacos & bowls', dist:'2.0 mi', eta:'25 min', price:'$',
+     tags:[['warn','⚠ Some fried items'],['ok','✓ Corn tortillas']]}
   ];
-  document.getElementById('feedStories').innerHTML =
-    `<button class="story fstory-add" onclick="startScan('label')"><span class="ringy"><span class="plus">＋</span></span><span>Your scan</span></button>` +
-    FRIENDS.slice(1).map(([n,img,cls])=>
-    `<button class="story ${cls}" onclick="toast('${n}\\'s scans — coming soon')">
-      <span class="ringy"><span class="ph" data-emoji="🙂"><img src="${U(img,140,140)}" alt="${n}" loading="lazy" onerror="this.remove()"></span></span>
-      <span>${n}</span>
-    </button>`).join('');
+  function renderRestaurants(){
+    document.getElementById('restList').innerHTML = RESTAURANTS.map(r=>
+      `<button class="rest" onclick="toast('${r.name} — full profile coming soon')">
+        <div class="rimg">
+          <span class="ph" data-emoji="🍽️"><img src="${U(r.img,760,380)}" alt="${r.name}" loading="lazy" onerror="this.remove()"></span>
+          <span class="rsc ${r.score<85?'mid':''}">${r.score}</span>
+          <span class="reta">🚶 ${r.dist} · ${r.eta}</span>
+        </div>
+        <div class="rbody">
+          <h4>${r.name}</h4>
+          <div class="rmeta"><b>★ ${r.stars}</b> (${r.reviews}) · ${r.cuisine} · ${r.price}</div>
+          <div class="rtags">${r.tags.map(([c,t])=>`<span class="rtag ${c}">${t}</span>`).join('')}</div>
+          <div class="racts">
+            <span class="ract go" onclick="event.stopPropagation();toast('Opening directions…')">🧭 Directions</span>
+            <span class="ract" onclick="event.stopPropagation();toast('Clean picks menu coming soon')">🥗 Clean picks</span>
+          </div>
+        </div>
+      </button>`).join('');
+  }
+  renderRestaurants();
+
+  // ---- guides segment ----
+  function setGuide(which){
+    document.getElementById('segProducts').classList.toggle('on', which==='products');
+    document.getElementById('segRest').classList.toggle('on', which==='rest');
+    document.getElementById('gProducts').style.display = which==='products' ? 'block' : 'none';
+    document.getElementById('gRest').style.display     = which==='rest' ? 'block' : 'none';
+  }
+  function openRestaurants(){ go('explore'); setGuide('rest'); }
+  function openProducts(){ go('explore'); setGuide('products'); }
+
+  // ---- location / zip ----
+  function toggleZip(){
+    const z = document.getElementById('zipedit');
+    z.classList.toggle('show');
+    if(z.classList.contains('show')) document.getElementById('zipInput').focus();
+  }
+  function setZip(){
+    const v = document.getElementById('zipInput').value.trim();
+    if(!v){ toast('Enter a ZIP or city first'); return; }
+    const label = /^\d/.test(v) ? `Near you · ${v}` : `${v}`;
+    document.getElementById('locName').textContent = label;
+    document.getElementById('zipedit').classList.remove('show');
+    document.getElementById('zipInput').value='';
+    toast(`Showing cleanest spots near <b>${label}</b>`);
+  }
 
   // ---- profile history grid ----
   const HISTORY = [
@@ -1110,19 +1117,15 @@
   function go(id){
     document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));
     let tab = id;
-    if(id==='explore'||id==='menu'||id==='report') tab='home';
+    if(id==='report') tab='home';
     if(id==='result') tab='qscan';
     if(id==='scan') tab = (mode==='label') ? 'qscan' : 'mscan';
-    document.querySelectorAll('.nav [data-t]').forEach(b=>{
-      const on = b.dataset.t===tab;
-      b.classList.toggle('on',on);
-      b.classList.toggle('mealtab', on && b.dataset.t==='mscan');
-    });
+    document.querySelectorAll('.nav [data-t]').forEach(b=>b.classList.toggle('on',b.dataset.t===tab));
     document.getElementById('app').scrollTop=0;
     animate(document.getElementById(id));
   }
 
-  // ---- scanner (mode set by which button you tapped) ----
+  // ---- scanner ----
   let stream = null;
   function setMode(m){
     mode = m;
@@ -1195,92 +1198,6 @@
       }
     }, 800);
   }
-
-  // ---- feed: likes + double-tap hearts ----
-  function like(btn){
-    const n = btn.querySelector('span');
-    const liked = btn.classList.toggle('liked');
-    n.textContent = +n.textContent + (liked ? 1 : -1);
-    btn.firstChild.textContent = liked ? '❤️ ' : '♡ ';
-  }
-  function heart(media, likeId){
-    const h = media.querySelector('.bigheart');
-    h.classList.remove('pop'); void h.offsetWidth; h.classList.add('pop');
-    const btn = document.getElementById(likeId);
-    if(btn && !btn.classList.contains('liked')) like(btn);
-  }
-
-  // ---- restaurant mode: Tinder deck ----
-  const DISHES = [
-    {name:'Grilled salmon bowl', img:'photo-1467003909585-2f8a72700288', kcal:640, p:42, c:38, f:28, score:91},
-    {name:'Avocado toast',       img:'photo-1541519227354-08fa5d50c44d', kcal:430, p:14, c:41, f:24, score:84},
-    {name:'Margherita pizza',    img:'photo-1513104890138-7c749659a591', kcal:870, p:32, c:98, f:36, score:62},
-    {name:'Crispy chicken burger',img:'photo-1568901346375-23c9450c58cd',kcal:980, p:35, c:74, f:52, score:48},
-    {name:'Garden salad',        img:'photo-1546793665-c74683f339c1',   kcal:320, p:12, c:24, f:18, score:95},
-    {name:'Truffle pasta',       img:'photo-1473093295043-cdd812d0e601',kcal:760, p:22, c:88, f:34, score:58}
-  ];
-  let deckIdx = 0, picks = 0;
-  function renderDeck(){
-    const deck = document.getElementById('deck');
-    const rest = DISHES.slice(deckIdx, deckIdx+3);
-    if(!rest.length){
-      deck.innerHTML = `<div class="deckdone"><div class="de">🎉</div><h3>Menu conquered</h3><p>${picks} dish${picks===1?'':'es'} picked. Order confidently — macros go straight to your log.</p></div>`;
-      return;
-    }
-    deck.innerHTML = rest.map((d,i)=>{
-      const z = 10-i, s = 1 - i*.04, y = i*12;
-      return `<div class="dish" data-i="${deckIdx+i}" style="z-index:${z};transform:translateY(${y}px) scale(${s})">
-        <span class="ph" data-emoji="🍽️"><img src="${U(d.img,760,860)}" alt="${d.name}" loading="lazy" onerror="this.remove()"></span>
-        <span class="dscrim"></span>
-        <span class="dscore ${d.score<60?'low':''}">${d.score}</span>
-        <span class="stamp yes">ORDER</span>
-        <span class="stamp no">SKIP</span>
-        <div class="dinner">
-          <h3>${d.name}</h3>
-          <div class="dmeta">
-            <span class="dpill">🔥 ${d.kcal} kcal</span>
-            <span class="dpill">${d.p}g P</span>
-            <span class="dpill">${d.c}g C</span>
-            <span class="dpill">${d.f}g F</span>
-          </div>
-        </div>
-      </div>`;
-    }).join('');
-    attachDrag(deck.querySelector('.dish'));
-  }
-  function attachDrag(card){
-    if(!card) return;
-    let x0=0, dx=0, dragging=false;
-    card.addEventListener('pointerdown', e=>{
-      dragging=true; x0=e.clientX; card.classList.add('dragging'); card.setPointerCapture(e.pointerId);
-    });
-    card.addEventListener('pointermove', e=>{
-      if(!dragging) return;
-      dx = e.clientX - x0;
-      card.style.transform = `translateX(${dx}px) rotate(${dx/14}deg)`;
-      card.querySelector('.stamp.yes').style.opacity = Math.min(dx/70,1);
-      card.querySelector('.stamp.no').style.opacity  = Math.min(-dx/70,1);
-    });
-    card.addEventListener('pointerup', ()=>{
-      dragging=false; card.classList.remove('dragging');
-      if(Math.abs(dx)>90){ fly(card, dx>0); }
-      else{ card.style.transform=''; card.querySelectorAll('.stamp').forEach(s=>s.style.opacity=0); }
-      dx=0;
-    });
-  }
-  function fly(card, yes){
-    card.classList.add('fly');
-    card.style.transform = `translateX(${yes?480:-480}px) rotate(${yes?28:-28}deg)`;
-    card.style.opacity = 0;
-    if(yes){ picks++; document.getElementById('pickCount').textContent = `${picks} dish${picks===1?'':'es'}`; toast('Added to your picks <b>♥</b>'); }
-    deckIdx++;
-    setTimeout(renderDeck, 260);
-  }
-  function swipe(yes){
-    const card = document.querySelector('#deck .dish');
-    if(card) fly(card, yes);
-  }
-  renderDeck();
 
   // ---- report share ----
   function shareReport(){
