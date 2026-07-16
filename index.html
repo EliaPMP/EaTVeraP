@@ -422,7 +422,23 @@
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
   .toast b{color:var(--acc)}
 
-  /* ---------- TRACK ---------- */
+  /* ---------- TRACK v2 ---------- */
+  .thead{display:flex;align-items:flex-start;justify-content:space-between;margin:6px 2px 16px}
+  .thead h1{font-family:'Fraunces',serif;font-size:27px}
+  .thead p{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .tcal{background:linear-gradient(150deg,var(--card-2),var(--card));border-radius:28px;box-shadow:var(--sh);padding:22px 20px;display:flex;align-items:center;gap:12px;margin-top:8px}
+  .tcal .tleft{flex:1;min-width:0}
+  .tcal .tleft>b{font-family:'Space Grotesk';font-size:46px;font-weight:700;letter-spacing:-.03em;line-height:1;display:block;font-variant-numeric:tabular-nums}
+  .tcal .tleft>small{font-size:10.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;display:block;margin-top:5px}
+  .tsub{display:flex;gap:14px;margin-top:15px;font-size:11.5px;color:var(--muted);font-weight:600;flex-wrap:wrap}
+  .tsub b{color:var(--ink);font-variant-numeric:tabular-nums}
+  .macro .unit{font-family:'Inter';font-size:11px;font-weight:500;color:var(--faint)}
+  .mside{margin-left:auto;display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;align-self:flex-start}
+  .mdel{border:none;background:none;color:var(--faint);font-size:11px;cursor:pointer;padding:3px 8px;border-radius:8px}
+  .mdel:active{background:var(--wash)}
+  .gallerybtn{margin-top:14px;width:100%;border:none;cursor:pointer;background:var(--card);color:var(--ink);font-size:14.5px;font-weight:700;padding:16px;border-radius:18px;box-shadow:var(--sh);display:flex;align-items:center;justify-content:center;gap:9px;transition:transform .12s ease}
+  .gallerybtn:active{transform:scale(.97)}
+  .today .miniring circle:last-of-type{transition:stroke-dashoffset 1s cubic-bezier(.22,.9,.35,1)}
   .daystrip{display:flex;gap:6px;justify-content:space-between;margin:2px 0 8px}
   .daystrip .day{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 0;border-radius:15px;cursor:pointer}
   .daystrip .day small{font-size:9.5px;font-weight:600;color:var(--faint);text-transform:uppercase}
@@ -623,16 +639,16 @@
             <div class="miniring">
               <svg width="62" height="62" viewBox="0 0 62 62" style="transform:rotate(-90deg)">
                 <circle cx="31" cy="31" r="26" fill="none" stroke="var(--wash)" stroke-width="6"/>
-                <circle cx="31" cy="31" r="26" fill="none" stroke="var(--acc)" stroke-width="6" stroke-linecap="round" stroke-dasharray="163" stroke-dashoffset="105"/>
+                <circle id="hRing" cx="31" cy="31" r="26" fill="none" stroke="var(--acc)" stroke-width="6" stroke-linecap="round" stroke-dasharray="163" stroke-dashoffset="163"/>
               </svg>
-              <div class="center"><b>710</b><small>KCAL</small></div>
+              <div class="center"><b id="hKcal">0</b><small>KCAL</small></div>
             </div>
             <div class="tbody">
               <div class="trow"><h4>Today</h4><span class="streak">🔥 12 days</span></div>
               <div class="minibars">
-                <div class="minibar"><small>P</small><div class="bar"><i style="width:32%;background:var(--acc)"></i></div><b>48/150g</b></div>
-                <div class="minibar"><small>C</small><div class="bar"><i style="width:37%;background:var(--amber)"></i></div><b>74/200g</b></div>
-                <div class="minibar"><small>F</small><div class="bar"><i style="width:34%;background:var(--red)"></i></div><b>22/65g</b></div>
+                <div class="minibar"><small>P</small><div class="bar"><i id="hp" style="width:0;background:var(--acc)"></i></div><b id="hpt">0/150g</b></div>
+                <div class="minibar"><small>C</small><div class="bar"><i id="hc" style="width:0;background:var(--amber)"></i></div><b id="hct">0/200g</b></div>
+                <div class="minibar"><small>F</small><div class="bar"><i id="hf" style="width:0;background:var(--red)"></i></div><b id="hft">0/75g</b></div>
               </div>
             </div>
             <span class="chev">›</span>
@@ -764,22 +780,23 @@
             </div>
 
             <div class="vctrl">
-              <button class="vside" onclick="document.getElementById('camFile').click()"><span>🖼️</span>Library</button>
+              <button class="vside" id="camBtn" onclick="enableCam(false)"><span>🎥</span>Camera</button>
               <button class="shutter2" onclick="shoot()" aria-label="Capture"><i></i></button>
-              <button class="vside" id="camBtn" onclick="enableCam()"><span>🎥</span>Camera</button>
+              <span class="vside" style="visibility:hidden" aria-hidden="true"><span></span>.</span>
             </div>
           </div>
-          <input type="file" id="camFile" accept="image/*" capture="environment" hidden onchange="fromFile(this)">
+          <input type="file" id="camFile" accept="image/*" hidden onchange="fromFile(this)">
           <canvas id="grab" hidden></canvas>
 
           <div class="scanbody">
             <div class="steps">
               <h3>How it works</h3>
-              <div class="step"><div class="n">1</div><div><b>Point &amp; capture</b><p>Enable your camera (or pick from Library) and tap the shutter.</p></div></div>
+              <div class="step"><div class="n">1</div><div><b>Point &amp; capture</b><p>The camera starts automatically — just aim and tap the shutter.</p></div></div>
               <div class="step"><div class="n">2</div><div><b>AI reads it instantly</b><p>Identifies every ingredient and estimates portions.</p></div></div>
-              <div class="step"><div class="n">3</div><div><b>Score, macros &amp; flags</b><p>Your photo lands in the result or your food log.</p></div></div>
+              <div class="step"><div class="n">3</div><div><b>Logged for real</b><p>Results land in your log and update today's calories &amp; macros.</p></div></div>
             </div>
-            <p class="disc">Your camera feed stays on your device — nothing is uploaded in this prototype.</p>
+            <button class="gallerybtn" onclick="document.getElementById('camFile').click()">🖼️ Upload from gallery</button>
+            <p class="disc">Your camera feed and photos stay on your device — nothing is uploaded in this prototype.</p>
           </div>
         </section>
 
@@ -985,63 +1002,48 @@
 
         <!-- ============ TRACK ============ -->
         <section class="view" id="track">
-          <div class="pagetitle" style="margin-top:6px">
-            <h1>Today</h1>
-            <p>Saturday, June 28</p>
+          <div class="thead">
+            <div><h1>Today</h1><p id="trackDate">Saturday, June 28</p></div>
+            <span class="streak">🔥 12 days</span>
           </div>
-          <div class="daystrip">
-            <div class="day"><small>Mon</small><b>23</b></div>
-            <div class="day"><small>Tue</small><b>24</b></div>
-            <div class="day"><small>Wed</small><b>25</b></div>
-            <div class="day"><small>Thu</small><b>26</b></div>
-            <div class="day"><small>Fri</small><b>27</b></div>
-            <div class="day on"><small>Sat</small><b>28</b></div>
-            <div class="day"><small>Sun</small><b>29</b></div>
-          </div>
-          <div class="ring-wrap">
+          <div class="daystrip" id="daystrip"></div>
+
+          <div class="tcal">
+            <div class="tleft">
+              <b id="remainNum" data-count="0">0</b>
+              <small>Calories left</small>
+              <div class="tsub">
+                <span>🍽 <b id="eatenNum">0</b> eaten</span>
+                <span>🎯 <b>2,000</b> goal</span>
+              </div>
+            </div>
             <div class="ring">
-              <svg width="176" height="176" viewBox="0 0 176 176">
+              <svg width="132" height="132" viewBox="0 0 132 132">
                 <defs>
                   <linearGradient id="calGrad" x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0%" stop-color="#4ade80"/><stop offset="100%" stop-color="#15803d"/>
                   </linearGradient>
                 </defs>
-                <circle class="track" cx="88" cy="88" r="76" fill="none" stroke-width="15"/>
-                <circle class="val" cx="88" cy="88" r="76" fill="none" stroke="url(#calGrad)" stroke-width="15" stroke-linecap="round" stroke-dasharray="477" stroke-dashoffset="477" data-off="308"/>
+                <circle class="track" cx="66" cy="66" r="56" fill="none" stroke-width="12"/>
+                <circle class="val" id="calCircle" cx="66" cy="66" r="56" fill="none" stroke="url(#calGrad)" stroke-width="12" stroke-linecap="round" stroke-dasharray="352" stroke-dashoffset="352" data-off="352"/>
               </svg>
-              <div class="center"><b style="font-size:38px" data-count="710">0</b><small>OF 2,000 KCAL</small></div>
+              <div class="center"><b style="font-size:22px" id="pctNum">0%</b><small>OF GOAL</small></div>
             </div>
           </div>
+
           <div class="macros">
-            <div class="macro"><div class="lab">Protein</div><b data-count="48">0</b><div class="bar"><i data-w="32%" style="width:0;background:var(--acc)"></i></div></div>
-            <div class="macro"><div class="lab">Carbs</div><b data-count="74">0</b><div class="bar"><i data-w="37%" style="width:0;background:var(--amber)"></i></div></div>
-            <div class="macro"><div class="lab">Fat</div><b data-count="22">0</b><div class="bar"><i data-w="34%" style="width:0;background:var(--red)"></i></div></div>
+            <div class="macro"><div class="lab">Protein</div><b><span data-count="0" id="m_p">0</span><span class="unit" id="u_p">/150g</span></b><div class="bar"><i id="b_p" data-w="0%" style="width:0;background:var(--acc)"></i></div></div>
+            <div class="macro"><div class="lab">Carbs</div><b><span data-count="0" id="m_c">0</span><span class="unit" id="u_c">/200g</span></b><div class="bar"><i id="b_c" data-w="0%" style="width:0;background:var(--amber)"></i></div></div>
+            <div class="macro"><div class="lab">Fat</div><b><span data-count="0" id="m_f">0</span><span class="unit" id="u_f">/75g</span></b><div class="bar"><i id="b_f" data-w="0%" style="width:0;background:var(--red)"></i></div></div>
           </div>
+
           <div class="water">
             <div class="wrow"><h4>💧 Water</h4><span class="wcount" id="wCount">5 / 8 glasses</span></div>
             <div class="cups" id="cups"></div>
           </div>
+
           <div class="sectlabel"><h3>Logged today</h3><a onclick="startScan('meal')">+ Add meal</a></div>
-          <div id="mealList">
-            <div class="meal">
-              <div class="ph mimg" data-emoji="🥗"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=140&h=140&fit=crop&q=80" alt="Chicken and quinoa bowl" loading="lazy" onerror="this.remove()"></div>
-              <div class="body">
-                <h4>Chicken &amp; quinoa bowl</h4>
-                <p>710 kcal · 12:30</p>
-                <div class="mpills"><span class="mpill p"><i></i>42g P</span><span class="mpill c"><i></i>58g C</span><span class="mpill f"><i></i>18g F</span></div>
-              </div>
-              <div class="sc">88</div>
-            </div>
-            <div class="meal">
-              <div class="ph mimg" data-emoji="🫐"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=140&h=140&fit=crop&q=80" alt="Greek yogurt with berries" loading="lazy" onerror="this.remove()"></div>
-              <div class="body">
-                <h4>Greek yogurt &amp; berries</h4>
-                <p>210 kcal · 08:05</p>
-                <div class="mpills"><span class="mpill p"><i></i>15g P</span><span class="mpill c"><i></i>22g C</span><span class="mpill f"><i></i>4g F</span></div>
-              </div>
-              <div class="sc">94</div>
-            </div>
-          </div>
+          <div id="mealList"></div>
           <div class="emptylog"><div class="big">📸</div>Snap your next meal to keep the streak going.</div>
         </section>
 
@@ -1315,8 +1317,86 @@
     animate(document.getElementById(id));
   }
 
+  // ================= DAILY LOG STATE (persisted) =================
+  const GOALS = {kcal:2000, p:150, c:200, f:75};
+  let state = null;
+  try{ state = JSON.parse(localStorage.getItem('ev-day')||'null'); }catch(e){}
+  if(!state || !Array.isArray(state.meals)){
+    state = {kcal:0,p:0,c:0,f:0,glasses:5,meals:[]};
+    [{name:'Chicken & quinoa bowl',kcal:710,p:42,c:58,f:18,score:88,img:U('photo-1512621776951-a57141f2eefd',140,140),time:'12:30'},
+     {name:'Greek yogurt & berries',kcal:210,p:15,c:22,f:4,score:94,img:U('photo-1488477181946-6428a0291777',140,140),time:'08:05'}
+    ].forEach(m=>{ state.meals.push(m); state.kcal+=m.kcal; state.p+=m.p; state.c+=m.c; state.f+=m.f; });
+  }
+  function saveState(){ try{ localStorage.setItem('ev-day', JSON.stringify(state)); }catch(e){} }
+  function nowHH(){ const t=new Date(); return String(t.getHours()).padStart(2,'0')+':'+String(t.getMinutes()).padStart(2,'0'); }
+
+  function addMeal(m){
+    m.time = m.time || nowHH();
+    state.meals.unshift(m);
+    state.kcal+=m.kcal; state.p+=m.p; state.c+=m.c; state.f+=m.f;
+    saveState(); renderAll();
+  }
+  function removeMeal(i){
+    const m = state.meals[i]; if(!m) return;
+    state.meals.splice(i,1);
+    state.kcal-=m.kcal; state.p-=m.p; state.c-=m.c; state.f-=m.f;
+    saveState(); renderAll();
+    toast(`Removed <b>−${m.kcal} kcal</b>`);
+  }
+  function renderMeals(){
+    document.getElementById('mealList').innerHTML = state.meals.map((m,i)=>`
+      <div class="meal">
+        <div class="ph mimg" data-emoji="🍽️">${m.img?`<img src="${m.img}" alt="${m.name}" loading="lazy" onerror="this.remove()">`:''}</div>
+        <div class="body">
+          <h4>${m.name}</h4>
+          <p>${m.kcal} kcal · ${m.time}</p>
+          <div class="mpills"><span class="mpill p"><i></i>${m.p}g P</span><span class="mpill c"><i></i>${m.c}g C</span><span class="mpill f"><i></i>${m.f}g F</span></div>
+        </div>
+        <div class="mside"><div class="sc">${m.score}</div><button class="mdel" onclick="removeMeal(${i})" aria-label="Remove">✕ remove</button></div>
+      </div>`).join('');
+  }
+  function renderTrack(){
+    const remain = Math.max(GOALS.kcal - state.kcal, 0);
+    const pct = Math.min(state.kcal/GOALS.kcal, 1);
+    const rEl = document.getElementById('remainNum');
+    rEl.dataset.count = remain; rEl.textContent = remain.toLocaleString();
+    document.getElementById('eatenNum').textContent = state.kcal.toLocaleString();
+    document.getElementById('pctNum').textContent = Math.round(pct*100)+'%';
+    document.getElementById('calCircle').dataset.off = Math.round(352*(1-pct));
+    [['p','--acc'],['c','--amber'],['f','--red']].forEach(([k])=>{
+      const n = document.getElementById('m_'+k);
+      n.dataset.count = state[k]; n.textContent = state[k];
+      document.getElementById('u_'+k).textContent = '/'+GOALS[k]+'g';
+      document.getElementById('b_'+k).dataset.w = Math.min(state[k]/GOALS[k]*100,100)+'%';
+    });
+    renderMeals();
+  }
+  function renderToday(){
+    document.getElementById('hKcal').textContent = state.kcal;
+    document.getElementById('hRing').style.strokeDashoffset = 163*(1-Math.min(state.kcal/GOALS.kcal,1));
+    [['p','hp'],['c','hc'],['f','hf']].forEach(([k,id])=>{
+      document.getElementById(id).style.width = Math.min(state[k]/GOALS[k]*100,100)+'%';
+      document.getElementById(id+'t').textContent = state[k]+'/'+GOALS[k]+'g';
+    });
+  }
+  function renderAll(){ renderTrack(); renderToday(); renderCups(); }
+
+  // real date + day strip
+  (function(){
+    const now = new Date();
+    document.getElementById('trackDate').textContent =
+      now.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+    const strip = document.getElementById('daystrip');
+    let html = '';
+    for(let d=-5; d<=1; d++){
+      const day = new Date(now); day.setDate(now.getDate()+d);
+      html += `<div class="day ${d===0?'on':''}"><small>${day.toLocaleDateString('en-US',{weekday:'short'})}</small><b>${day.getDate()}</b></div>`;
+    }
+    strip.innerHTML = html;
+  })();
+
   // ---- scanner ----
-  let stream = null, sub = 'barcode';
+  let stream = null, sub = 'barcode', lastShot = null, camTried = false;
   function setMode(m){
     mode = m;
     const label = m==='label';
@@ -1336,9 +1416,13 @@
     document.getElementById('subLab').classList.toggle('on', s==='label');
     document.getElementById('vfHint').textContent = s==='barcode' ? 'Point camera at barcode' : 'Center the ingredients panel';
   }
-  function startScan(m){ setMode(m); go('scan'); }
+  function startScan(m){
+    setMode(m); go('scan');
+    // fire up the camera automatically the first time the scanner opens
+    if(!stream && !camTried){ camTried = true; enableCam(true); }
+  }
 
-  async function enableCam(){
+  async function enableCam(silent){
     try{
       stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});
       const v = document.getElementById('vfVideo');
@@ -1348,8 +1432,8 @@
       btn.classList.add('live');
       btn.innerHTML = '<span>●</span>Live';
       btn.disabled = true;
-      toast('Camera on — aim and tap the shutter');
-    }catch(e){ toast('Camera unavailable — try Library'); }
+      if(!silent) toast('Camera on — aim and tap the shutter');
+    }catch(e){ if(!silent) toast('Camera unavailable — use Upload from gallery'); }
   }
   function shoot(){
     const fx = document.getElementById('flashfx');
@@ -1375,25 +1459,17 @@
     setTimeout(()=>{
       setMode(mode);
       if(mode === 'label'){
+        lastShot = dataUrl || null;
         if(dataUrl){
           document.getElementById('resPimg').innerHTML = `<img src="${dataUrl}" alt="Your scanned product">`;
           document.getElementById('resBrand').textContent = 'Your scan';
         }
         go('result');
       }else{
-        if(dataUrl){
-          const t = new Date();
-          const hh = String(t.getHours()).padStart(2,'0')+':'+String(t.getMinutes()).padStart(2,'0');
-          document.getElementById('mealList').insertAdjacentHTML('afterbegin',
-            `<div class="meal">
-              <div class="ph mimg" data-emoji="🍽️"><img src="${dataUrl}" alt="Your scanned meal"></div>
-              <div class="body"><h4>Scanned meal</h4><p>~520 kcal · ${hh}</p>
-                <div class="mpills"><span class="mpill p"><i></i>31g P</span><span class="mpill c"><i></i>44g C</span><span class="mpill f"><i></i>21g F</span></div>
-              </div>
-              <div class="sc">86</div>
-            </div>`);
-          toast('Meal analyzed & logged <b>+520 kcal</b>');
-        }
+        // meal scan ALWAYS logs for real — photo if we have one, demo shot otherwise
+        addMeal({name:'Scanned meal', kcal:520, p:31, c:44, f:21, score:86,
+                 img: dataUrl || U('photo-1490645935967-10de6ba17061',140,140)});
+        toast('Meal analyzed & logged <b>+520 kcal</b>');
         go('track');
       }
     }, 800);
@@ -1427,19 +1503,23 @@
     toastTimer = setTimeout(()=>t.classList.remove('show'), 1800);
   }
   function logIt(){
+    // scanner → logger bridge: the scanned product really lands in today's log
+    addMeal({name:'Honey Oat Granola Bar', kcal:190, p:4, c:29, f:7, score:72,
+             img: lastShot || U('photo-1599490659213-e2b9527bd087',140,140)});
     toast('Logged to today <b>+190 kcal</b>');
-    setTimeout(()=>go('track'), 900);
+    setTimeout(()=>go('track'), 700);
   }
 
-  // ---- water ----
-  let glasses = 5;
+  // ---- water (persisted) ----
   function renderCups(){
     document.getElementById('cups').innerHTML = Array.from({length:8},(_,i)=>
-      `<button class="cup ${i<glasses?'full':''}" onclick="setGlasses(${i+1})" aria-label="Glass ${i+1}">💧</button>`).join('');
-    document.getElementById('wCount').textContent = `${glasses} / 8 glasses`;
+      `<button class="cup ${i<state.glasses?'full':''}" onclick="setGlasses(${i+1})" aria-label="Glass ${i+1}">💧</button>`).join('');
+    document.getElementById('wCount').textContent = `${state.glasses} / 8 glasses`;
   }
-  function setGlasses(n){ glasses = (n===glasses) ? n-1 : n; renderCups(); }
-  renderCups();
+  function setGlasses(n){ state.glasses = (n===state.glasses) ? n-1 : n; saveState(); renderCups(); }
+
+  // initial paint from saved state
+  renderAll();
 
   function showIntro(){document.getElementById('overlay').classList.remove('hide')}
   function hideIntro(){document.getElementById('overlay').classList.add('hide')}
