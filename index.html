@@ -7,7 +7,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23143d2a'/%3E%3Cpath d='M46 17 C52 28 50 40 40 46 C31 51 21 47 20 38 C19 28 30 20 46 17 Z M42 24 C34 30 28 36 14 50' fill='none' stroke='white' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root{ --brand:#143d2a }
 
@@ -19,7 +19,7 @@
     --line:rgba(255,255,255,.055); --line-2:rgba(255,255,255,.12);
     --wash:rgba(255,255,255,.055); --wash-2:rgba(255,255,255,.08);
     --ink:#f2f7f3; --muted:#9db3a6; --faint:#647a6d;
-    --amber:#fbbf24; --red:#fb7185; --blue:#60a5fa;
+    --amber:#fbbf24; --red:#fb7185; --blue:#60a5fa; --violet:#a78bfa;
     --sh:0 12px 32px rgba(0,0,0,.35);
     --glow:0 8px 28px rgba(74,222,128,.28);
     --glow-o:0 8px 28px rgba(251,146,60,.3);
@@ -29,14 +29,14 @@
   .screen[data-theme="light"]{
     --acc:#16a34a; --acc-2:#15803d; --acc-deep:#166534;
     --mac:#ea580c; --mac-2:#c2410c;
-    --bg:#f2f6f3; --card:#ffffff; --card-2:#fbfdfb; --raise:#e9efe9;
+    --bg:#f4f4ef; --card:#ffffff; --card-2:#fbfcf9; --raise:#e9ece5;
     --line:rgba(13,38,26,.08); --line-2:rgba(13,38,26,.16);
     --wash:rgba(13,38,26,.06); --wash-2:rgba(13,38,26,.09);
-    --ink:#10241a; --muted:#5b6f62; --faint:#8ea296;
-    --amber:#d97706; --red:#e11d48; --blue:#2563eb;
-    --sh:0 10px 28px rgba(20,50,35,.12);
-    --glow:0 8px 24px rgba(22,163,74,.25);
-    --glow-o:0 8px 24px rgba(234,88,12,.25);
+    --ink:#141f18; --muted:#5b6b60; --faint:#8e9c92;
+    --amber:#d97706; --red:#e11d48; --blue:#2563eb; --violet:#7c3aed;
+    --sh:0 10px 28px rgba(20,50,35,.1);
+    --glow:0 8px 24px rgba(22,163,74,.22);
+    --glow-o:0 8px 24px rgba(234,88,12,.22);
     --navbg:rgba(255,255,255,.92);
     --ongreen:#ffffff;
   }
@@ -53,11 +53,12 @@
     padding:36px 16px 60px;line-height:1.5;
   }
   h1,h2,h3,h4,h5{font-family:'Space Grotesk','Inter',sans-serif;font-weight:700}
+  .serif{font-family:'Fraunces',Georgia,serif!important;font-weight:700}
   button{font-family:inherit}
 
   .intro{max-width:720px;text-align:center;margin-bottom:30px}
   .intro .mark{display:inline-flex;align-items:center;gap:10px;margin-bottom:12px}
-  .intro h1{font-size:27px;letter-spacing:-.02em}
+  .intro h1{font-family:'Fraunces',serif;font-size:29px;letter-spacing:-.01em}
   .intro h1 span{color:#4ade80}
   .intro p{color:#9db3a6;font-size:15px;margin-top:9px;line-height:1.6}
   .badge-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}
@@ -78,13 +79,6 @@
   .view.active{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
-  .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-  .brand{display:flex;align-items:center;gap:10px}
-  .brand b{font-family:'Space Grotesk';font-size:20px;font-weight:700;letter-spacing:-.02em}
-  .brand b i{color:var(--acc);font-style:normal}
-  .avatar{width:38px;height:38px;border-radius:50%;background:var(--raise);display:flex;align-items:center;justify-content:center;color:var(--acc);font-weight:700;font-size:14px;overflow:hidden;flex-shrink:0;cursor:pointer;border:none}
-  .avatar img{width:100%;height:100%;object-fit:cover}
-
   .pagetitle{margin:0 2px 16px}
   .pagetitle h1{font-size:26px;letter-spacing:-.02em}
   .pagetitle p{font-size:13.5px;color:var(--muted);margin-top:3px}
@@ -93,17 +87,40 @@
   .sectlabel h3{font-size:16px;letter-spacing:-.01em}
   .sectlabel a{font-size:13px;color:var(--acc);font-weight:600;text-decoration:none;cursor:pointer}
 
+  .mono-h{font-family:'JetBrains Mono';font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--faint);text-transform:uppercase}
+
   .ph{position:relative;overflow:hidden;background:linear-gradient(140deg,#182219,#101a13)}
   .ph::before{content:attr(data-emoji);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:30px;opacity:.9}
   .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 
-  /* ---------- HOME ---------- */
-  .hello{margin:2px 2px 18px}
-  .hello small{font-size:13px;color:var(--muted);font-weight:500}
-  .hello h1{font-size:25px;letter-spacing:-.02em;margin-top:2px}
-  .hello h1 em{font-style:normal;color:var(--acc)}
+  /* ---------- HOME v3 ---------- */
+  .hhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .hbrand{display:flex;align-items:center;gap:11px}
+  .hbrand h1{font-family:'Fraunces',serif;font-size:24px;letter-spacing:-.01em;line-height:1}
+  .hbrand p{font-size:11.5px;color:var(--muted);margin-top:3px;font-weight:500}
+  .hbtns{display:flex;gap:8px}
+  .hbtn{width:40px;height:40px;border-radius:50%;border:none;background:var(--card);box-shadow:var(--sh);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--ink);overflow:hidden;padding:0}
+  .hbtn img{width:100%;height:100%;object-fit:cover}
 
-  .today{width:100%;text-align:left;cursor:pointer;border:none;background:linear-gradient(150deg,var(--card-2),var(--card));border-radius:24px;padding:16px;display:flex;align-items:center;gap:16px;box-shadow:var(--sh);color:var(--ink)}
+  .bighero{position:relative;width:100%;border:none;border-radius:30px;overflow:hidden;cursor:pointer;text-align:left;color:#fff;padding:24px 22px;display:block;
+    background:linear-gradient(145deg,#1e5c3b 0%,#164a2f 45%,#0e3a24 100%);box-shadow:0 18px 40px rgba(10,50,30,.45);transition:transform .15s ease}
+  .bighero:active{transform:scale(.98)}
+  .bighero::before{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:rgba(255,255,255,.06);top:-90px;right:-60px}
+  .bighero::after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.05);bottom:-70px;left:-40px}
+  .bighero .scanchip{position:relative;width:56px;height:56px;border-radius:18px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+  .bighero .scanchip svg{width:26px;height:26px;stroke:#a7f3c4;fill:none;stroke-width:2.2;stroke-linecap:round}
+  .bighero .eyebrow{position:relative;font-family:'JetBrains Mono';font-size:10px;font-weight:700;letter-spacing:.22em;color:#8ee6ae;display:block}
+  .bighero h1{position:relative;font-family:'Fraunces',serif;font-size:33px;line-height:1.12;margin-top:9px;letter-spacing:-.01em}
+  .bighero .heropill{position:relative;display:inline-flex;align-items:center;gap:9px;margin-top:20px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(6px);color:#fff;font-size:14.5px;font-weight:700;padding:13px 22px;border-radius:999px}
+
+  .qrow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+  .qtile{border:none;background:var(--card);border-radius:20px;padding:14px 6px 12px;cursor:pointer;box-shadow:var(--sh);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:11px;font-weight:600;color:var(--muted);transition:transform .15s ease}
+  .qtile:active{transform:scale(.94)}
+  .qtile .qi{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+  .qi.g{background:rgba(74,222,128,.13)} .qi.b{background:rgba(96,165,250,.13)}
+  .qi.o{background:rgba(251,146,60,.14)} .qi.v{background:rgba(167,139,250,.14)}
+
+  .today{width:100%;text-align:left;cursor:pointer;border:none;background:linear-gradient(150deg,var(--card-2),var(--card));border-radius:24px;padding:16px;display:flex;align-items:center;gap:16px;box-shadow:var(--sh);color:var(--ink);margin-top:14px}
   .today .miniring{position:relative;flex-shrink:0}
   .today .miniring .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
   .today .miniring b{font-family:'Space Grotesk';font-size:17px;font-weight:700;line-height:1}
@@ -120,44 +137,15 @@
   .minibar b{font-size:10px;font-weight:600;color:var(--muted);width:54px;text-align:right;font-variant-numeric:tabular-nums}
   .today .chev{color:var(--faint);font-size:20px;flex-shrink:0}
 
-  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-  .tile{position:relative;border:none;border-radius:24px;overflow:hidden;cursor:pointer;min-height:186px;text-align:left;color:#fff;padding:0;display:block;box-shadow:var(--sh);transition:transform .15s ease}
-  .tile:active{transform:scale(.96)}
-  .tile .bg{position:absolute;inset:0}
-  .tile .bg img{width:100%;height:100%;object-fit:cover}
-  .tile .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,15,11,.05) 30%,rgba(8,13,10,.94) 100%)}
-  .tile .inner{position:relative;padding:15px;min-height:186px;display:flex;flex-direction:column;justify-content:flex-end}
-  .tile .ic{width:38px;height:38px;border-radius:13px;background:rgba(8,15,11,.55);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:auto}
-  .tile .kind{position:absolute;top:15px;right:15px;font-family:'JetBrains Mono';font-size:8.5px;font-weight:700;letter-spacing:.1em;color:#dff5e6;background:rgba(8,15,11,.55);backdrop-filter:blur(8px);border-radius:999px;padding:5px 9px}
-  .tile h3{font-size:17px}
-  .tile p{font-size:11.5px;color:#c3d6ca;margin-top:3px;line-height:1.4}
-
-  .repbanner{position:relative;width:100%;border:none;border-radius:22px;overflow:hidden;cursor:pointer;margin-top:14px;padding:16px 18px;text-align:left;color:#fff;display:flex;align-items:center;gap:14px;
-    background:linear-gradient(115deg,#6d28d9 0%,#7c3aed 35%,#15803d 80%,#22c55e 100%);box-shadow:0 14px 34px rgba(109,40,217,.35);transition:transform .15s ease}
-  .repbanner:active{transform:scale(.98)}
-  .repbanner .re{font-size:26px}
-  .repbanner b{font-family:'Space Grotesk';font-size:15.5px;display:block}
-  .repbanner p{font-size:11.5px;opacity:.85;margin-top:1px}
-  .repbanner .chev{margin-left:auto;font-size:20px;opacity:.9}
-
-  .restbanner{position:relative;width:100%;border:none;border-radius:22px;overflow:hidden;cursor:pointer;margin-top:12px;min-height:96px;text-align:left;color:#fff;box-shadow:var(--sh);display:block;transition:transform .15s ease}
-  .restbanner:active{transform:scale(.98)}
-  .restbanner .bg{position:absolute;inset:0}
-  .restbanner .bg img{width:100%;height:100%;object-fit:cover}
-  .restbanner .scrim{position:absolute;inset:0;background:linear-gradient(95deg,rgba(8,13,10,.92) 25%,rgba(8,13,10,.4) 75%,transparent)}
-  .restbanner .inner{position:relative;padding:15px 18px;display:flex;align-items:center;gap:13px;min-height:96px}
-  .restbanner .re{font-size:24px}
-  .restbanner b{font-family:'Space Grotesk';font-size:15.5px;display:block}
-  .restbanner p{font-size:11.5px;color:#c3d6ca;margin-top:1px}
-  .restbanner .chev{margin-left:auto;font-size:20px;color:#fff;opacity:.9}
-
-  .stories{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none;padding:4px 2px 6px}
-  .stories::-webkit-scrollbar{display:none}
-  .story{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:7px;border:none;background:none;cursor:pointer;width:66px}
-  .story .ringy{display:block;width:64px;height:64px;border-radius:50%;padding:2.5px;background:conic-gradient(var(--acc),#8ef0b6,var(--acc-2),var(--acc))}
-  .story .ph{display:block;width:100%;height:100%;border-radius:50%;border:2.5px solid var(--bg)}
-  .story .ph::before{font-size:22px}
-  .story span{font-size:10.5px;color:var(--muted);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:66px}
+  .newsrow{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 6px}
+  .newsrow::-webkit-scrollbar{display:none}
+  .news{flex:0 0 200px;border:none;background:var(--card);border-radius:20px;overflow:hidden;cursor:pointer;text-align:left;box-shadow:var(--sh);color:var(--ink);transition:transform .15s ease}
+  .news:active{transform:scale(.97)}
+  .news .nimg{width:100%;aspect-ratio:16/8.5;position:relative}
+  .news .ntag{position:absolute;top:9px;left:9px;background:rgba(4,8,6,.65);backdrop-filter:blur(6px);color:#c9f7d8;font-family:'JetBrains Mono';font-size:8.5px;font-weight:700;letter-spacing:.08em;border-radius:999px;padding:4px 9px}
+  .news .nbody{padding:11px 13px 13px}
+  .news h4{font-size:13.5px;line-height:1.35}
+  .news p{font-size:11px;color:var(--muted);margin-top:3px}
 
   .tip{position:relative;border-radius:24px;overflow:hidden;margin-top:14px;min-height:150px;color:#eafaf0;box-shadow:var(--sh)}
   .tip .bg{position:absolute;inset:0}
@@ -170,17 +158,15 @@
 
   .disc{font-size:10.5px;color:var(--faint);text-align:center;margin-top:24px;line-height:1.55;padding:0 10px}
 
-  /* ---------- GUIDES (products + restaurants) ---------- */
+  /* ---------- GUIDES ---------- */
   .seg{display:flex;background:var(--card);border-radius:999px;padding:4px;box-shadow:var(--sh);margin-bottom:14px}
   .seg button{flex:1;border:none;background:none;color:var(--muted);font-size:13px;font-weight:600;padding:10px;border-radius:999px;cursor:pointer;transition:all .2s ease}
   .seg button.on{background:var(--acc);color:var(--ongreen);font-weight:700}
-
   .search{display:flex;align-items:center;gap:10px;background:var(--card);border-radius:16px;padding:13px 16px;margin-bottom:4px;color:var(--faint);font-size:14px;box-shadow:var(--sh)}
   .filters{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none}
   .filters::-webkit-scrollbar{display:none}
   .filters button{flex:none;border:none;background:var(--card);color:var(--muted);font-size:12.5px;font-weight:600;padding:9px 15px;border-radius:999px;cursor:pointer}
   .filters button.on{background:var(--acc);color:var(--ongreen);font-weight:700}
-
   .featured{position:relative;border:none;width:100%;border-radius:24px;overflow:hidden;cursor:pointer;min-height:170px;text-align:left;color:#fff;margin-top:10px;box-shadow:var(--sh);display:block}
   .featured .bg{position:absolute;inset:0}
   .featured .bg img{width:100%;height:100%;object-fit:cover}
@@ -189,7 +175,6 @@
   .featured .fk{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.12em;color:#4ade80;font-weight:700;text-transform:uppercase}
   .featured h3{font-size:19px;margin-top:6px;line-height:1.25}
   .featured p{font-size:12px;color:#bcd2c3;margin-top:5px}
-
   .egrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
   .ecat{position:relative;border:none;border-radius:20px;overflow:hidden;cursor:pointer;aspect-ratio:1/1.05;text-align:left;color:#fff;padding:0;box-shadow:var(--sh)}
   .ecat .ph{position:absolute;inset:0}
@@ -203,8 +188,6 @@
   .tag.ewg{background:rgba(74,222,128,.22);color:#c9f7d8}
   .tag.sugar{background:rgba(244,114,182,.22);color:#fcd9ec}
   .tag.data{background:rgba(96,165,250,.22);color:#d4e6fd}
-
-  /* — restaurants (Uber/DoorDash/Zillow) — */
   .locbar{display:flex;align-items:center;gap:11px;background:var(--card);border-radius:18px;padding:13px 15px;box-shadow:var(--sh)}
   .locbar .lpin{width:36px;height:36px;border-radius:12px;background:rgba(74,222,128,.12);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
   .locbar .ltxt{flex:1;min-width:0}
@@ -216,10 +199,7 @@
   .zipedit input{flex:1;border:none;outline:none;background:var(--card);color:var(--ink);border-radius:14px;padding:12px 15px;font-family:inherit;font-size:14px;box-shadow:var(--sh)}
   .zipedit input::placeholder{color:var(--faint)}
   .zipedit button{border:none;background:linear-gradient(135deg,var(--acc),var(--acc-2));color:var(--ongreen);font-weight:700;font-size:13px;padding:0 18px;border-radius:14px;cursor:pointer}
-
-  /* zillow-style mini map */
-  .mapcard{position:relative;border-radius:22px;overflow:hidden;margin-top:12px;height:150px;box-shadow:var(--sh);cursor:pointer;border:none;width:100%;display:block;padding:0;
-    background:linear-gradient(140deg,#16281c,#0f2016)}
+  .mapcard{position:relative;border-radius:22px;overflow:hidden;margin-top:12px;height:150px;box-shadow:var(--sh);cursor:pointer;border:none;width:100%;display:block;padding:0;background:linear-gradient(140deg,#16281c,#0f2016)}
   .screen[data-theme="light"] .mapcard{background:linear-gradient(140deg,#dcefe0,#cfe8d6)}
   .mapcard svg{position:absolute;inset:0;width:100%;height:100%}
   .mappin{position:absolute;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;pointer-events:none}
@@ -229,7 +209,6 @@
   .mappin.you .mv{background:var(--blue);color:#fff;border-radius:50%;width:16px;height:16px;padding:0;box-shadow:0 0 0 5px rgba(96,165,250,.25)}
   .mappin.you::after{display:none}
   .maplabel{position:absolute;right:12px;bottom:11px;background:rgba(4,8,6,.65);backdrop-filter:blur(8px);color:#dff0e5;font-size:11px;font-weight:600;border-radius:999px;padding:6px 12px}
-
   .rest{background:var(--card);border-radius:22px;overflow:hidden;box-shadow:var(--sh);margin-bottom:14px;cursor:pointer;border:none;width:100%;text-align:left;color:var(--ink);padding:0;display:block;transition:transform .15s ease}
   .rest:active{transform:scale(.98)}
   .rest .rimg{position:relative;aspect-ratio:16/8}
@@ -247,41 +226,52 @@
   .rtag.info{background:var(--wash);color:var(--muted)}
   .rtag.warn{background:rgba(251,191,36,.12);color:var(--amber)}
   .rest .racts{display:flex;gap:9px;margin-top:13px}
-  .ract{flex:1;border:none;cursor:pointer;font-size:12.5px;font-weight:700;padding:11px;border-radius:13px;background:var(--wash);color:var(--ink)}
+  .ract{flex:1;border:none;cursor:pointer;font-size:12.5px;font-weight:700;padding:11px;border-radius:13px;background:var(--wash);color:var(--ink);text-align:center}
   .ract.go{background:linear-gradient(135deg,var(--acc),var(--acc-2));color:var(--ongreen)}
 
-  /* ---------- SCAN ---------- */
-  .vf{position:relative;border-radius:26px;overflow:hidden;min-height:340px;box-shadow:var(--sh);background:#0a0f0c}
-  .vf .bg{position:absolute;inset:0}
-  .vf .bg img{width:100%;height:100%;object-fit:cover}
-  .vf video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
-  .vf .shade{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,transparent 40%,rgba(4,8,6,.8) 100%);pointer-events:none}
-  .corners{position:absolute;inset:22px;pointer-events:none;opacity:.9}
-  .corners i{position:absolute;width:26px;height:26px;border:2.5px solid rgba(74,222,128,.95);border-radius:8px}
-  .vf.mealmode .corners i{border-color:rgba(251,146,60,.95)}
-  .corners i:nth-child(1){top:0;left:0;border-right:none;border-bottom:none}
-  .corners i:nth-child(2){top:0;right:0;border-left:none;border-bottom:none}
-  .corners i:nth-child(3){bottom:0;left:0;border-right:none;border-top:none}
-  .corners i:nth-child(4){bottom:0;right:0;border-left:none;border-top:none}
-  .scanline{position:absolute;left:8%;right:8%;top:18%;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#4ade80,transparent);box-shadow:0 0 16px rgba(74,222,128,.7);animation:sweep 3s ease-in-out infinite;pointer-events:none}
-  .vf.mealmode .scanline{background:linear-gradient(90deg,transparent,#fb923c,transparent);box-shadow:0 0 16px rgba(251,146,60,.7)}
-  @keyframes sweep{0%,100%{top:16%;opacity:.2}12%{opacity:1}50%{top:74%;opacity:1}88%{opacity:1}}
-  .ai-chip{display:inline-flex;align-items:center;gap:7px;background:rgba(4,8,6,.6);backdrop-filter:blur(8px);border-radius:999px;padding:6px 13px;font-family:'JetBrains Mono';font-size:9.5px;font-weight:700;letter-spacing:.1em;color:#4ade80}
-  .ai-chip .dot{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:blink 1.6s ease-in-out infinite}
-  @keyframes blink{50%{opacity:.35}}
-  .vf .hud{position:absolute;top:16px;left:0;right:0;display:flex;justify-content:center}
-  .vf .foot{position:absolute;bottom:14px;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:11px}
-  .srcbtns{display:flex;gap:8px}
-  .srcbtn{border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;background:rgba(4,8,6,.65);backdrop-filter:blur(8px);color:#d6e8dc;font-size:11.5px;font-weight:600;padding:8px 13px;border-radius:999px}
-  .srcbtn.live{color:#4ade80}
-  .shutter{width:70px;height:70px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(140deg,#4ade80,#22c55e);box-shadow:0 8px 28px rgba(74,222,128,.28),0 0 0 5px rgba(4,8,6,.6),0 0 0 6.5px rgba(74,222,128,.35);display:flex;align-items:center;justify-content:center;transition:transform .12s ease}
-  .shutter:active{transform:scale(.92)}
-  .shutter.meal{background:linear-gradient(140deg,#fb923c,#f97316);box-shadow:0 8px 28px rgba(251,146,60,.3),0 0 0 5px rgba(4,8,6,.6),0 0 0 6.5px rgba(251,146,60,.35)}
-  .flashfx{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+  /* ---------- SCAN v3 (full-bleed camera) ---------- */
+  #scan{padding:0 0 122px}
+  .vf2{position:relative;height:600px;background:#060a08;overflow:hidden;border-radius:0 0 34px 34px}
+  .vf2 .bg{position:absolute;inset:0;opacity:.92}
+  .vf2 .bg img{width:100%;height:100%;object-fit:cover}
+  .vf2 video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+  .vf2 .vshade{position:absolute;inset:0;background:
+    linear-gradient(180deg,rgba(4,10,7,.88) 0%,rgba(4,10,7,.25) 22%,transparent 40%),
+    linear-gradient(0deg,rgba(4,10,7,.92) 0%,rgba(4,10,7,.3) 26%,transparent 45%);pointer-events:none}
+  .vhead{position:absolute;top:52px;left:16px;right:16px;display:flex;align-items:center;justify-content:space-between;z-index:5}
+  .vbtn{width:46px;height:46px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(20,40,28,.5);backdrop-filter:blur(10px);color:#eafaf0;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .vtitle{display:flex;align-items:center;gap:10px}
+  .vtitle b{font-family:'Fraunces',serif;font-size:19px;color:#fff;display:block;line-height:1.1}
+  .vtitle small{font-family:'JetBrains Mono';font-size:8.5px;font-weight:700;letter-spacing:.16em;color:#8ee6ae;display:block;margin-top:3px}
+  .vmodes{position:absolute;top:118px;left:0;right:0;display:flex;justify-content:center;z-index:5}
+  .vmodes .inner2{display:flex;background:rgba(10,22,15,.65);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:4px}
+  .vmodes button{border:none;background:none;color:#b9cfc1;font-size:13px;font-weight:600;padding:10px 20px;border-radius:999px;cursor:pointer}
+  .vmodes button.on{background:var(--acc);color:#04140a;font-weight:700}
+  .framewrap{position:absolute;left:0;right:0;top:50%;transform:translateY(-52%);display:flex;flex-direction:column;align-items:center;gap:18px;z-index:4;pointer-events:none}
+  .bigframe{position:relative;width:76%;aspect-ratio:1/.92}
+  .bigframe i{position:absolute;width:34px;height:34px;border:3px solid rgba(255,255,255,.92);border-radius:10px}
+  .bigframe i:nth-child(1){top:0;left:0;border-right:none;border-bottom:none}
+  .bigframe i:nth-child(2){top:0;right:0;border-left:none;border-bottom:none}
+  .bigframe i:nth-child(3){bottom:0;left:0;border-right:none;border-top:none}
+  .bigframe i:nth-child(4){bottom:0;right:0;border-left:none;border-top:none}
+  .vf2 .scanline{position:absolute;left:6%;right:6%;top:14%;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#4ade80,transparent);box-shadow:0 0 16px rgba(74,222,128,.75);animation:sweep 3s ease-in-out infinite}
+  .vf2.mealmode .scanline{background:linear-gradient(90deg,transparent,#fb923c,transparent);box-shadow:0 0 16px rgba(251,146,60,.75)}
+  @keyframes sweep{0%,100%{top:10%;opacity:.2}12%{opacity:1}50%{top:84%;opacity:1}88%{opacity:1}}
+  .vhint{font-size:14px;font-weight:600;color:#e8f5ec;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+  .vctrl{position:absolute;bottom:26px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:34px;z-index:5}
+  .vside{border:none;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:7px;color:#cfe4d7;font-size:11px;font-weight:600}
+  .vside span{width:52px;height:52px;border-radius:18px;background:rgba(20,40,28,.55);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;font-size:21px}
+  .vside.live span{border-color:rgba(74,222,128,.6)}
+  .vside.live{color:#4ade80}
+  .shutter2{width:78px;height:78px;border-radius:50%;border:4px solid rgba(255,255,255,.9);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:transform .12s ease}
+  .shutter2:active{transform:scale(.9)}
+  .shutter2 i{display:block;width:60px;height:60px;border-radius:50%;background:#fff}
+  .vf2.mealmode .shutter2 i{background:linear-gradient(140deg,#fff,#ffe9d6)}
+  .flashfx{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:6}
   .flashfx.on{animation:flash .35s ease}
   @keyframes flash{0%{opacity:.85}100%{opacity:0}}
-
-  .steps{margin-top:22px;background:var(--card);border-radius:24px;padding:19px;box-shadow:var(--sh)}
+  .scanbody{padding:20px 20px 0}
+  .steps{background:var(--card);border-radius:24px;padding:19px;box-shadow:var(--sh)}
   .steps h3{font-size:15px;margin-bottom:14px}
   .step{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px}
   .step:last-child{margin-bottom:0}
@@ -290,57 +280,10 @@
   .step p{font-size:12.5px;color:var(--muted);margin-top:1px;line-height:1.5}
 
   /* ---------- RESULT ---------- */
-  .back{display:inline-flex;align-items:center;gap:7px;background:var(--card);border:none;border-radius:999px;padding:9px 15px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;box-shadow:var(--sh)}
-  .analyzed{display:flex;align-items:center;gap:8px;margin:16px 2px 0;font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc)}
-  .analyzed .dot{width:6px;height:6px;border-radius:50%;background:var(--acc);box-shadow:0 0 8px var(--acc)}
-  .product{display:flex;gap:14px;align-items:center;margin-top:12px}
-  .product .pimg{width:88px;height:88px;border-radius:20px;flex-shrink:0}
-  .product .pimg::before{font-size:32px}
-  .product .brandname{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
-  .product h2{font-size:20px;line-height:1.25;margin-top:3px}
-  .product .verdict{display:inline-block;margin-top:8px;font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px;background:rgba(251,191,36,.13);color:var(--amber)}
-  .scorecard{background:linear-gradient(160deg,var(--card-2),var(--card));border-radius:24px;padding:20px;box-shadow:var(--sh);margin-top:18px;display:flex;align-items:center;gap:18px}
-  .ring{position:relative;flex-shrink:0}
-  .ring svg{transform:rotate(-90deg);display:block}
-  .ring circle.track{stroke:var(--wash)}
-  .ring circle.val{transition:stroke-dashoffset 1.2s cubic-bezier(.22,.9,.35,1)}
-  .ring .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-  .ring .center b{font-family:'Space Grotesk';font-size:31px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
-  .ring .center small{font-size:9px;color:var(--muted);margin-top:3px;font-family:'JetBrains Mono';letter-spacing:.08em}
-  .scorecard .meta b{font-family:'Space Grotesk';font-size:15.5px;font-weight:700;display:block}
-  .scorecard .meta p{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.5}
-  .conf{margin-top:9px;font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.06em;color:var(--faint)}
-  .conf b{color:var(--acc);font-size:9.5px}
-  .flags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-  .flag{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;padding:9px 13px;border-radius:999px}
-  .flag.bad{background:rgba(251,113,133,.12);color:var(--red)}
-  .flag.warn{background:rgba(251,191,36,.12);color:var(--amber)}
-  .flag.good{background:rgba(74,222,128,.12);color:var(--acc)}
-  .logbtn{margin-top:16px;width:100%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(135deg,var(--acc),var(--acc-2));color:var(--ongreen);font-size:15px;font-weight:700;font-family:'Space Grotesk';padding:16px;border-radius:18px;box-shadow:var(--glow);transition:transform .12s ease}
-  .logbtn:active{transform:scale(.97)}
-  .logbtn small{font-family:'Inter';font-weight:600;font-size:11px;opacity:.75}
-  .swaps{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
-  .swaps::-webkit-scrollbar{display:none}
-  .swap{flex:0 0 158px;background:var(--card);border:none;border-radius:18px;overflow:hidden;cursor:pointer;text-align:left;box-shadow:var(--sh);color:var(--ink)}
-  .swap .simg{width:100%;aspect-ratio:16/10}
-  .swap .simg::before{font-size:26px}
-  .swap .sbody{padding:11px 12px 13px;display:flex;align-items:center;gap:8px}
-  .swap h5{font-size:12.5px;font-weight:600;line-height:1.35;flex:1;font-family:'Inter'}
-  .swap .ssc{background:rgba(74,222,128,.13);color:var(--acc);font-weight:700;font-size:12.5px;font-family:'Space Grotesk';border-radius:10px;padding:5px 8px;flex-shrink:0}
-  .ingredients{background:var(--card);border-radius:24px;padding:8px 17px;box-shadow:var(--sh);margin-top:14px}
-  .ing{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
-  .ing:last-child{border-bottom:none}
-  .ing .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-  .ing .dot.g{background:var(--acc)} .ing .dot.a{background:var(--amber)} .ing .dot.r{background:var(--red)}
-  .ing b{font-size:14px;font-weight:600}
-  .ing small{display:block;font-size:11.5px;color:var(--muted);margin-top:1px}
-  .ing .badge{margin-left:auto;font-size:10px;font-weight:700;font-family:'JetBrains Mono';letter-spacing:.05em;text-transform:uppercase;color:var(--faint)}
-
-  /* ---------- RESULT v2 (Yuka-inspired) ---------- */
   .rnav{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
   .rcirc{width:42px;height:42px;border-radius:50%;border:none;background:var(--card);color:var(--ink);font-size:17px;cursor:pointer;box-shadow:var(--sh);display:flex;align-items:center;justify-content:center}
   .rcirc.fav{color:var(--red)}
-  .rnav b{font-family:'Space Grotesk';font-size:17px;letter-spacing:-.01em}
+  .rnav b{font-family:'Fraunces',serif;font-size:19px}
   .rnav b i{color:var(--acc);font-style:normal}
   .rhero{background:var(--card);border-radius:26px;padding:12px;box-shadow:var(--sh)}
   .rhero .ph{border-radius:18px;aspect-ratio:16/10;position:relative}
@@ -352,19 +295,28 @@
   .rchip{background:var(--card);border-radius:999px;padding:7px 13px;font-size:12px;font-weight:600;box-shadow:var(--sh)}
   .rchip.price{background:rgba(251,191,36,.14);color:var(--amber);box-shadow:none}
   .scorecard2{background:var(--card);border-radius:26px;padding:22px 20px;box-shadow:var(--sh);margin-top:16px;display:flex;align-items:center;gap:20px}
+  .ring{position:relative;flex-shrink:0}
+  .ring svg{transform:rotate(-90deg);display:block}
+  .ring circle.track{stroke:var(--wash)}
+  .ring circle.val{transition:stroke-dashoffset 1.2s cubic-bezier(.22,.9,.35,1)}
+  .ring .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .center b{font-family:'Space Grotesk';font-size:31px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+  .ring .center small{font-size:9px;color:var(--muted);margin-top:3px;font-family:'JetBrains Mono';letter-spacing:.08em}
   .scorecard2 .grade{font-family:'Space Grotesk';font-size:13px;font-weight:700;color:var(--amber)}
   .scorecard2 .meta{flex:1}
   .scorecard2 .meta b{font-family:'Space Grotesk';font-size:22px;font-weight:700;display:block;letter-spacing:-.01em}
   .scorecard2 .meta b.warn{color:var(--amber)} .scorecard2 .meta b.good{color:var(--acc)} .scorecard2 .meta b.bad{color:var(--red)}
   .scorecard2 .meta p{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.55}
-  /* mascot */
   .mascotrow{display:flex;align-items:center;gap:12px;margin:16px 2px 0}
   .mascot{flex-shrink:0;filter:drop-shadow(0 4px 10px rgba(0,0,0,.2))}
   .bubble{position:relative;background:var(--card);border-radius:999px;padding:11px 17px;font-size:13.5px;font-weight:700;box-shadow:var(--sh)}
   .bubble::before{content:"";position:absolute;left:-7px;top:50%;transform:translateY(-50%);border:8px solid transparent;border-right-color:var(--card);border-left:none}
+  .logbtn{margin-top:16px;width:100%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(135deg,var(--acc),var(--acc-2));color:var(--ongreen);font-size:15px;font-weight:700;font-family:'Space Grotesk';padding:16px;border-radius:18px;box-shadow:var(--glow);transition:transform .12s ease}
+  .logbtn:active{transform:scale(.97)}
+  .logbtn small{font-family:'Inter';font-weight:600;font-size:11px;opacity:.75}
   .stattiles{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:16px}
   .stattile{background:rgba(74,222,128,.09);border-radius:18px;padding:14px 6px;text-align:center}
-  .screen[data-theme="light"] .stattile{background:#e4f2e6}
+  .screen[data-theme="light"] .stattile{background:#e4f0e4}
   .stattile b{font-family:'Space Grotesk';font-size:19px;font-weight:700;display:block;color:var(--acc-deep)}
   .screen[data-theme="dark"] .stattile b{color:var(--acc)}
   .stattile.warn b{color:var(--amber)}
@@ -372,13 +324,42 @@
   .rtabs{display:flex;margin:20px 2px 0;border-bottom:1.5px solid var(--line)}
   .rtabs button{flex:1;border:none;background:none;color:var(--faint);font-family:'Space Grotesk';font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:12px 4px;cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1.5px}
   .rtabs button.on{color:var(--ink);border-bottom-color:var(--acc)}
-  .tabpane{margin-top:14px}
-  .chkrow{display:flex;align-items:center;gap:12px;background:rgba(74,222,128,.09);border-radius:17px;padding:14px 15px;margin-bottom:9px;font-size:14px;font-weight:600}
-  .screen[data-theme="light"] .chkrow{background:#e4f2e6}
-  .chkrow .ci{width:24px;height:24px;border-radius:50%;background:var(--acc);color:var(--ongreen);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
-  .chkrow.warn{background:rgba(251,191,36,.1)}
-  .screen[data-theme="light"] .chkrow.warn{background:#f8ecd7}
-  .chkrow.warn .ci{background:var(--amber);color:#221600}
+  .tabpane{margin-top:16px}
+
+  /* verdict banner (shield card) */
+  .verdictcard{border-radius:24px;padding:26px 20px;text-align:center;margin-bottom:14px}
+  .verdictcard.warn{background:linear-gradient(160deg,rgba(251,191,36,.14),rgba(251,191,36,.05));border:1px solid rgba(251,191,36,.25)}
+  .verdictcard.good{background:linear-gradient(160deg,rgba(74,222,128,.15),rgba(74,222,128,.05));border:1px solid rgba(74,222,128,.28)}
+  .verdictcard .vshield{font-size:36px}
+  .verdictcard h3{font-size:19px;margin-top:10px}
+  .verdictcard p{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.55;max-width:90%;margin-inline:auto}
+
+  /* why-this-score rows */
+  .whycard{background:var(--card);border-radius:24px;padding:17px;box-shadow:var(--sh);margin-bottom:14px}
+  .why{padding:13px 0;border-bottom:1px solid var(--line)}
+  .why:first-of-type{padding-top:10px}
+  .why:last-child{border-bottom:none;padding-bottom:2px}
+  .why .wtop{display:flex;align-items:center;gap:9px}
+  .why .wdot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+  .why.good .wdot{background:var(--acc)} .why.bad .wdot{background:var(--red)} .why.mid .wdot{background:var(--amber)}
+  .why b{font-size:14px;font-weight:700;flex:1}
+  .pts{font-family:'Space Grotesk';font-size:12px;font-weight:700;border-radius:9px;padding:4px 9px;flex-shrink:0}
+  .pts.plus{background:rgba(74,222,128,.13);color:var(--acc)}
+  .pts.minus{background:rgba(251,113,133,.13);color:var(--red)}
+  .why p{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.55;padding-left:18px}
+
+  .hlcard{background:var(--card);border-radius:24px;padding:17px;box-shadow:var(--sh);margin-bottom:14px}
+  .hl{display:flex;gap:11px;align-items:flex-start;margin-top:12px;font-size:13px;font-weight:600}
+  .hl .hi{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px}
+  .hl.ok .hi{background:rgba(74,222,128,.14);color:var(--acc)}
+  .hl.no .hi{background:rgba(251,191,36,.14);color:var(--amber)}
+  .hl small{display:block;font-weight:500;color:var(--muted);font-size:12px;margin-top:1px}
+
+  .certcard{background:var(--card);border-radius:24px;padding:17px;box-shadow:var(--sh)}
+  .certs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .certs span{font-family:'JetBrains Mono';font-size:10.5px;font-weight:700;letter-spacing:.05em;background:rgba(74,222,128,.1);color:var(--acc-deep);border:1px solid rgba(74,222,128,.3);border-radius:999px;padding:7px 13px}
+  .screen[data-theme="dark"] .certs span{color:#a7e8bf}
+
   .ingcard{background:var(--card);border-radius:20px;padding:15px 16px;box-shadow:var(--sh);margin-bottom:10px}
   .ingcard .irow{display:flex;align-items:center;gap:10px}
   .ingcard .irow b{font-size:14.5px;font-weight:700;flex:1}
@@ -388,7 +369,7 @@
   .ibadge.avoid{background:var(--red);color:#fff}
   .ingcard .ibar{height:7px;border-radius:4px;background:var(--wash);margin-top:11px;overflow:hidden}
   .ingcard .ibar i{display:block;height:100%;border-radius:4px}
-  .ingcard p{font-size:12px;color:var(--muted);margin-top:9px}
+  .ingcard p{font-size:12px;color:var(--muted);margin-top:9px;line-height:1.5}
   .nutlabel{font-family:'JetBrains Mono';font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--faint);margin:4px 2px 12px}
   .nutrow{margin-bottom:15px}
   .nutrow .nr{display:flex;align-items:baseline;justify-content:space-between}
@@ -397,6 +378,45 @@
   .nutrow .nr span small{font-size:11px;color:var(--faint);font-weight:600;font-family:'Inter'}
   .nutrow .nbar{height:7px;border-radius:4px;background:var(--wash);margin-top:8px;overflow:hidden}
   .nutrow .nbar i{display:block;height:100%;border-radius:4px;background:var(--acc-2)}
+
+  /* healthier alternatives (ranked) */
+  .altwrap{background:linear-gradient(170deg,rgba(74,222,128,.08),transparent 60%);border:1px solid rgba(74,222,128,.18);border-radius:26px;padding:16px;margin-top:22px}
+  .althead{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+  .althead .alticon{width:44px;height:44px;border-radius:50%;background:linear-gradient(140deg,var(--acc-deep),#0e3a24);color:#c9f7d8;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+  .althead h3{font-family:'Fraunces',serif;font-size:19px}
+  .althead p{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.5}
+  .altfound{margin-left:auto;background:var(--acc-deep);color:#dff5e6;font-family:'JetBrains Mono';font-size:9.5px;font-weight:700;letter-spacing:.08em;border-radius:999px;padding:6px 11px;flex-shrink:0}
+  .alt{background:var(--card);border-radius:20px;padding:14px;box-shadow:var(--sh);margin-bottom:11px;display:flex;gap:12px;align-items:flex-start;cursor:pointer;border:none;width:100%;text-align:left;color:var(--ink)}
+  .alt:last-child{margin-bottom:0}
+  .alt .arank{width:26px;height:26px;border-radius:50%;background:rgba(74,222,128,.13);color:var(--acc-deep);font-family:'Space Grotesk';font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+  .screen[data-theme="dark"] .alt .arank{color:var(--acc)}
+  .alt .athumb{width:52px;height:52px;border-radius:14px;flex-shrink:0}
+  .alt .abody{flex:1;min-width:0}
+  .alt h5{font-size:14px;font-weight:700;line-height:1.3}
+  .alt .abrand{font-size:11px;color:var(--faint);margin-top:1px}
+  .alt .awhy{font-size:12px;color:var(--acc-deep);font-weight:600;margin-top:5px;line-height:1.45}
+  .screen[data-theme="dark"] .alt .awhy{color:#8ee6ae}
+  .alt .apills{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+  .alt .apills span{font-size:9.5px;font-weight:700;background:var(--wash);color:var(--muted);border-radius:999px;padding:4px 9px}
+  .alt .aside{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0}
+  .alt .aring{width:46px;height:46px;border-radius:50%;border:3px solid var(--acc-2);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;font-size:14.5px}
+  .alt .asave{border:none;background:none;cursor:pointer;color:var(--faint);font-size:15px;display:flex;flex-direction:column;align-items:center;gap:1px}
+  .alt .asave small{font-size:9px;font-weight:600}
+
+  /* action banners */
+  .actbanner{position:relative;width:100%;border:none;border-radius:22px;cursor:pointer;margin-top:12px;padding:17px 18px;text-align:left;color:#fff;display:flex;align-items:center;gap:14px;box-shadow:var(--sh);transition:transform .15s ease}
+  .actbanner:active{transform:scale(.98)}
+  .actbanner.dark{background:linear-gradient(120deg,#12331f,#0d271a)}
+  .actbanner.grn{background:linear-gradient(120deg,#1e6b40,#15803d)}
+  .actbanner .abic{width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .actbanner b{font-family:'Space Grotesk';font-size:16px;display:block}
+  .actbanner p{font-size:12px;opacity:.8;margin-top:1px}
+  .actbanner .abarrow{margin-left:auto;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:15px}
+  .attrib{font-family:'JetBrains Mono';font-size:9.5px;color:var(--faint);text-align:center;margin-top:18px;letter-spacing:.02em}
+  .infocard{display:flex;gap:12px;background:var(--card);border-radius:20px;padding:15px 16px;box-shadow:var(--sh);margin-top:12px}
+  .infocard .ii{width:30px;height:30px;border-radius:50%;background:var(--wash);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+  .infocard b{font-size:13px;display:block}
+  .infocard p{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.55}
 
   .toast{position:absolute;left:50%;bottom:112px;transform:translateX(-50%) translateY(16px);background:var(--raise);color:var(--ink);font-size:13px;font-weight:600;border-radius:999px;padding:11px 19px;z-index:50;opacity:0;pointer-events:none;transition:all .3s ease;white-space:nowrap;box-shadow:0 12px 32px rgba(0,0,0,.4)}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -437,12 +457,12 @@
   .emptylog{background:var(--card);border:1.5px dashed var(--line-2);border-radius:22px;padding:24px;text-align:center;color:var(--muted);font-size:13px;margin-top:8px}
   .emptylog .big{font-size:30px;margin-bottom:8px}
 
-  /* ---------- WEEKLY REPORT v2 ---------- */
+  /* ---------- WEEKLY REPORT ---------- */
   #report{padding:0 0 122px}
   .wrap{position:relative;min-height:640px;background:linear-gradient(160deg,#4c1d95 0%,#6d28d9 30%,#15803d 75%,#22c55e 100%);color:#fff;padding:74px 24px 30px;overflow:hidden}
   .wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(400px 220px at 85% 8%,rgba(255,255,255,.16),transparent),radial-gradient(300px 200px at 10% 90%,rgba(255,255,255,.1),transparent)}
   .wrap .wk{position:relative;font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.16em;font-weight:700;opacity:.85}
-  .wrap h1{position:relative;font-size:32px;line-height:1.1;margin-top:10px;letter-spacing:-.02em}
+  .wrap h1{position:relative;font-family:'Fraunces',serif;font-size:33px;line-height:1.12;margin-top:10px}
   .wrap .bigscore{position:relative;margin:20px 0 4px;font-family:'Space Grotesk';font-size:88px;font-weight:700;line-height:1;letter-spacing:-.04em}
   .wrap .bigscore small{font-size:19px;font-weight:600;opacity:.8;letter-spacing:0}
   .wrap .sub{position:relative;font-size:13.5px;opacity:.9}
@@ -518,7 +538,7 @@
   .overlay.hide{display:none}
   .sheet{background:linear-gradient(180deg,var(--card-2),var(--card));border-radius:32px;padding:26px 22px 22px;width:100%;text-align:center;color:var(--ink)}
   .sheet .biglogo{display:flex;justify-content:center;margin-bottom:14px;filter:drop-shadow(0 0 24px rgba(74,222,128,.3))}
-  .sheet h2{font-size:23px}
+  .sheet h2{font-family:'Fraunces',serif;font-size:24px}
   .sheet h2 i{color:var(--acc);font-style:normal}
   .sheet>p{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.55}
   .feat{display:flex;gap:13px;align-items:center;text-align:left;background:var(--wash);border-radius:17px;padding:13px;margin-top:11px}
@@ -526,9 +546,6 @@
   .feat b{font-size:14px;font-weight:600}
   .feat p{font-size:12px;color:var(--muted);margin-top:1px}
   .cta-btn{margin-top:18px;width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--acc),var(--acc-2));color:var(--ongreen);font-size:16px;font-weight:700;font-family:'Space Grotesk';padding:16px;border-radius:17px;box-shadow:var(--glow)}
-
-  .fabs{position:absolute;top:58px;right:18px;z-index:35;display:flex;gap:8px}
-  .fabs button{background:var(--raise);border:none;border-radius:999px;font-size:11px;font-weight:600;color:var(--acc);padding:7px 12px;cursor:pointer;box-shadow:var(--sh)}
 </style>
 </head>
 <body>
@@ -543,12 +560,11 @@
       <defs><linearGradient id="mleaf" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#86efac"/><stop offset="100%" stop-color="#22c55e"/></linearGradient></defs>
       <path d="M24 3 C38 9 43 25 35 39 C31 47 17 47 13 39 C5 25 10 9 24 3 Z" fill="url(#mleaf)" stroke="#15803d" stroke-width="1.5"/>
       <path d="M24 45 Q23 51 25 56" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round"/>
-      <circle cx="18.5" cy="24" r="2.1" fill="#0d2b1d"/>
-      <circle cx="29.5" cy="24" r="2.1" fill="#0d2b1d"/>
+      <circle cx="18.5" cy="24" r="2.1" fill="#0d2b1d"/><circle cx="29.5" cy="24" r="2.1" fill="#0d2b1d"/>
       <path d="M18 30.5 Q24 35.5 30 30.5" fill="none" stroke="#0d2b1d" stroke-width="2.2" stroke-linecap="round"/>
-      <circle cx="14" cy="28.5" r="2.2" fill="#f9a8d4" opacity=".55"/>
-      <circle cx="34" cy="28.5" r="2.2" fill="#f9a8d4" opacity=".55"/>
+      <circle cx="14" cy="28.5" r="2.2" fill="#f9a8d4" opacity=".55"/><circle cx="34" cy="28.5" r="2.2" fill="#f9a8d4" opacity=".55"/>
     </symbol>
+    <symbol id="i-scan" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 0 1 2-2h2"/><path d="M16 4h2a2 2 0 0 1 2 2v2"/><path d="M20 16v2a2 2 0 0 1-2 2h-2"/><path d="M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></symbol>
     <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20a1 1 0 0 0 1 1H10v-5.5a2 2 0 0 1 4 0V21h3.5a1 1 0 0 0 1-1V9.5"/></symbol>
     <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5C10 5 7.5 4.4 4 4.4V19c3.5 0 6 .6 8 2.1 2-1.5 4.5-2.1 8-2.1V4.4c-3.5 0-6 .6-8 2.1z"/><path d="M12 6.5V21"/></symbol>
     <symbol id="i-chart" viewBox="0 0 24 24"><path d="M5 20v-6"/><path d="M12 20V5"/><path d="M19 20v-9"/><path d="M3.5 20h17"/></symbol>
@@ -560,12 +576,12 @@
       <svg class="logo" width="42" height="42"><use href="#ev-logo"/></svg>
       <h1>Eat<span>Vera</span></h1>
     </div>
-    <p>Quality scanner + macro logger — now with a location-based clean-restaurant finder (Uber/DoorDash/Zillow style) and a photo-rich weekly Clean Report.</p>
+    <p>Camera-first scanners, a result page that explains every point of the score, and an editorial home — quality scanning + macro logging in one polished app.</p>
     <div class="badge-row">
-      <div class="chip">📍 Restaurants near you</div>
-      <div class="chip">Map with score pins</div>
-      <div class="chip">Photo-rich Clean Report</div>
-      <div class="chip">Split scan buttons</div>
+      <div class="chip">Full-bleed camera scanner</div>
+      <div class="chip">Score explanations (+/− pts)</div>
+      <div class="chip">Ranked healthier alternatives</div>
+      <div class="chip">Editorial serif home</div>
     </div>
   </div>
 
@@ -574,26 +590,33 @@
     <div class="statusbar"><span>9:41</span><span class="r">5G ▮▮▮ 86%</span></div>
     <div class="screen" id="screen" data-theme="dark">
 
-      <div class="fabs">
-        <button onclick="toggleTheme()" id="themeBtn">🌙 Dark</button>
-        <button onclick="showIntro()">↺ Intro</button>
-      </div>
-
       <div class="app" id="app">
 
         <!-- ============ HOME ============ -->
         <section class="view active" id="home">
-          <div class="topbar">
-            <div class="brand">
-              <svg class="logo" width="34" height="34"><use href="#ev-logo"/></svg>
-              <b>Eat<i>Vera</i></b>
+          <div class="hhead">
+            <div class="hbrand">
+              <svg class="logo" width="40" height="40"><use href="#ev-logo"/></svg>
+              <div><h1>EatVera</h1><p>Know what you eat</p></div>
             </div>
-            <button class="avatar" onclick="go('profile')"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&q=80" alt="Your profile" loading="lazy" onerror="this.replaceWith(document.createTextNode('Y'))"></button>
+            <div class="hbtns">
+              <button class="hbtn" id="themeBtn2" onclick="toggleTheme()">🌙</button>
+              <button class="hbtn" onclick="go('profile')"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&q=80" alt="Your profile" loading="lazy" onerror="this.replaceWith(document.createTextNode('Y'))"></button>
+            </div>
           </div>
 
-          <div class="hello">
-            <small>Good morning, Yara</small>
-            <h1>What are you<br><em>eating</em> today?</h1>
+          <button class="bighero" onclick="startScan('label')">
+            <span class="scanchip"><svg><use href="#i-scan"/></svg></span>
+            <span class="eyebrow">TAP TO SCAN</span>
+            <h1>Know what's<br>in your food</h1>
+            <span class="heropill">Scan a product →</span>
+          </button>
+
+          <div class="qrow">
+            <button class="qtile" onclick="openProducts()"><span class="qi g">🌿</span>Guides</button>
+            <button class="qtile" onclick="openRestaurants()"><span class="qi b">📍</span>Nearby</button>
+            <button class="qtile" onclick="startScan('meal')"><span class="qi o">🔥</span>Calories</button>
+            <button class="qtile" onclick="go('report')"><span class="qi v">📊</span>Report</button>
           </div>
 
           <button class="today" onclick="go('track')">
@@ -615,47 +638,21 @@
             <span class="chev">›</span>
           </button>
 
-          <div class="tiles">
-            <button class="tile" onclick="startScan('label')">
-              <div class="bg"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&h=460&fit=crop&q=80" alt="Packaged groceries" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🛒');this.remove()"></div>
-              <div class="scrim"></div>
-              <div class="inner">
-                <span class="ic">📷</span>
-                <span class="kind">QUALITY</span>
-                <h3>Check quality</h3>
-                <p>Label → 0–100 clean score</p>
-              </div>
+          <div class="sectlabel"><h3>What's new</h3><a onclick="openProducts()">Explore →</a></div>
+          <div class="newsrow">
+            <button class="news" onclick="openProducts()">
+              <span class="ph nimg" data-emoji="🍿"><img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400&h=220&fit=crop&q=80" alt="Snack products" loading="lazy" onerror="this.remove()"><span class="ntag">GUIDE</span></span>
+              <span class="nbody"><h4>Snacks under the microscope</h4><p>64 rated · only 12 passed</p></span>
             </button>
-            <button class="tile" onclick="startScan('meal')">
-              <div class="bg"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=460&fit=crop&q=80" alt="A healthy plated meal" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🍽️');this.remove()"></div>
-              <div class="scrim"></div>
-              <div class="inner">
-                <span class="ic">🍽️</span>
-                <span class="kind">MACROS</span>
-                <h3>Log a meal</h3>
-                <p>Plate → macros logged</p>
-              </div>
+            <button class="news" onclick="openRestaurants()">
+              <span class="ph nimg" data-emoji="📍"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=220&fit=crop&q=80" alt="Restaurant" loading="lazy" onerror="this.remove()"><span class="ntag">NEARBY</span></span>
+              <span class="nbody"><h4>Clean spots near you</h4><p>5 seed-oil-free kitchens</p></span>
+            </button>
+            <button class="news" onclick="go('report')">
+              <span class="ph nimg" data-emoji="📊"><img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&h=220&fit=crop&q=80" alt="Salad bowl" loading="lazy" onerror="this.remove()"><span class="ntag">WEEKLY</span></span>
+              <span class="nbody"><h4>Your Clean Report is ready</h4><p>Week 26 · avg score 84</p></span>
             </button>
           </div>
-
-          <button class="repbanner" onclick="go('report')">
-            <span class="re">📊</span>
-            <span><b>Your Clean Report is ready</b><p>Week 26 · avg score 84 · tap to see it</p></span>
-            <span class="chev">›</span>
-          </button>
-
-          <button class="restbanner" onclick="openRestaurants()">
-            <div class="bg"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=760&h=240&fit=crop&q=80" alt="Restaurant interior" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🍜');this.remove()"></div>
-            <div class="scrim"></div>
-            <div class="inner">
-              <span class="re">📍</span>
-              <span><b>Clean restaurants near you</b><p>Top-rated, seed-oil-free spots in 94110</p></span>
-              <span class="chev">›</span>
-            </div>
-          </button>
-
-          <div class="sectlabel"><h3>Guides</h3><a onclick="openProducts()">See all →</a></div>
-          <div class="stories" id="homeStories"></div>
 
           <div class="tip">
             <div class="bg"><img src="https://images.unsplash.com/photo-1506617420156-8e4536971650?w=760&h=400&fit=crop&q=80" alt="Reading a product ingredient label" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🔍');this.remove()"></div>
@@ -676,13 +673,10 @@
             <h1>Guides</h1>
             <p>661 products · 48 restaurants rated near you</p>
           </div>
-
           <div class="seg">
             <button class="on" id="segProducts" onclick="setGuide('products')">🛒 Products</button>
             <button id="segRest" onclick="setGuide('rest')">📍 Restaurants</button>
           </div>
-
-          <!-- products -->
           <div id="gProducts">
             <div class="search"><span>🔍</span><span>Search products &amp; brands…</span></div>
             <div class="filters">
@@ -703,8 +697,6 @@
             </button>
             <div class="egrid" id="exploreCats"></div>
           </div>
-
-          <!-- restaurants -->
           <div id="gRest" style="display:none">
             <div class="locbar">
               <span class="lpin">📍</span>
@@ -715,7 +707,6 @@
               <input id="zipInput" inputmode="numeric" maxlength="10" placeholder="Enter ZIP code or city…">
               <button onclick="setZip()">Go</button>
             </div>
-
             <button class="mapcard" onclick="toast('Full map coming soon')" aria-label="Map of clean restaurants near you">
               <svg viewBox="0 0 360 150" preserveAspectRatio="none" aria-hidden="true">
                 <g stroke="rgba(128,180,150,.25)" stroke-width="3" fill="none">
@@ -732,7 +723,6 @@
               <span class="mappin you" style="left:33%;top:86%"><span class="mv"></span></span>
               <span class="maplabel">🗺️ Open map</span>
             </button>
-
             <div class="filters">
               <button class="on">Best quality</button>
               <button>No seed oils</button>
@@ -740,52 +730,63 @@
               <button>Open now</button>
               <button>$$</button>
             </div>
-
             <div id="restList"></div>
           </div>
         </section>
 
-        <!-- ============ SCAN ============ -->
+        <!-- ============ SCAN (full-bleed camera) ============ -->
         <section class="view" id="scan">
-          <div class="pagetitle" style="margin-top:6px">
-            <h1 id="scanTitle">Check quality</h1>
-            <p id="scanSub">Point at a label — get the clean score.</p>
-          </div>
-
-          <div class="vf" id="vfBox">
-            <div class="bg" id="vfBg"><img id="vfImg" src="https://images.unsplash.com/photo-1556767576-cf0a4a80e5b8?w=760&h=700&fit=crop&q=80" alt="Scanner viewfinder" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🏷️');this.remove()"></div>
+          <div class="vf2" id="vfBox">
+            <div class="bg" id="vfBg"><img id="vfImg" src="https://images.unsplash.com/photo-1556767576-cf0a4a80e5b8?w=760&h=1000&fit=crop&q=80" alt="Scanner viewfinder" loading="lazy" onerror="this.remove()"></div>
             <video id="vfVideo" autoplay playsinline muted></video>
-            <div class="shade"></div>
-            <div class="corners"><i></i><i></i><i></i><i></i></div>
-            <div class="scanline"></div>
+            <div class="vshade"></div>
             <div class="flashfx" id="flashfx"></div>
-            <div class="hud"><span class="ai-chip"><span class="dot"></span><span id="vfStatus">AI VISION · DEMO FEED</span></span></div>
-            <div class="foot">
-              <div class="srcbtns">
-                <button class="srcbtn" id="camBtn" onclick="enableCam()">🎥 Use my camera</button>
-                <button class="srcbtn" onclick="document.getElementById('camFile').click()">⬆ Upload photo</button>
-              </div>
-              <button class="shutter" id="shutterBtn" onclick="shoot()" aria-label="Scan">
+
+            <div class="vhead">
+              <button class="vbtn" onclick="go('home')">✕</button>
+              <div class="vtitle">
                 <svg width="30" height="30"><use href="#ev-logo"/></svg>
-              </button>
+                <div><b id="scanTitle">Quality Scanner</b><small id="scanKind">EATVERA · AI VISION</small></div>
+              </div>
+              <button class="vbtn" onclick="toast('Flash coming soon ⚡')">⚡</button>
+            </div>
+
+            <div class="vmodes" id="subModes">
+              <div class="inner2">
+                <button class="on" id="subBar" onclick="setSub('barcode')">▥ Barcode</button>
+                <button id="subLab" onclick="setSub('label')">🏷 Food label</button>
+              </div>
+            </div>
+
+            <div class="framewrap">
+              <div class="bigframe"><i></i><i></i><i></i><i></i><div class="scanline"></div></div>
+              <p class="vhint" id="vfHint">Point camera at barcode</p>
+            </div>
+
+            <div class="vctrl">
+              <button class="vside" onclick="document.getElementById('camFile').click()"><span>🖼️</span>Library</button>
+              <button class="shutter2" onclick="shoot()" aria-label="Capture"><i></i></button>
+              <button class="vside" id="camBtn" onclick="enableCam()"><span>🎥</span>Camera</button>
             </div>
           </div>
           <input type="file" id="camFile" accept="image/*" capture="environment" hidden onchange="fromFile(this)">
           <canvas id="grab" hidden></canvas>
 
-          <div class="steps">
-            <h3>How it works</h3>
-            <div class="step"><div class="n">1</div><div><b>Point &amp; capture</b><p>Enable your camera (or upload a photo) and tap the button.</p></div></div>
-            <div class="step"><div class="n">2</div><div><b>AI reads it instantly</b><p>Identifies every ingredient and estimates portions.</p></div></div>
-            <div class="step"><div class="n">3</div><div><b>Score, macros &amp; flags</b><p>Your photo lands in the result or your food log.</p></div></div>
+          <div class="scanbody">
+            <div class="steps">
+              <h3>How it works</h3>
+              <div class="step"><div class="n">1</div><div><b>Point &amp; capture</b><p>Enable your camera (or pick from Library) and tap the shutter.</p></div></div>
+              <div class="step"><div class="n">2</div><div><b>AI reads it instantly</b><p>Identifies every ingredient and estimates portions.</p></div></div>
+              <div class="step"><div class="n">3</div><div><b>Score, macros &amp; flags</b><p>Your photo lands in the result or your food log.</p></div></div>
+            </div>
+            <p class="disc">Your camera feed stays on your device — nothing is uploaded in this prototype.</p>
           </div>
-          <p class="disc">Your camera feed stays on your device — nothing is uploaded in this prototype.</p>
         </section>
 
-        <!-- ============ RESULT (Yuka-inspired) ============ -->
+        <!-- ============ RESULT ============ -->
         <section class="view" id="result">
           <div class="rnav">
-            <button class="rcirc" onclick="go('scan')">←</button>
+            <button class="rcirc" onclick="startScan('label')">←</button>
             <b>Eat<i>Vera</i></b>
             <button class="rcirc" id="favBtn" onclick="fav(this)">♡</button>
           </div>
@@ -835,43 +836,79 @@
           </div>
 
           <div class="tabpane" id="tab-ov">
-            <div class="chkrow"><span class="ci">✓</span>Whole-grain oat base</div>
-            <div class="chkrow"><span class="ci">✓</span>No artificial colors or dyes</div>
-            <div class="chkrow"><span class="ci">✓</span>Real almonds &amp; honey</div>
-            <div class="chkrow warn"><span class="ci">!</span>Contains sunflower (seed) oil</div>
-            <div class="chkrow warn"><span class="ci">!</span>12 g added sugar per serving</div>
+            <div class="verdictcard warn">
+              <div class="vshield">⚠️</div>
+              <h3>Some concerns</h3>
+              <p>2 flagged ingredients detected. Fine as an occasional snack — not an everyday pick.</p>
+            </div>
+
+            <div class="whycard">
+              <div class="mono-h">Why this score</div>
+              <div class="why good">
+                <div class="wtop"><span class="wdot"></span><b>Whole-grain oat base</b><span class="pts plus">+18</span></div>
+                <p>Slow-digesting complex carbs with 2 g fiber per bar — keeps you fuller longer and steadies blood sugar.</p>
+              </div>
+              <div class="why good">
+                <div class="wtop"><span class="wdot"></span><b>Real almonds</b><span class="pts plus">+9</span></div>
+                <p>Whole nuts add monounsaturated fats and vitamin E — fats your body actually wants.</p>
+              </div>
+              <div class="why good">
+                <div class="wtop"><span class="wdot"></span><b>No artificial colors or dyes</b><span class="pts plus">+6</span></div>
+                <p>Nothing synthetic detected — every ingredient is recognizable food.</p>
+              </div>
+              <div class="why bad">
+                <div class="wtop"><span class="wdot"></span><b>Sunflower (seed) oil</b><span class="pts minus">−14</span></div>
+                <p>Refined, high-omega-6 oil. Eaten often, it skews your omega balance and is linked to inflammation — the single biggest penalty here.</p>
+              </div>
+              <div class="why bad">
+                <div class="wtop"><span class="wdot"></span><b>12 g added sugar</b><span class="pts minus">−11</span></div>
+                <p>Honey + cane sugar make up almost half the carbs — that's ~25% of your daily added-sugar limit in one bar.</p>
+              </div>
+            </div>
+
+            <div class="hlcard">
+              <div class="mono-h">Nutritional highlights</div>
+              <div class="hl ok"><span class="hi">✓</span><span>Low sodium (105 mg)<small>Well under 10% of your daily value.</small></span></div>
+              <div class="hl ok"><span class="hi">✓</span><span>Source of fiber (2 g)<small>Oats bring the good kind — beta-glucan.</small></span></div>
+              <div class="hl no"><span class="hi">!</span><span>High added sugar (12 g)<small>WHO suggests under 50 g/day — one bar is a quarter of that.</small></span></div>
+            </div>
+
+            <div class="certcard">
+              <div class="mono-h">Certifications</div>
+              <div class="certs"><span>NON-GMO</span><span>WHOLE GRAIN</span><span>KOSHER</span></div>
+            </div>
           </div>
 
           <div class="tabpane" id="tab-ig" hidden>
             <div class="ingcard">
               <div class="irow"><b>Whole grain oats</b><span class="ibadge clean">Clean</span></div>
               <div class="ibar"><i style="width:92%;background:var(--acc-2)"></i></div>
-              <p>Wholesome complex carbs &amp; fiber — great base.</p>
+              <p>Wholesome complex carbs &amp; fiber — a great base that earns most of this bar's points.</p>
             </div>
             <div class="ingcard">
               <div class="irow"><b>Almonds</b><span class="ibadge clean">Clean</span></div>
               <div class="ibar"><i style="width:88%;background:var(--acc-2)"></i></div>
-              <p>Healthy fats and a little extra protein.</p>
+              <p>Healthy fats, vitamin E, and a little extra protein.</p>
             </div>
             <div class="ingcard">
               <div class="irow"><b>Honey</b><span class="ibadge caution">Caution</span></div>
               <div class="ibar"><i style="width:55%;background:var(--amber)"></i></div>
-              <p>Natural, but it still counts as added sugar.</p>
+              <p>Natural, but your body treats it like any added sugar.</p>
             </div>
             <div class="ingcard">
               <div class="irow"><b>Cane sugar</b><span class="ibadge caution">Caution</span></div>
               <div class="ibar"><i style="width:42%;background:var(--amber)"></i></div>
-              <p>Second added sweetener — pushes sugar to 12 g per bar.</p>
+              <p>Second sweetener on the list — pushes total added sugar to 12 g per bar.</p>
             </div>
             <div class="ingcard">
               <div class="irow"><b>Sunflower oil</b><span class="ibadge avoid">Avoid</span></div>
               <div class="ibar"><i style="width:20%;background:var(--red)"></i></div>
-              <p>Refined seed oil, high in omega-6 — the main score penalty.</p>
+              <p>Refined seed oil, high in omega-6 — the main reason this isn't an A.</p>
             </div>
             <div class="ingcard">
               <div class="irow"><b>Sea salt</b><span class="ibadge clean">Clean</span></div>
               <div class="ibar"><i style="width:80%;background:var(--acc-2)"></i></div>
-              <p>Fine in moderation.</p>
+              <p>Only 105 mg sodium — fine in moderation.</p>
             </div>
           </div>
 
@@ -886,23 +923,64 @@
             <div class="nutrow"><div class="nr"><b>Sodium</b><span>105 <small>mg</small></span></div><div class="nbar"><i style="width:22%"></i></div></div>
           </div>
 
-          <div class="sectlabel"><h3>Cleaner swaps</h3><a>Score 85+</a></div>
-          <div class="swaps">
-            <button class="swap" onclick="toast('Swap saved to your list ✓')">
-              <div class="ph simg" data-emoji="🥣"><img src="https://images.unsplash.com/photo-1517093157656-b9eccef91cb1?w=320&h=200&fit=crop&q=80" alt="Plain rolled oats" loading="lazy" onerror="this.remove()"></div>
-              <div class="sbody"><h5>Purely Oats &amp; Honey Bar</h5><span class="ssc">92</span></div>
+          <div class="altwrap">
+            <div class="althead">
+              <span class="alticon">✦</span>
+              <div><h3>Healthier alternatives</h3><p>This product has some issues — better options in the same category:</p></div>
+              <span class="altfound">3 FOUND</span>
+            </div>
+            <button class="alt" onclick="toast('Saved to your list ✓')">
+              <span class="arank">1</span>
+              <span class="ph athumb" data-emoji="🌰"><img src="https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=140&h=140&fit=crop&q=80" alt="Raw nuts and dates" loading="lazy" onerror="this.remove()"></span>
+              <span class="abody">
+                <h5>Raw Almond &amp; Date Bites</h5>
+                <span class="abrand">Wildly Simple</span>
+                <span class="awhy">+23 pts — Two ingredients, sweetened by dates only, zero oils.</span>
+                <span class="apills"><span>NO SEED OIL</span><span>NO ADDED SUGAR</span></span>
+              </span>
+              <span class="aside"><span class="aring">95</span><span class="asave">🔖<small>Save</small></span></span>
             </button>
-            <button class="swap" onclick="toast('Swap saved to your list ✓')">
-              <div class="ph simg" data-emoji="🌰"><img src="https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=320&h=200&fit=crop&q=80" alt="Mixed raw nuts" loading="lazy" onerror="this.remove()"></div>
-              <div class="sbody"><h5>Raw Almond &amp; Date Bites</h5><span class="ssc">95</span></div>
+            <button class="alt" onclick="toast('Saved to your list ✓')">
+              <span class="arank">2</span>
+              <span class="ph athumb" data-emoji="🥣"><img src="https://images.unsplash.com/photo-1517093157656-b9eccef91cb1?w=140&h=140&fit=crop&q=80" alt="Oat bar" loading="lazy" onerror="this.remove()"></span>
+              <span class="abody">
+                <h5>Purely Oats &amp; Honey Bar</h5>
+                <span class="abrand">Grain Theory</span>
+                <span class="awhy">+20 pts — Same oat base, honey only (6 g), no refined oils.</span>
+                <span class="apills"><span>NO SEED OIL</span><span>WHOLE GRAIN</span></span>
+              </span>
+              <span class="aside"><span class="aring">92</span><span class="asave">🔖<small>Save</small></span></span>
             </button>
-            <button class="swap" onclick="toast('Swap saved to your list ✓')">
-              <div class="ph simg" data-emoji="🍫"><img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=320&h=200&fit=crop&q=80" alt="Dark chocolate squares" loading="lazy" onerror="this.remove()"></div>
-              <div class="sbody"><h5>85% Cacao Snack Squares</h5><span class="ssc">88</span></div>
+            <button class="alt" onclick="toast('Saved to your list ✓')">
+              <span class="arank">3</span>
+              <span class="ph athumb" data-emoji="🍫"><img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=140&h=140&fit=crop&q=80" alt="Dark chocolate squares" loading="lazy" onerror="this.remove()"></span>
+              <span class="abody">
+                <h5>85% Cacao Snack Squares</h5>
+                <span class="abrand">Noir</span>
+                <span class="awhy">+16 pts — 3 g sugar, cocoa butter instead of seed oil.</span>
+                <span class="apills"><span>LOW SUGAR</span><span>ORGANIC</span></span>
+              </span>
+              <span class="aside"><span class="aring">88</span><span class="asave">🔖<small>Save</small></span></span>
             </button>
           </div>
 
-          <p class="disc">Scores are informational only and not medical advice.</p>
+          <button class="actbanner dark" onclick="startScan('label')">
+            <span class="abic"><svg width="22" height="22" style="stroke:#a7f3c4;fill:none;stroke-width:2;stroke-linecap:round"><use href="#i-scan"/></svg></span>
+            <span><b>Scan again</b><p>Scan another product instantly</p></span>
+            <span class="abarrow">→</span>
+          </button>
+          <button class="actbanner grn" onclick="startScan('meal')">
+            <span class="abic">🍽️</span>
+            <span><b>Log a meal instead</b><p>Snap your plate — macros land in Track</p></span>
+            <span class="abarrow">→</span>
+          </button>
+
+          <div class="attrib">EatVera uses Open Food Facts (CC BY-SA) and USDA FoodData Central.</div>
+          <div class="infocard">
+            <span class="ii">ⓘ</span>
+            <span><b>Informational Only — Not Medical Advice</b>
+            <p>Scores are based on ingredient quality, processing level, and nutritional data. Always consult a qualified healthcare professional before making dietary changes.</p></span>
+          </div>
         </section>
 
         <!-- ============ TRACK ============ -->
@@ -911,7 +989,6 @@
             <h1>Today</h1>
             <p>Saturday, June 28</p>
           </div>
-
           <div class="daystrip">
             <div class="day"><small>Mon</small><b>23</b></div>
             <div class="day"><small>Tue</small><b>24</b></div>
@@ -921,7 +998,6 @@
             <div class="day on"><small>Sat</small><b>28</b></div>
             <div class="day"><small>Sun</small><b>29</b></div>
           </div>
-
           <div class="ring-wrap">
             <div class="ring">
               <svg width="176" height="176" viewBox="0 0 176 176">
@@ -936,18 +1012,15 @@
               <div class="center"><b style="font-size:38px" data-count="710">0</b><small>OF 2,000 KCAL</small></div>
             </div>
           </div>
-
           <div class="macros">
             <div class="macro"><div class="lab">Protein</div><b data-count="48">0</b><div class="bar"><i data-w="32%" style="width:0;background:var(--acc)"></i></div></div>
             <div class="macro"><div class="lab">Carbs</div><b data-count="74">0</b><div class="bar"><i data-w="37%" style="width:0;background:var(--amber)"></i></div></div>
             <div class="macro"><div class="lab">Fat</div><b data-count="22">0</b><div class="bar"><i data-w="34%" style="width:0;background:var(--red)"></i></div></div>
           </div>
-
           <div class="water">
             <div class="wrow"><h4>💧 Water</h4><span class="wcount" id="wCount">5 / 8 glasses</span></div>
             <div class="cups" id="cups"></div>
           </div>
-
           <div class="sectlabel"><h3>Logged today</h3><a onclick="startScan('meal')">+ Add meal</a></div>
           <div id="mealList">
             <div class="meal">
@@ -980,7 +1053,6 @@
             <h1>Your Clean<br>Report 🌿</h1>
             <div class="bigscore" data-count="84">0<small>&nbsp;avg score</small></div>
             <div class="sub">Top 16% of EatVera this week. One more clean day beats last week.</div>
-
             <div class="wcards">
               <div class="wcard">
                 <span class="ph wimg" data-emoji="🥗"><img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=140&h=140&fit=crop&q=80" alt="Garden salad, your best scan" loading="lazy" onerror="this.remove()"></span>
@@ -998,7 +1070,6 @@
                 <span class="wsc">12</span>
               </div>
             </div>
-
             <div class="wstats">
               <div class="wstat"><small>Scans</small><b>23</b></div>
               <div class="wstat"><small>Streak</small><b>🔥 12</b></div>
@@ -1007,7 +1078,6 @@
               <div class="wstat"><small>Water goal</small><b>6 / 7</b></div>
               <div class="wstat"><small>Rank</small><b>Top 16%</b></div>
             </div>
-
             <div class="wdays">
               <div class="wday"><i style="height:58%"></i><small>M</small></div>
               <div class="wday"><i style="height:72%"></i><small>T</small></div>
@@ -1042,7 +1112,6 @@
             <button class="pbtn" onclick="go('report')">📊 My report</button>
             <button class="pbtn" onclick="toast('Share link copied ✓')">Share</button>
           </div>
-
           <div class="sectlabel"><h3>Trophies</h3><a>4 / 12</a></div>
           <div class="trophies">
             <div class="trophy"><div class="te">🏆</div><b>First scan</b></div>
@@ -1053,17 +1122,16 @@
             <div class="trophy locked"><div class="te">🧠</div><b>Label expert</b></div>
             <div class="trophy locked"><div class="te">💪</div><b>Protein goal ×30</b></div>
           </div>
-
           <div class="sectlabel"><h3>Scan history</h3><a onclick="go('track')">See log →</a></div>
           <div class="hgrid" id="hgrid"></div>
-
           <div class="setrows">
             <button class="setrow" onclick="toast('Goals coming soon')"><span class="se">🎯</span>Goals &amp; targets<span class="chev">›</span></button>
             <button class="setrow" onclick="toggleTheme()"><span class="se">🌗</span>Appearance<span class="chev" id="themeLabel">Dark ›</span></button>
+            <button class="setrow" onclick="showIntro()"><span class="se">↺</span>Replay intro<span class="chev">›</span></button>
             <button class="setrow" onclick="toast('Notifications coming soon')"><span class="se">🔔</span>Notifications<span class="chev">›</span></button>
             <button class="setrow" onclick="toast('Help center coming soon')"><span class="se">💬</span>Help &amp; support<span class="chev">›</span></button>
           </div>
-          <p class="disc">EatVera v0.6 · Scores are informational only and not medical advice.</p>
+          <p class="disc">EatVera v0.7 · Scores are informational only and not medical advice.</p>
         </section>
 
       </div>
@@ -1092,7 +1160,7 @@
           <div class="biglogo"><svg width="64" height="64"><use href="#ev-logo"/></svg></div>
           <h2>Welcome to Eat<i>Vera</i></h2>
           <p>One app, two jobs — plus the cleanest places to eat near you.</p>
-          <div class="feat"><div class="ic">📷</div><div><b>Check quality</b><p>Green button → clean score, flags &amp; swaps</p></div></div>
+          <div class="feat"><div class="ic">📷</div><div><b>Check quality</b><p>Green button → clean score, explained point by point</p></div></div>
           <div class="feat"><div class="ic">🍽️</div><div><b>Log a meal</b><p>Orange button → calories &amp; macros tracked</p></div></div>
           <div class="feat"><div class="ic">📍</div><div><b>Eat out clean</b><p>Top-rated seed-oil-free restaurants near you</p></div></div>
           <button class="cta-btn" onclick="hideIntro()">Get started</button>
@@ -1120,13 +1188,6 @@
     {emoji:'👶', img:'photo-1492725764893-90b379c2b6e7', name:'Baby & kids', rated:35, tag:'ewg',  tagText:'Kid-safe'},
     {emoji:'🍷', img:'photo-1510812431401-41d2bd2722f3', name:'Alcohol',     rated:30, tag:'add',  tagText:'Additives'}
   ];
-
-  document.getElementById('homeStories').innerHTML = CATS.slice(0,8).map(c=>
-    `<button class="story" onclick="openProducts()">
-      <span class="ringy"><span class="ph" data-emoji="${c.emoji}"><img src="${U(c.img,140,140)}" alt="${c.name}" loading="lazy" onerror="this.remove()"></span></span>
-      <span>${c.name}</span>
-    </button>`).join('');
-
   document.getElementById('exploreCats').innerHTML = CATS.map(c=>
     `<button class="ecat" onclick="toast('${c.name} guide coming soon')">
       <span class="ph" data-emoji="${c.emoji}"><img src="${U(c.img,360,380)}" alt="${c.name}" loading="lazy" onerror="this.remove()"></span>
@@ -1135,7 +1196,7 @@
       <span class="inner"><h4>${c.name}</h4><p>${c.rated} rated</p></span>
     </button>`).join('');
 
-  // ---- restaurants near you ----
+  // ---- restaurants ----
   const RESTAURANTS = [
     {name:'Verde Kitchen',   img:'photo-1540189549336-e6e99c3679fe', score:96, stars:'4.9', reviews:412, cuisine:'Salads & grain bowls', dist:'0.4 mi', eta:'12 min', price:'$$',
      tags:[['ok','✓ No seed oils'],['ok','✓ Organic sourcing'],['info','Olive oil only']]},
@@ -1148,26 +1209,23 @@
     {name:'Luna Cantina',    img:'photo-1565299624946-b28f40a0ae38', score:74, stars:'4.5', reviews:530, cuisine:'Tacos & bowls', dist:'2.0 mi', eta:'25 min', price:'$',
      tags:[['warn','⚠ Some fried items'],['ok','✓ Corn tortillas']]}
   ];
-  function renderRestaurants(){
-    document.getElementById('restList').innerHTML = RESTAURANTS.map(r=>
-      `<button class="rest" onclick="toast('${r.name} — full profile coming soon')">
-        <div class="rimg">
-          <span class="ph" data-emoji="🍽️"><img src="${U(r.img,760,380)}" alt="${r.name}" loading="lazy" onerror="this.remove()"></span>
-          <span class="rsc ${r.score<85?'mid':''}">${r.score}</span>
-          <span class="reta">🚶 ${r.dist} · ${r.eta}</span>
+  document.getElementById('restList').innerHTML = RESTAURANTS.map(r=>
+    `<button class="rest" onclick="toast('${r.name} — full profile coming soon')">
+      <div class="rimg">
+        <span class="ph" data-emoji="🍽️"><img src="${U(r.img,760,380)}" alt="${r.name}" loading="lazy" onerror="this.remove()"></span>
+        <span class="rsc ${r.score<85?'mid':''}">${r.score}</span>
+        <span class="reta">🚶 ${r.dist} · ${r.eta}</span>
+      </div>
+      <div class="rbody">
+        <h4>${r.name}</h4>
+        <div class="rmeta"><b>★ ${r.stars}</b> (${r.reviews}) · ${r.cuisine} · ${r.price}</div>
+        <div class="rtags">${r.tags.map(([c,t])=>`<span class="rtag ${c}">${t}</span>`).join('')}</div>
+        <div class="racts">
+          <span class="ract go" onclick="event.stopPropagation();toast('Opening directions…')">🧭 Directions</span>
+          <span class="ract" onclick="event.stopPropagation();toast('Clean picks menu coming soon')">🥗 Clean picks</span>
         </div>
-        <div class="rbody">
-          <h4>${r.name}</h4>
-          <div class="rmeta"><b>★ ${r.stars}</b> (${r.reviews}) · ${r.cuisine} · ${r.price}</div>
-          <div class="rtags">${r.tags.map(([c,t])=>`<span class="rtag ${c}">${t}</span>`).join('')}</div>
-          <div class="racts">
-            <span class="ract go" onclick="event.stopPropagation();toast('Opening directions…')">🧭 Directions</span>
-            <span class="ract" onclick="event.stopPropagation();toast('Clean picks menu coming soon')">🥗 Clean picks</span>
-          </div>
-        </div>
-      </button>`).join('');
-  }
-  renderRestaurants();
+      </div>
+    </button>`).join('');
 
   // ---- guides segment ----
   function setGuide(which){
@@ -1179,7 +1237,7 @@
   function openRestaurants(){ go('explore'); setGuide('rest'); }
   function openProducts(){ go('explore'); setGuide('products'); }
 
-  // ---- location / zip ----
+  // ---- location ----
   function toggleZip(){
     const z = document.getElementById('zipedit');
     z.classList.toggle('show');
@@ -1188,14 +1246,14 @@
   function setZip(){
     const v = document.getElementById('zipInput').value.trim();
     if(!v){ toast('Enter a ZIP or city first'); return; }
-    const label = /^\d/.test(v) ? `Near you · ${v}` : `${v}`;
+    const label = /^\d/.test(v) ? `Near you · ${v}` : v;
     document.getElementById('locName').textContent = label;
     document.getElementById('zipedit').classList.remove('show');
     document.getElementById('zipInput').value='';
     toast(`Showing cleanest spots near <b>${label}</b>`);
   }
 
-  // ---- profile history grid ----
+  // ---- profile grid ----
   const HISTORY = [
     ['photo-1512621776951-a57141f2eefd',88],['photo-1599490659213-e2b9527bd087',72],
     ['photo-1488477181946-6428a0291777',94],['photo-1517093157656-b9eccef91cb1',92],
@@ -1213,7 +1271,8 @@
   const screenEl = document.getElementById('screen');
   function applyTheme(t){
     screenEl.dataset.theme = t;
-    document.getElementById('themeBtn').textContent = t==='dark' ? '🌙 Dark' : '☀️ Light';
+    const b = document.getElementById('themeBtn2');
+    if(b) b.textContent = t==='dark' ? '🌙' : '☀️';
     const lbl = document.getElementById('themeLabel');
     if(lbl) lbl.textContent = (t==='dark'?'Dark':'Light')+' ›';
     try{ localStorage.setItem('ev-theme', t); }catch(e){}
@@ -1257,18 +1316,26 @@
   }
 
   // ---- scanner ----
-  let stream = null;
+  let stream = null, sub = 'barcode';
   function setMode(m){
     mode = m;
-    document.getElementById('scanTitle').textContent = m==='label' ? 'Check quality' : 'Log a meal';
-    document.getElementById('scanSub').textContent  = m==='label' ? 'Point at a label — get the clean score.' : 'Frame your plate — macros land in your log.';
-    document.getElementById('vfBox').classList.toggle('mealmode', m==='meal');
-    document.getElementById('shutterBtn').classList.toggle('meal', m==='meal');
-    setStatus(stream ? 'LIVE' : 'DEMO FEED');
+    const label = m==='label';
+    document.getElementById('scanTitle').textContent = label ? 'Quality Scanner' : 'Calorie Scanner';
+    document.getElementById('scanKind').textContent  = label ? 'EATVERA · AI VISION' : 'EATVERA PRO · 🔥 MACROS';
+    document.getElementById('subModes').style.display = label ? 'flex' : 'none';
+    document.getElementById('vfBox').classList.toggle('mealmode', !label);
+    document.getElementById('vfHint').textContent = label
+      ? (sub==='barcode' ? 'Point camera at barcode' : 'Center the ingredients panel')
+      : 'Frame your meal within the guide';
     const img = document.getElementById('vfImg');
-    if(img && !stream) img.src = m==='label' ? U('photo-1556767576-cf0a4a80e5b8',760,700) : U('photo-1490645935967-10de6ba17061',760,700);
+    if(img && !stream) img.src = label ? U('photo-1556767576-cf0a4a80e5b8',760,1000) : U('photo-1490645935967-10de6ba17061',760,1000);
   }
-  function setStatus(s){ document.getElementById('vfStatus').textContent = 'AI VISION · ' + s; }
+  function setSub(s){
+    sub = s;
+    document.getElementById('subBar').classList.toggle('on', s==='barcode');
+    document.getElementById('subLab').classList.toggle('on', s==='label');
+    document.getElementById('vfHint').textContent = s==='barcode' ? 'Point camera at barcode' : 'Center the ingredients panel';
+  }
   function startScan(m){ setMode(m); go('scan'); }
 
   async function enableCam(){
@@ -1278,10 +1345,11 @@
       v.srcObject = stream;
       v.style.display = 'block';
       const btn = document.getElementById('camBtn');
-      btn.textContent = '● Camera live'; btn.classList.add('live'); btn.disabled = true;
-      setStatus('LIVE');
-      toast('Camera on — aim and tap the button');
-    }catch(e){ toast('Camera unavailable — try Upload photo'); }
+      btn.classList.add('live');
+      btn.innerHTML = '<span>●</span>Live';
+      btn.disabled = true;
+      toast('Camera on — aim and tap the shutter');
+    }catch(e){ toast('Camera unavailable — try Library'); }
   }
   function shoot(){
     const fx = document.getElementById('flashfx');
@@ -1302,13 +1370,14 @@
     input.value = '';
   }
   function finish(dataUrl){
-    setStatus('ANALYZING…');
+    const hint = document.getElementById('vfHint');
+    hint.textContent = 'Analyzing…';
     setTimeout(()=>{
-      setStatus(stream ? 'LIVE' : 'DEMO FEED');
+      setMode(mode);
       if(mode === 'label'){
         if(dataUrl){
           document.getElementById('resPimg').innerHTML = `<img src="${dataUrl}" alt="Your scanned product">`;
-          document.getElementById('resBrand').textContent = 'YOUR SCAN';
+          document.getElementById('resBrand').textContent = 'Your scan';
         }
         go('result');
       }else{
