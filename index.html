@@ -11,29 +11,33 @@
 <style>
   :root{ --brand:#143d2a }
 
-  /* ============ THEME TOKENS ============ */
+  /* ============ THEME ============ */
   .screen{
     --acc:#4ade80; --acc-2:#22c55e; --acc-deep:#15803d;
+    --mac:#fb923c; --mac-2:#f97316;
     --bg:#0b0f0d; --card:#121814; --card-2:#171f1a; --raise:#1c2620;
     --line:rgba(255,255,255,.055); --line-2:rgba(255,255,255,.12);
     --wash:rgba(255,255,255,.055); --wash-2:rgba(255,255,255,.08);
     --ink:#f2f7f3; --muted:#9db3a6; --faint:#647a6d;
-    --amber:#fbbf24; --red:#fb7185; --blue:#60a5fa;
+    --amber:#fbbf24; --red:#fb7185; --blue:#60a5fa; --violet:#a78bfa;
     --sh:0 12px 32px rgba(0,0,0,.35);
     --glow:0 8px 28px rgba(74,222,128,.28);
+    --glow-o:0 8px 28px rgba(251,146,60,.3);
     --navbg:rgba(10,14,12,.88);
     --ongreen:#04140a;
   }
   .screen[data-theme="light"]{
     --acc:#16a34a; --acc-2:#15803d; --acc-deep:#166534;
+    --mac:#ea580c; --mac-2:#c2410c;
     --bg:#f2f6f3; --card:#ffffff; --card-2:#fbfdfb; --raise:#e9efe9;
     --line:rgba(13,38,26,.08); --line-2:rgba(13,38,26,.16);
     --wash:rgba(13,38,26,.06); --wash-2:rgba(13,38,26,.09);
     --ink:#10241a; --muted:#5b6f62; --faint:#8ea296;
-    --amber:#d97706; --red:#e11d48; --blue:#2563eb;
+    --amber:#d97706; --red:#e11d48; --blue:#2563eb; --violet:#7c3aed;
     --sh:0 10px 28px rgba(20,50,35,.12);
     --glow:0 8px 24px rgba(22,163,74,.25);
-    --navbg:rgba(255,255,255,.9);
+    --glow-o:0 8px 24px rgba(234,88,12,.25);
+    --navbg:rgba(255,255,255,.92);
     --ongreen:#ffffff;
   }
 
@@ -49,10 +53,8 @@
     padding:36px 16px 60px;line-height:1.5;
   }
   h1,h2,h3,h4,h5{font-family:'Space Grotesk','Inter',sans-serif;font-weight:700}
-  .disp{font-family:'Space Grotesk','Inter',sans-serif}
-  .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+  button{font-family:inherit}
 
-  /* ---------- page header ---------- */
   .intro{max-width:720px;text-align:center;margin-bottom:30px}
   .intro .mark{display:inline-flex;align-items:center;gap:10px;margin-bottom:12px}
   .intro h1{font-size:27px;letter-spacing:-.02em}
@@ -63,7 +65,6 @@
 
   .logo{display:block;flex-shrink:0}
 
-  /* ---------- phone ---------- */
   .phone{width:392px;max-width:100%;height:820px;background:#040605;border-radius:54px;padding:12px;
     box-shadow:0 40px 90px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.06);position:relative}
   .screen{position:absolute;inset:12px;background:var(--bg);border-radius:42px;overflow:hidden;display:flex;flex-direction:column;color:var(--ink);transition:background .3s ease}
@@ -73,11 +74,10 @@
 
   .app{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;position:relative;z-index:1}
   .app::-webkit-scrollbar{display:none}
-  .view{display:none;padding:58px 20px 118px;animation:fade .3s ease}
+  .view{display:none;padding:58px 20px 122px;animation:fade .32s cubic-bezier(.22,.9,.35,1)}
   .view.active{display:block}
-  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
-  /* ---------- shared ---------- */
   .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
   .brand{display:flex;align-items:center;gap:10px}
   .brand b{font-family:'Space Grotesk';font-size:20px;font-weight:700;letter-spacing:-.02em}
@@ -122,7 +122,7 @@
 
   .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
   .tile{position:relative;border:none;border-radius:24px;overflow:hidden;cursor:pointer;min-height:186px;text-align:left;color:#fff;padding:0;display:block;box-shadow:var(--sh);transition:transform .15s ease}
-  .tile:active{transform:scale(.97)}
+  .tile:active{transform:scale(.96)}
   .tile .bg{position:absolute;inset:0}
   .tile .bg img{width:100%;height:100%;object-fit:cover}
   .tile .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,15,11,.05) 30%,rgba(8,13,10,.94) 100%)}
@@ -132,10 +132,31 @@
   .tile h3{font-size:17px;letter-spacing:-.01em}
   .tile p{font-size:11.5px;color:#c3d6ca;margin-top:3px;line-height:1.4}
 
+  /* wrapped-style report banner */
+  .repbanner{position:relative;width:100%;border:none;border-radius:22px;overflow:hidden;cursor:pointer;margin-top:14px;padding:16px 18px;text-align:left;color:#fff;display:flex;align-items:center;gap:14px;
+    background:linear-gradient(115deg,#6d28d9 0%,#7c3aed 35%,#15803d 80%,#22c55e 100%);box-shadow:0 14px 34px rgba(109,40,217,.35);transition:transform .15s ease}
+  .repbanner:active{transform:scale(.98)}
+  .repbanner .re{font-size:26px}
+  .repbanner b{font-family:'Space Grotesk';font-size:15.5px;display:block}
+  .repbanner p{font-size:11.5px;opacity:.85;margin-top:1px}
+  .repbanner .chev{margin-left:auto;font-size:20px;opacity:.9}
+
+  .restbanner{position:relative;width:100%;border:none;border-radius:22px;overflow:hidden;cursor:pointer;margin-top:12px;min-height:96px;text-align:left;color:#fff;box-shadow:var(--sh);display:block;transition:transform .15s ease}
+  .restbanner:active{transform:scale(.98)}
+  .restbanner .bg{position:absolute;inset:0}
+  .restbanner .bg img{width:100%;height:100%;object-fit:cover}
+  .restbanner .scrim{position:absolute;inset:0;background:linear-gradient(95deg,rgba(8,13,10,.92) 25%,rgba(8,13,10,.4) 75%,transparent)}
+  .restbanner .inner{position:relative;padding:15px 18px;display:flex;align-items:center;gap:13px;min-height:96px}
+  .restbanner .re{font-size:24px}
+  .restbanner b{font-family:'Space Grotesk';font-size:15.5px;display:block}
+  .restbanner p{font-size:11.5px;color:#c3d6ca;margin-top:1px}
+  .restbanner .chev{margin-left:auto;font-size:20px;color:#fff;opacity:.9}
+
   .stories{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none;padding:4px 2px 6px}
   .stories::-webkit-scrollbar{display:none}
   .story{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:7px;border:none;background:none;cursor:pointer;width:66px}
   .story .ringy{display:block;width:64px;height:64px;border-radius:50%;padding:2.5px;background:conic-gradient(var(--acc),#8ef0b6,var(--acc-2),var(--acc))}
+  .story.orange .ringy{background:conic-gradient(#fb923c,#fde68a,#f97316,#fb923c)}
   .story .ph{display:block;width:100%;height:100%;border-radius:50%;border:2.5px solid var(--bg)}
   .story .ph::before{font-size:22px}
   .story span{font-size:10.5px;color:var(--muted);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:66px}
@@ -146,33 +167,65 @@
   .tip .scrim{position:absolute;inset:0;background:linear-gradient(115deg,rgba(12,32,21,.96) 0%,rgba(12,32,21,.8) 45%,rgba(12,32,21,.3) 100%)}
   .tip .inner{position:relative;padding:18px}
   .tip span{font-family:'JetBrains Mono';font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#4ade80;font-weight:700}
-  .tip h4{font-size:18px;margin-top:7px;letter-spacing:-.01em}
+  .tip h4{font-size:18px;margin-top:7px}
   .tip p{font-size:12.5px;color:#c2d8ca;margin-top:6px;line-height:1.55;max-width:88%}
 
   .disc{font-size:10.5px;color:var(--faint);text-align:center;margin-top:24px;line-height:1.55;padding:0 10px}
+
+  /* ---------- FEED (IG / TikTok / Snap) ---------- */
+  .fstories .ringy{padding:2.5px}
+  .fstory-add .ringy{background:var(--raise)!important;display:flex;align-items:center;justify-content:center}
+  .fstory-add .plus{width:58px;height:58px;border-radius:50%;border:2px dashed var(--faint);display:flex;align-items:center;justify-content:center;color:var(--acc);font-size:22px;font-weight:700}
+
+  .lboard{background:linear-gradient(150deg,var(--card-2),var(--card));border-radius:24px;padding:16px;box-shadow:var(--sh);margin-top:4px}
+  .lboard h4{font-size:15px;margin-bottom:12px}
+  .lrow{display:flex;align-items:center;gap:11px;padding:8px 0}
+  .lrow .rank{width:24px;font-size:15px;text-align:center}
+  .lrow .avatar{width:34px;height:34px}
+  .lrow b{font-size:13.5px;font-weight:600;flex:1}
+  .lrow .pts{font-family:'Space Grotesk';font-size:13.5px;font-weight:700;color:var(--acc)}
+  .lrow.me{background:var(--wash);border-radius:14px;padding:8px 10px;margin:2px -10px 0}
+
+  .post{background:var(--card);border-radius:24px;box-shadow:var(--sh);margin-bottom:16px;overflow:hidden}
+  .post .phead{display:flex;align-items:center;gap:11px;padding:13px 15px}
+  .post .phead .avatar{width:36px;height:36px}
+  .post .phead b{font-size:13.5px;font-weight:600;display:block}
+  .post .phead small{font-size:10.5px;color:var(--faint)}
+  .post .phead .streak{margin-left:auto}
+  .post .pmedia{position:relative;aspect-ratio:4/3;cursor:pointer;user-select:none}
+  .post .pmedia .ph{position:absolute;inset:0}
+  .post .pscore{position:absolute;top:12px;right:12px;background:rgba(4,8,6,.75);backdrop-filter:blur(8px);color:#4ade80;font-family:'Space Grotesk';font-weight:700;font-size:14px;border-radius:12px;padding:6px 10px}
+  .post .pscore.low{color:#fb7185}
+  .bigheart{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:74px;opacity:0;pointer-events:none;filter:drop-shadow(0 6px 18px rgba(0,0,0,.4))}
+  .bigheart.pop{animation:heartpop .8s ease}
+  @keyframes heartpop{0%{opacity:0;transform:scale(.4)}25%{opacity:1;transform:scale(1.15)}55%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.05)}}
+  .post .pacts{display:flex;align-items:center;gap:16px;padding:12px 16px 4px}
+  .post .pacts button{border:none;background:none;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+  .post .pacts button.liked{color:var(--red)}
+  .post .pacts .sharea{margin-left:auto}
+  .post .pcap{padding:2px 16px 15px;font-size:12.5px;color:var(--muted);line-height:1.5}
+  .post .pcap b{color:var(--ink);font-weight:600}
 
   /* ---------- EXPLORE ---------- */
   .search{display:flex;align-items:center;gap:10px;background:var(--card);border-radius:16px;padding:13px 16px;margin-bottom:4px;color:var(--faint);font-size:14px;box-shadow:var(--sh)}
   .filters{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none}
   .filters::-webkit-scrollbar{display:none}
-  .filters button{flex:none;border:none;background:var(--card);color:var(--muted);font-family:inherit;font-size:12.5px;font-weight:600;padding:9px 15px;border-radius:999px;cursor:pointer}
+  .filters button{flex:none;border:none;background:var(--card);color:var(--muted);font-size:12.5px;font-weight:600;padding:9px 15px;border-radius:999px;cursor:pointer}
   .filters button.on{background:var(--acc);color:var(--ongreen);font-weight:700}
-
   .featured{position:relative;border:none;width:100%;border-radius:24px;overflow:hidden;cursor:pointer;min-height:170px;text-align:left;color:#fff;margin-top:10px;box-shadow:var(--sh);display:block}
   .featured .bg{position:absolute;inset:0}
   .featured .bg img{width:100%;height:100%;object-fit:cover}
   .featured .scrim{position:absolute;inset:0;background:linear-gradient(100deg,rgba(8,13,10,.92) 15%,rgba(8,13,10,.35) 70%,transparent)}
   .featured .inner{position:relative;padding:18px;min-height:170px;display:flex;flex-direction:column;justify-content:center;max-width:70%}
   .featured .fk{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.12em;color:#4ade80;font-weight:700;text-transform:uppercase}
-  .featured h3{font-size:19px;letter-spacing:-.01em;margin-top:6px;line-height:1.25}
+  .featured h3{font-size:19px;margin-top:6px;line-height:1.25}
   .featured p{font-size:12px;color:#bcd2c3;margin-top:5px}
-
   .egrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
   .ecat{position:relative;border:none;border-radius:20px;overflow:hidden;cursor:pointer;aspect-ratio:1/1.05;text-align:left;color:#fff;padding:0;box-shadow:var(--sh)}
   .ecat .ph{position:absolute;inset:0}
   .ecat .scrim{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(8,13,10,.95) 100%)}
   .ecat .inner{position:absolute;left:0;right:0;bottom:0;padding:13px}
-  .ecat h4{font-size:15px;letter-spacing:-.01em}
+  .ecat h4{font-size:15px}
   .ecat p{font-size:10.5px;color:#b7cdbf;margin-top:2px}
   .ecat .tag{position:absolute;top:11px;left:11px;font-size:9.5px;font-weight:700;padding:4px 9px;border-radius:999px;backdrop-filter:blur(8px)}
   .tag.seed{background:rgba(251,191,36,.22);color:#ffe9b0}
@@ -189,11 +242,13 @@
   .vf .shade{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,transparent 40%,rgba(4,8,6,.8) 100%);pointer-events:none}
   .corners{position:absolute;inset:22px;pointer-events:none;opacity:.9}
   .corners i{position:absolute;width:26px;height:26px;border:2.5px solid rgba(74,222,128,.95);border-radius:8px}
+  .vf.mealmode .corners i{border-color:rgba(251,146,60,.95)}
   .corners i:nth-child(1){top:0;left:0;border-right:none;border-bottom:none}
   .corners i:nth-child(2){top:0;right:0;border-left:none;border-bottom:none}
   .corners i:nth-child(3){bottom:0;left:0;border-right:none;border-top:none}
   .corners i:nth-child(4){bottom:0;right:0;border-left:none;border-top:none}
   .scanline{position:absolute;left:8%;right:8%;top:18%;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#4ade80,transparent);box-shadow:0 0 16px rgba(74,222,128,.7);animation:sweep 3s ease-in-out infinite;pointer-events:none}
+  .vf.mealmode .scanline{background:linear-gradient(90deg,transparent,#fb923c,transparent);box-shadow:0 0 16px rgba(251,146,60,.7)}
   @keyframes sweep{0%,100%{top:16%;opacity:.2}12%{opacity:1}50%{top:74%;opacity:1}88%{opacity:1}}
   .ai-chip{display:inline-flex;align-items:center;gap:7px;background:rgba(4,8,6,.6);backdrop-filter:blur(8px);border-radius:999px;padding:6px 13px;font-family:'JetBrains Mono';font-size:9.5px;font-weight:700;letter-spacing:.1em;color:#4ade80}
   .ai-chip .dot{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:blink 1.6s ease-in-out infinite}
@@ -201,12 +256,11 @@
   .vf .hud{position:absolute;top:16px;left:0;right:0;display:flex;justify-content:center}
   .vf .foot{position:absolute;bottom:14px;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:11px}
   .srcbtns{display:flex;gap:8px}
-  .srcbtn{border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;background:rgba(4,8,6,.65);backdrop-filter:blur(8px);color:#d6e8dc;font-family:inherit;font-size:11.5px;font-weight:600;padding:8px 13px;border-radius:999px}
+  .srcbtn{border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;background:rgba(4,8,6,.65);backdrop-filter:blur(8px);color:#d6e8dc;font-size:11.5px;font-weight:600;padding:8px 13px;border-radius:999px}
   .srcbtn.live{color:#4ade80}
-  .modes{display:flex;background:rgba(4,8,6,.7);backdrop-filter:blur(10px);border-radius:999px;padding:4px}
-  .modes button{border:none;background:none;color:#9db3a6;font-family:inherit;font-size:12.5px;font-weight:600;padding:9px 17px;border-radius:999px;cursor:pointer}
-  .modes button.on{background:#4ade80;color:#04140a;font-weight:700}
-  .shutter{width:70px;height:70px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(140deg,#4ade80,#22c55e);box-shadow:0 8px 28px rgba(74,222,128,.28),0 0 0 5px rgba(4,8,6,.6),0 0 0 6.5px rgba(74,222,128,.35);display:flex;align-items:center;justify-content:center}
+  .shutter{width:70px;height:70px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(140deg,#4ade80,#22c55e);box-shadow:0 8px 28px rgba(74,222,128,.28),0 0 0 5px rgba(4,8,6,.6),0 0 0 6.5px rgba(74,222,128,.35);display:flex;align-items:center;justify-content:center;transition:transform .12s ease}
+  .shutter:active{transform:scale(.92)}
+  .vf.mealmode ~ * .shutter, .shutter.meal{background:linear-gradient(140deg,#fb923c,#f97316);box-shadow:0 8px 28px rgba(251,146,60,.3),0 0 0 5px rgba(4,8,6,.6),0 0 0 6.5px rgba(251,146,60,.35)}
   .flashfx{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
   .flashfx.on{animation:flash .35s ease}
   @keyframes flash{0%{opacity:.85}100%{opacity:0}}
@@ -227,31 +281,28 @@
   .product .pimg{width:88px;height:88px;border-radius:20px;flex-shrink:0}
   .product .pimg::before{font-size:32px}
   .product .brandname{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
-  .product h2{font-size:20px;letter-spacing:-.01em;line-height:1.25;margin-top:3px}
+  .product h2{font-size:20px;line-height:1.25;margin-top:3px}
   .product .verdict{display:inline-block;margin-top:8px;font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px;background:rgba(251,191,36,.13);color:var(--amber)}
-
   .scorecard{background:linear-gradient(160deg,var(--card-2),var(--card));border-radius:24px;padding:20px;box-shadow:var(--sh);margin-top:18px;display:flex;align-items:center;gap:18px}
   .ring{position:relative;flex-shrink:0}
   .ring svg{transform:rotate(-90deg);display:block}
   .ring circle.track{stroke:var(--wash)}
   .ring circle.val{transition:stroke-dashoffset 1.2s cubic-bezier(.22,.9,.35,1)}
   .ring .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-  .ring .center b{font-family:'Space Grotesk';font-size:31px;font-weight:700;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+  .ring .center b{font-family:'Space Grotesk';font-size:31px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
   .ring .center small{font-size:9px;color:var(--muted);margin-top:3px;font-family:'JetBrains Mono';letter-spacing:.08em}
   .scorecard .meta b{font-family:'Space Grotesk';font-size:15.5px;font-weight:700;display:block}
   .scorecard .meta p{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.5}
   .conf{margin-top:9px;font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.06em;color:var(--faint)}
   .conf b{color:var(--acc);font-size:9.5px}
-
   .flags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
   .flag{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;padding:9px 13px;border-radius:999px}
   .flag.bad{background:rgba(251,113,133,.12);color:var(--red)}
   .flag.warn{background:rgba(251,191,36,.12);color:var(--amber)}
   .flag.good{background:rgba(74,222,128,.12);color:var(--acc)}
-
-  .logbtn{margin-top:16px;width:100%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(135deg,var(--acc),var(--acc-2));color:var(--ongreen);font-size:15px;font-weight:700;font-family:'Space Grotesk';padding:16px;border-radius:18px;box-shadow:var(--glow)}
+  .logbtn{margin-top:16px;width:100%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(135deg,var(--acc),var(--acc-2));color:var(--ongreen);font-size:15px;font-weight:700;font-family:'Space Grotesk';padding:16px;border-radius:18px;box-shadow:var(--glow);transition:transform .12s ease}
+  .logbtn:active{transform:scale(.97)}
   .logbtn small{font-family:'Inter';font-weight:600;font-size:11px;opacity:.75}
-
   .swaps{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
   .swaps::-webkit-scrollbar{display:none}
   .swap{flex:0 0 158px;background:var(--card);border:none;border-radius:18px;overflow:hidden;cursor:pointer;text-align:left;box-shadow:var(--sh);color:var(--ink)}
@@ -260,11 +311,6 @@
   .swap .sbody{padding:11px 12px 13px;display:flex;align-items:center;gap:8px}
   .swap h5{font-size:12.5px;font-weight:600;line-height:1.35;flex:1;font-family:'Inter'}
   .swap .ssc{background:rgba(74,222,128,.13);color:var(--acc);font-weight:700;font-size:12.5px;font-family:'Space Grotesk';border-radius:10px;padding:5px 8px;flex-shrink:0}
-
-  .toast{position:absolute;left:50%;bottom:108px;transform:translateX(-50%) translateY(16px);background:var(--raise);color:var(--ink);font-size:13px;font-weight:600;border-radius:999px;padding:11px 19px;z-index:50;opacity:0;pointer-events:none;transition:all .3s ease;white-space:nowrap;box-shadow:0 12px 32px rgba(0,0,0,.4)}
-  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-  .toast b{color:var(--acc)}
-
   .ingredients{background:var(--card);border-radius:24px;padding:8px 17px;box-shadow:var(--sh);margin-top:14px}
   .ing{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
   .ing:last-child{border-bottom:none}
@@ -274,10 +320,14 @@
   .ing small{display:block;font-size:11.5px;color:var(--muted);margin-top:1px}
   .ing .badge{margin-left:auto;font-size:10px;font-weight:700;font-family:'JetBrains Mono';letter-spacing:.05em;text-transform:uppercase;color:var(--faint)}
 
+  .toast{position:absolute;left:50%;bottom:112px;transform:translateX(-50%) translateY(16px);background:var(--raise);color:var(--ink);font-size:13px;font-weight:600;border-radius:999px;padding:11px 19px;z-index:50;opacity:0;pointer-events:none;transition:all .3s ease;white-space:nowrap;box-shadow:0 12px 32px rgba(0,0,0,.4)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .toast b{color:var(--acc)}
+
   /* ---------- TRACK ---------- */
   .daystrip{display:flex;gap:6px;justify-content:space-between;margin:2px 0 8px}
   .daystrip .day{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 0;border-radius:15px;cursor:pointer}
-  .daystrip .day small{font-size:9.5px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.03em}
+  .daystrip .day small{font-size:9.5px;font-weight:600;color:var(--faint);text-transform:uppercase}
   .daystrip .day b{font-family:'Space Grotesk';font-size:14.5px;font-weight:700}
   .daystrip .day.on{background:linear-gradient(150deg,var(--acc),var(--acc-2));box-shadow:var(--glow)}
   .daystrip .day.on small,.daystrip .day.on b{color:var(--ongreen)}
@@ -288,7 +338,6 @@
   .macro b{font-family:'Space Grotesk';font-size:18px;font-weight:700;display:block;margin-top:3px;font-variant-numeric:tabular-nums}
   .macro .bar{height:6px;border-radius:4px;background:var(--wash);margin-top:9px;overflow:hidden}
   .macro .bar i{display:block;height:100%;border-radius:4px;transition:width 1s cubic-bezier(.22,.9,.35,1)}
-
   .water{background:var(--card);border-radius:24px;padding:15px 17px;box-shadow:var(--sh);margin-top:14px}
   .water .wrow{display:flex;align-items:center;justify-content:space-between}
   .water h4{font-size:15px}
@@ -296,12 +345,11 @@
   .cups{display:flex;gap:8px;margin-top:12px}
   .cup{flex:1;height:36px;border-radius:12px;border:none;background:var(--wash);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;opacity:.35;transition:all .15s ease}
   .cup.full{background:rgba(96,165,250,.18);opacity:1}
-
   .meal{background:var(--card);border-radius:22px;padding:11px;box-shadow:var(--sh);display:flex;gap:13px;align-items:center;margin-bottom:11px}
   .meal .mimg{width:64px;height:64px;border-radius:16px;flex-shrink:0}
   .meal .mimg::before{font-size:24px}
   .meal .body{min-width:0;flex:1}
-  .meal h4{font-size:15px;letter-spacing:-.01em}
+  .meal h4{font-size:15px}
   .meal p{font-size:11.5px;color:var(--muted);margin-top:1px}
   .mpills{display:flex;gap:6px;margin-top:7px;flex-wrap:wrap}
   .mpill{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:600;color:var(--muted);background:var(--wash);border-radius:999px;padding:4px 9px}
@@ -311,10 +359,61 @@
   .emptylog{background:var(--card);border:1.5px dashed var(--line-2);border-radius:22px;padding:24px;text-align:center;color:var(--muted);font-size:13px;margin-top:8px}
   .emptylog .big{font-size:30px;margin-bottom:8px}
 
+  /* ---------- RESTAURANT MODE (Tinder) ---------- */
+  .deckwrap{position:relative;height:430px;margin-top:6px}
+  .dish{position:absolute;inset:0;border-radius:26px;overflow:hidden;box-shadow:var(--sh);cursor:grab;background:var(--card);touch-action:none;transition:transform .18s ease,opacity .18s ease}
+  .dish.dragging{transition:none;cursor:grabbing}
+  .dish.fly{transition:transform .4s cubic-bezier(.22,.9,.35,1),opacity .4s ease}
+  .dish .ph{position:absolute;inset:0}
+  .dish .dscrim{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(6,10,8,.95) 100%)}
+  .dish .dinner{position:absolute;left:0;right:0;bottom:0;padding:18px;color:#fff}
+  .dish h3{font-size:21px}
+  .dish .dmeta{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .dpill{background:rgba(4,8,6,.6);backdrop-filter:blur(6px);border-radius:999px;padding:6px 11px;font-size:11.5px;font-weight:600;color:#dcefe2}
+  .dish .dscore{position:absolute;top:14px;right:14px;background:rgba(4,8,6,.75);backdrop-filter:blur(8px);font-family:'Space Grotesk';font-weight:700;font-size:15px;border-radius:13px;padding:7px 11px;color:#4ade80}
+  .dish .dscore.low{color:#fb7185}
+  .stamp{position:absolute;top:22px;padding:8px 16px;border-radius:12px;font-family:'Space Grotesk';font-weight:700;font-size:19px;letter-spacing:.06em;border:3px solid;opacity:0;transform:rotate(-14deg)}
+  .stamp.yes{left:18px;color:#4ade80;border-color:#4ade80}
+  .stamp.no{right:18px;color:#fb7185;border-color:#fb7185;transform:rotate(14deg)}
+  .deckbtns{display:flex;justify-content:center;gap:22px;margin-top:16px}
+  .dbtn{width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh);transition:transform .12s ease}
+  .dbtn:active{transform:scale(.9)}
+  .dbtn.no{background:var(--card);color:var(--red)}
+  .dbtn.yes{background:linear-gradient(140deg,#4ade80,#22c55e);color:#04140a}
+  .picksbar{display:flex;align-items:center;justify-content:space-between;background:var(--card);border-radius:18px;padding:13px 16px;box-shadow:var(--sh);margin-top:16px}
+  .picksbar b{font-size:13.5px}
+  .picksbar .pk{font-family:'Space Grotesk';color:var(--acc);font-weight:700}
+  .deckdone{position:absolute;inset:0;border-radius:26px;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px}
+  .deckdone .de{font-size:44px}
+  .deckdone h3{font-size:19px}
+  .deckdone p{font-size:13px;color:var(--muted)}
+
+  /* ---------- WEEKLY REPORT (Wrapped) ---------- */
+  #report{padding:0 0 122px}
+  .wrap{position:relative;min-height:640px;background:linear-gradient(160deg,#4c1d95 0%,#6d28d9 30%,#15803d 75%,#22c55e 100%);color:#fff;padding:74px 24px 30px;overflow:hidden}
+  .wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(400px 220px at 85% 8%,rgba(255,255,255,.16),transparent),radial-gradient(300px 200px at 10% 90%,rgba(255,255,255,.1),transparent)}
+  .wrap .wk{position:relative;font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.16em;font-weight:700;opacity:.85}
+  .wrap h1{position:relative;font-size:34px;line-height:1.1;margin-top:10px;letter-spacing:-.02em}
+  .wrap .bigscore{position:relative;margin:26px 0 6px;font-family:'Space Grotesk';font-size:96px;font-weight:700;line-height:1;letter-spacing:-.04em}
+  .wrap .bigscore small{font-size:20px;font-weight:600;opacity:.8;letter-spacing:0}
+  .wrap .sub{position:relative;font-size:14px;opacity:.9}
+  .wstats{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:26px}
+  .wstat{background:rgba(255,255,255,.13);backdrop-filter:blur(8px);border-radius:18px;padding:14px}
+  .wstat small{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+  .wstat b{font-family:'Space Grotesk';font-size:19px;display:block;margin-top:3px;line-height:1.25}
+  .wdays{position:relative;display:flex;gap:7px;align-items:flex-end;height:74px;margin-top:26px}
+  .wday{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .wday i{width:100%;border-radius:7px;background:rgba(255,255,255,.85);display:block}
+  .wday.low i{background:rgba(255,255,255,.35)}
+  .wday small{font-size:9px;font-weight:700;opacity:.8}
+  .wshare{position:relative;margin-top:26px;width:100%;border:none;cursor:pointer;background:#fff;color:#166534;font-family:'Space Grotesk';font-size:15.5px;font-weight:700;padding:16px;border-radius:17px;box-shadow:0 12px 30px rgba(0,0,0,.3);transition:transform .12s ease}
+  .wshare:active{transform:scale(.97)}
+  .repback{position:absolute;top:56px;left:18px;z-index:5;background:rgba(0,0,0,.3);backdrop-filter:blur(8px);color:#fff;border:none;border-radius:999px;padding:9px 15px;font-size:13px;font-weight:600;cursor:pointer}
+
   /* ---------- PROFILE ---------- */
   .pcover{position:relative;height:110px;margin:-58px -20px 0;background:linear-gradient(120deg,#0e2f1f,#14532d 45%,#0e2f1f);overflow:hidden}
   .pcover::after{content:"";position:absolute;inset:0;background:radial-gradient(300px 120px at 80% 0%,rgba(74,222,128,.25),transparent)}
-  .phead{display:flex;align-items:flex-end;gap:16px;margin-top:-38px;position:relative;z-index:2;padding:0 2px}
+  .phead2{display:flex;align-items:flex-end;gap:16px;margin-top:-38px;position:relative;z-index:2;padding:0 2px}
   .bigavatar{width:86px;height:86px;border-radius:50%;padding:3px;background:conic-gradient(var(--acc),#8ef0b6,var(--acc-2),var(--acc));flex-shrink:0}
   .bigavatar .in{width:100%;height:100%;border-radius:50%;border:3px solid var(--bg);overflow:hidden;background:var(--raise)}
   .bigavatar img{width:100%;height:100%;object-fit:cover}
@@ -323,45 +422,48 @@
   .pstat b{font-family:'Space Grotesk';font-size:19px;font-weight:700;display:block;line-height:1.1}
   .pstat small{font-size:10.5px;color:var(--muted);font-weight:600}
   .pname{margin:12px 2px 0}
-  .pname h2{font-size:19px;letter-spacing:-.01em}
+  .pname h2{font-size:19px}
   .pname .handle{font-size:12.5px;color:var(--acc);font-weight:600;margin-top:1px}
   .pname .bio{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.5}
   .pbtns{display:flex;gap:9px;margin-top:14px}
-  .pbtn{flex:1;border:none;cursor:pointer;background:var(--raise);color:var(--ink);font-family:inherit;font-size:13px;font-weight:600;padding:11px;border-radius:13px}
+  .pbtn{flex:1;border:none;cursor:pointer;background:var(--raise);color:var(--ink);font-size:13px;font-weight:600;padding:11px;border-radius:13px}
   .pbtn.acc{background:linear-gradient(135deg,var(--acc),var(--acc-2));color:var(--ongreen);font-weight:700}
-
   .trophies{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:2px}
   .trophies::-webkit-scrollbar{display:none}
   .trophy{flex:0 0 92px;background:var(--card);border-radius:18px;padding:13px 8px;text-align:center;box-shadow:var(--sh)}
   .trophy .te{font-size:26px}
   .trophy b{display:block;font-size:10.5px;font-weight:600;margin-top:7px;line-height:1.3;color:var(--ink)}
   .trophy.locked{opacity:.38;filter:saturate(.2)}
-
   .hgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;border-radius:20px;overflow:hidden}
   .hcell{position:relative;aspect-ratio:1;border:none;padding:0;cursor:pointer;overflow:hidden;background:var(--card)}
   .hcell .ph{position:absolute;inset:0}
   .hcell .hsc{position:absolute;right:5px;bottom:5px;background:rgba(4,8,6,.75);backdrop-filter:blur(6px);color:#4ade80;font-family:'Space Grotesk';font-size:10.5px;font-weight:700;border-radius:8px;padding:3px 6px}
-
   .setrows{background:var(--card);border-radius:22px;box-shadow:var(--sh);overflow:hidden;margin-top:14px}
-  .setrow{display:flex;align-items:center;gap:13px;width:100%;border:none;background:none;color:var(--ink);font-family:inherit;font-size:14px;font-weight:600;padding:15px 17px;cursor:pointer;border-bottom:1px solid var(--line);text-align:left}
+  .setrow{display:flex;align-items:center;gap:13px;width:100%;border:none;background:none;color:var(--ink);font-size:14px;font-weight:600;padding:15px 17px;cursor:pointer;border-bottom:1px solid var(--line);text-align:left}
   .setrow:last-child{border-bottom:none}
   .setrow .se{width:34px;height:34px;border-radius:11px;background:var(--wash);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
   .setrow .chev{margin-left:auto;color:var(--faint)}
 
-  /* ---------- NAV ---------- */
-  .nav{position:absolute;left:12px;right:12px;bottom:12px;height:80px;background:var(--navbg);backdrop-filter:blur(18px);border-top:1px solid var(--line);border-radius:0 0 42px 42px;display:flex;align-items:center;justify-content:space-around;padding:0 8px 10px;z-index:40}
-  .nav button{border:none;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--faint);font-size:10px;font-weight:600;padding:6px 8px;flex:1;font-family:inherit}
+  /* ---------- NAV: split scan actions ---------- */
+  .nav{position:absolute;left:12px;right:12px;bottom:12px;height:82px;background:var(--navbg);backdrop-filter:blur(18px);border-top:1px solid var(--line);border-radius:0 0 42px 42px;display:flex;align-items:center;justify-content:space-around;padding:0 6px 10px;z-index:40}
+  .nav>button{border:none;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--faint);font-size:9.5px;font-weight:600;padding:6px 4px;flex:1}
   .nav button svg.ni{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-  .nav button.on{color:var(--acc)}
-  .nav .scanbtn{margin-top:-32px;flex:0 0 auto}
-  .nav .scanbtn .fab{width:60px;height:60px;border-radius:50%;background:linear-gradient(140deg,var(--acc),var(--acc-2));display:flex;align-items:center;justify-content:center;box-shadow:var(--glow),0 10px 24px rgba(0,0,0,.4);border:4px solid var(--bg)}
+  .nav>button.on{color:var(--acc)}
+  .nav>button.on.mealtab{color:var(--mac)}
+  .scanduo{display:flex;gap:10px;margin-top:-34px;flex:0 0 auto;padding:0 4px}
+  .scanduo button{border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;background:none;color:var(--faint);font-size:9.5px;font-weight:600}
+  .scanduo .fab{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:4px solid var(--bg);transition:transform .12s ease}
+  .scanduo button:active .fab{transform:scale(.92)}
+  .scanduo .fab.q{background:linear-gradient(140deg,var(--acc),var(--acc-2));box-shadow:var(--glow),0 10px 24px rgba(0,0,0,.4)}
+  .scanduo .fab.m{background:linear-gradient(140deg,var(--mac),var(--mac-2));box-shadow:var(--glow-o),0 10px 24px rgba(0,0,0,.4);font-size:24px}
+  .scanduo button.on{color:var(--ink)}
 
   /* ---------- overlay ---------- */
   .overlay{position:absolute;inset:12px;border-radius:42px;background:rgba(3,6,4,.74);backdrop-filter:blur(6px);z-index:70;display:flex;align-items:flex-end;justify-content:center;padding:16px;animation:fade .3s ease}
   .overlay.hide{display:none}
   .sheet{background:linear-gradient(180deg,var(--card-2),var(--card));border-radius:32px;padding:26px 22px 22px;width:100%;text-align:center;color:var(--ink)}
   .sheet .biglogo{display:flex;justify-content:center;margin-bottom:14px;filter:drop-shadow(0 0 24px rgba(74,222,128,.3))}
-  .sheet h2{font-size:23px;letter-spacing:-.01em}
+  .sheet h2{font-size:23px}
   .sheet h2 i{color:var(--acc);font-style:normal}
   .sheet>p{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.55}
   .feat{display:flex;gap:13px;align-items:center;text-align:left;background:var(--wash);border-radius:17px;padding:13px;margin-top:11px}
@@ -376,16 +478,14 @@
 </head>
 <body>
 
-  <!-- EatVera leaf logo (reusable) -->
   <svg width="0" height="0" style="position:absolute">
     <symbol id="ev-logo" viewBox="0 0 64 64">
       <circle cx="32" cy="32" r="32" fill="#143d2a"/>
-      <path d="M46 17 C52 28 50 40 40 46 C31 51 21 47 20 38 C19 28 30 20 46 17 Z"
-            fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M46 17 C52 28 50 40 40 46 C31 51 21 47 20 38 C19 28 30 20 46 17 Z" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M42 24 C34 30 28 36 14 50" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/>
     </symbol>
     <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20a1 1 0 0 0 1 1H10v-5.5a2 2 0 0 1 4 0V21h3.5a1 1 0 0 0 1-1V9.5"/></symbol>
-    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5C10 5 7.5 4.4 4 4.4V19c3.5 0 6 .6 8 2.1 2-1.5 4.5-2.1 8-2.1V4.4c-3.5 0-6 .6-8 2.1z"/><path d="M12 6.5V21"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1.2-3 3.7-4.5 6.5-4.5s5.3 1.5 6.5 4.5"/><circle cx="17.5" cy="9" r="2.8"/><path d="M16.5 15.6c2.3.3 4.1 1.7 5 4"/></symbol>
     <symbol id="i-chart" viewBox="0 0 24 24"><path d="M5 20v-6"/><path d="M12 20V5"/><path d="M19 20v-9"/><path d="M3.5 20h17"/></symbol>
     <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.4-3.4 4.2-5 7.5-5s6.1 1.6 7.5 5"/></symbol>
   </svg>
@@ -395,12 +495,12 @@
       <svg class="logo" width="42" height="42"><use href="#ev-logo"/></svg>
       <h1>Eat<span>Vera</span></h1>
     </div>
-    <p>Quality scanning (Scout / Oasis) + macro logging (Cal AI) in one. Now with a working camera scanner, light &amp; dark mode, real guide photography, and proper nav icons.</p>
+    <p>Quality scanner + macro logger — now with a social feed, weekly Clean Report, Tinder-style restaurant mode, and separate one-tap scan buttons for each job.</p>
     <div class="badge-row">
-      <div class="chip">📷 Real camera scanning</div>
-      <div class="chip">☀️/🌙 Light &amp; dark mode</div>
-      <div class="chip">SVG nav icons</div>
-      <div class="chip">Two jobs, one app</div>
+      <div class="chip">Split scan buttons</div>
+      <div class="chip">Friends feed + leaderboard</div>
+      <div class="chip">Weekly Clean Report</div>
+      <div class="chip">Restaurant swipe mode</div>
     </div>
   </div>
 
@@ -473,6 +573,22 @@
             </button>
           </div>
 
+          <button class="repbanner" onclick="go('report')">
+            <span class="re">📊</span>
+            <span><b>Your Clean Report is ready</b><p>Week 26 · avg score 84 · tap to see it</p></span>
+            <span class="chev">›</span>
+          </button>
+
+          <button class="restbanner" onclick="go('menu')">
+            <div class="bg"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=760&h=240&fit=crop&q=80" alt="Restaurant interior" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🍜');this.remove()"></div>
+            <div class="scrim"></div>
+            <div class="inner">
+              <span class="re">🍜</span>
+              <span><b>Eating out?</b><p>Scan the menu — swipe dishes worth ordering</p></span>
+              <span class="chev">›</span>
+            </div>
+          </button>
+
           <div class="sectlabel"><h3>Guides</h3><a onclick="go('explore')">See all →</a></div>
           <div class="stories" id="homeStories"></div>
 
@@ -489,6 +605,86 @@
           <p class="disc">Scores are informational only and not medical advice. Always consult a healthcare professional for dietary guidance.</p>
         </section>
 
+        <!-- ============ FEED ============ -->
+        <section class="view" id="feed">
+          <div class="pagetitle" style="margin-top:6px">
+            <h1>Friends</h1>
+            <p>See what your circle is scanning</p>
+          </div>
+
+          <div class="stories fstories" id="feedStories"></div>
+
+          <div class="lboard">
+            <h4>🏆 This week's leaderboard</h4>
+            <div class="lrow"><span class="rank">🥇</span><span class="avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&q=80" alt="Maya" loading="lazy" onerror="this.replaceWith(document.createTextNode('M'))"></span><b>Maya</b><span class="pts">91 avg</span></div>
+            <div class="lrow"><span class="rank">🥈</span><span class="avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&q=80" alt="Jake" loading="lazy" onerror="this.replaceWith(document.createTextNode('J'))"></span><b>Jake</b><span class="pts">87 avg</span></div>
+            <div class="lrow"><span class="rank">🥉</span><span class="avatar"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&q=80" alt="Sofia" loading="lazy" onerror="this.replaceWith(document.createTextNode('S'))"></span><b>Sofia</b><span class="pts">86 avg</span></div>
+            <div class="lrow me"><span class="rank">4</span><span class="avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&q=80" alt="You" loading="lazy" onerror="this.replaceWith(document.createTextNode('Y'))"></span><b>You</b><span class="pts">84 avg</span></div>
+          </div>
+
+          <div class="sectlabel"><h3>Latest scans</h3><a onclick="toast('Feed refreshed ✓')">Refresh</a></div>
+
+          <div class="post">
+            <div class="phead">
+              <span class="avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&q=80" alt="Maya" loading="lazy" onerror="this.replaceWith(document.createTextNode('M'))"></span>
+              <span><b>Maya</b><small>12 min ago · Whole Foods</small></span>
+              <span class="streak">🔥 21</span>
+            </div>
+            <div class="pmedia" ondblclick="heart(this,'l1')">
+              <span class="ph" data-emoji="🥣"><img src="https://images.unsplash.com/photo-1517093157656-b9eccef91cb1?w=760&h=570&fit=crop&q=80" alt="Overnight oats" loading="lazy" onerror="this.remove()"></span>
+              <span class="pscore">92</span>
+              <span class="bigheart">❤️</span>
+            </div>
+            <div class="pacts">
+              <button id="l1" onclick="like(this)">♡ <span>24</span></button>
+              <button onclick="toast('Comments coming soon')">💬 6</button>
+              <button onclick="toast('Swap saved to your list ✓')">🔁 Swap</button>
+              <button class="sharea" onclick="toast('Sent to 3 friends ✓')">↗</button>
+            </div>
+            <div class="pcap"><b>Maya</b> found a 92 — overnight oats with zero additives. double tap if you'd eat this 🌿</div>
+          </div>
+
+          <div class="post">
+            <div class="phead">
+              <span class="avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&q=80" alt="Jake" loading="lazy" onerror="this.replaceWith(document.createTextNode('J'))"></span>
+              <span><b>Jake</b><small>1 h ago · Trader Joe's</small></span>
+              <span class="streak">🔥 9</span>
+            </div>
+            <div class="pmedia" ondblclick="heart(this,'l2')">
+              <span class="ph" data-emoji="🧃"><img src="https://images.unsplash.com/photo-1437418747212-8d9709afab22?w=760&h=570&fit=crop&q=80" alt="Bottled smoothies" loading="lazy" onerror="this.remove()"></span>
+              <span class="pscore low">38</span>
+              <span class="bigheart">❤️</span>
+            </div>
+            <div class="pacts">
+              <button id="l2" onclick="like(this)">♡ <span>41</span></button>
+              <button onclick="toast('Comments coming soon')">💬 18</button>
+              <button onclick="toast('Swap saved to your list ✓')">🔁 Swap</button>
+              <button class="sharea" onclick="toast('Sent to 3 friends ✓')">↗</button>
+            </div>
+            <div class="pcap"><b>Jake</b> yikes — 38/100. "smoothie" with 42g added sugar 💀 check the swap</div>
+          </div>
+
+          <div class="post">
+            <div class="phead">
+              <span class="avatar"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&q=80" alt="Sofia" loading="lazy" onerror="this.replaceWith(document.createTextNode('S'))"></span>
+              <span><b>Sofia</b><small>3 h ago · homemade</small></span>
+              <span class="streak">🔥 33</span>
+            </div>
+            <div class="pmedia" ondblclick="heart(this,'l3')">
+              <span class="ph" data-emoji="🥗"><img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=760&h=570&fit=crop&q=80" alt="Fresh salad bowl" loading="lazy" onerror="this.remove()"></span>
+              <span class="pscore">96</span>
+              <span class="bigheart">❤️</span>
+            </div>
+            <div class="pacts">
+              <button id="l3" onclick="like(this)">♡ <span>67</span></button>
+              <button onclick="toast('Comments coming soon')">💬 12</button>
+              <button onclick="toast('Recipe saved ✓')">🔖 Save</button>
+              <button class="sharea" onclick="toast('Sent to 3 friends ✓')">↗</button>
+            </div>
+            <div class="pcap"><b>Sofia</b> 33-day streak 🧘 lunch was a 96 — 41g protein, logged in one snap</div>
+          </div>
+        </section>
+
         <!-- ============ EXPLORE ============ -->
         <section class="view" id="explore">
           <div class="pagetitle" style="margin-top:6px">
@@ -503,7 +699,6 @@
             <button>Low sugar</button>
             <button>EWG verified</button>
           </div>
-
           <button class="featured" onclick="go('result')">
             <div class="bg"><img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=760&h=400&fit=crop&q=80" alt="Snack aisle products" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🍿');this.remove()"></div>
             <div class="scrim"></div>
@@ -513,19 +708,18 @@
               <p>We rated 64 popular snacks — only 12 passed.</p>
             </div>
           </button>
-
           <div class="egrid" id="exploreCats"></div>
         </section>
 
-        <!-- ============ SCAN ============ -->
+        <!-- ============ SCAN (shared viewfinder, mode set by entry) ============ -->
         <section class="view" id="scan">
           <div class="pagetitle" style="margin-top:6px">
-            <h1>Scan</h1>
-            <p>Point at a label or your plate — AI does the rest.</p>
+            <h1 id="scanTitle">Check quality</h1>
+            <p id="scanSub">Point at a label — get the clean score.</p>
           </div>
 
-          <div class="vf">
-            <div class="bg" id="vfBg"><img id="vfImg" src="https://images.unsplash.com/photo-1556767576-cf0a4a80e5b8?w=760&h=700&fit=crop&q=80" alt="Product in the scanner viewfinder" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🏷️');this.remove()"></div>
+          <div class="vf" id="vfBox">
+            <div class="bg" id="vfBg"><img id="vfImg" src="https://images.unsplash.com/photo-1556767576-cf0a4a80e5b8?w=760&h=700&fit=crop&q=80" alt="Scanner viewfinder" loading="lazy" onerror="this.closest('.bg').classList.add('ph');this.closest('.bg').setAttribute('data-emoji','🏷️');this.remove()"></div>
             <video id="vfVideo" autoplay playsinline muted></video>
             <div class="shade"></div>
             <div class="corners"><i></i><i></i><i></i><i></i></div>
@@ -537,11 +731,7 @@
                 <button class="srcbtn" id="camBtn" onclick="enableCam()">🎥 Use my camera</button>
                 <button class="srcbtn" onclick="document.getElementById('camFile').click()">⬆ Upload photo</button>
               </div>
-              <div class="modes">
-                <button class="on" id="modeLabel" onclick="setMode('label')">📷 Label</button>
-                <button id="modeMeal" onclick="setMode('meal')">🍽️ Meal</button>
-              </div>
-              <button class="shutter" onclick="shoot()" aria-label="Scan">
+              <button class="shutter" id="shutterBtn" onclick="shoot()" aria-label="Scan">
                 <svg width="30" height="30"><use href="#ev-logo"/></svg>
               </button>
             </div>
@@ -551,7 +741,7 @@
 
           <div class="steps">
             <h3>How it works</h3>
-            <div class="step"><div class="n">1</div><div><b>Point &amp; capture</b><p>Enable your camera (or upload a photo) and tap the leaf.</p></div></div>
+            <div class="step"><div class="n">1</div><div><b>Point &amp; capture</b><p>Enable your camera (or upload a photo) and tap the button.</p></div></div>
             <div class="step"><div class="n">2</div><div><b>AI reads it instantly</b><p>Identifies every ingredient and estimates portions.</p></div></div>
             <div class="step"><div class="n">3</div><div><b>Score, macros &amp; flags</b><p>Your photo lands in the result or your food log.</p></div></div>
           </div>
@@ -689,10 +879,58 @@
           <div class="emptylog"><div class="big">📸</div>Snap your next meal to keep the streak going.</div>
         </section>
 
+        <!-- ============ RESTAURANT MODE (Tinder swipes) ============ -->
+        <section class="view" id="menu">
+          <button class="back" onclick="go('home')">← Home</button>
+          <div class="pagetitle" style="margin-top:14px">
+            <h1>Restaurant mode</h1>
+            <p>Menu scanned · 6 dishes found · swipe right on the ones worth ordering</p>
+          </div>
+          <div class="deckwrap" id="deck"></div>
+          <div class="deckbtns">
+            <button class="dbtn no" onclick="swipe(false)">✗</button>
+            <button class="dbtn yes" onclick="swipe(true)">♥</button>
+          </div>
+          <div class="picksbar">
+            <b>Your picks</b>
+            <span class="pk" id="pickCount">0 dishes</span>
+          </div>
+          <p class="disc">Estimates from menu text &amp; photos. Actual dishes vary by restaurant.</p>
+        </section>
+
+        <!-- ============ WEEKLY CLEAN REPORT (Wrapped) ============ -->
+        <section class="view" id="report">
+          <button class="repback" onclick="go('home')">← Close</button>
+          <div class="wrap">
+            <div class="wk">EATVERA · WEEK 26 · JUN 22–28</div>
+            <h1>Your Clean<br>Report 🌿</h1>
+            <div class="bigscore" data-count="84">0<small>&nbsp;avg score</small></div>
+            <div class="sub">Top 16% of EatVera this week. Maya is 7 points ahead — catch her.</div>
+            <div class="wstats">
+              <div class="wstat"><small>Scans</small><b>23 items</b></div>
+              <div class="wstat"><small>Streak</small><b>🔥 12 days</b></div>
+              <div class="wstat"><small>Best swap</small><b>Soda → kombucha<br>+41 pts</b></div>
+              <div class="wstat"><small>Worst offender</small><b>Neon Cola<br>12 / 100</b></div>
+              <div class="wstat"><small>Protein days hit</small><b>5 of 7</b></div>
+              <div class="wstat"><small>Seed-oil free</small><b>86% of scans</b></div>
+            </div>
+            <div class="wdays">
+              <div class="wday"><i style="height:58%"></i><small>M</small></div>
+              <div class="wday"><i style="height:72%"></i><small>T</small></div>
+              <div class="wday low"><i style="height:30%"></i><small>W</small></div>
+              <div class="wday"><i style="height:81%"></i><small>T</small></div>
+              <div class="wday"><i style="height:65%"></i><small>F</small></div>
+              <div class="wday"><i style="height:92%"></i><small>S</small></div>
+              <div class="wday"><i style="height:74%"></i><small>S</small></div>
+            </div>
+            <button class="wshare" onclick="shareReport()">↗ Share my report</button>
+          </div>
+        </section>
+
         <!-- ============ PROFILE ============ -->
         <section class="view" id="profile">
           <div class="pcover"></div>
-          <div class="phead">
+          <div class="phead2">
             <div class="bigavatar"><div class="in"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&q=80" alt="Yara's profile photo" loading="lazy" onerror="this.remove()"></div></div>
             <div class="pstats">
               <div class="pstat"><b>128</b><small>Scans</small></div>
@@ -707,6 +945,7 @@
           </div>
           <div class="pbtns">
             <button class="pbtn acc" onclick="toast('Profile editing coming soon')">Edit profile</button>
+            <button class="pbtn" onclick="go('report')">📊 My report</button>
             <button class="pbtn" onclick="toast('Share link copied ✓')">Share</button>
           </div>
 
@@ -730,18 +969,23 @@
             <button class="setrow" onclick="toast('Notifications coming soon')"><span class="se">🔔</span>Notifications<span class="chev">›</span></button>
             <button class="setrow" onclick="toast('Help center coming soon')"><span class="se">💬</span>Help &amp; support<span class="chev">›</span></button>
           </div>
-          <p class="disc">EatVera v0.4 · Scores are informational only and not medical advice.</p>
+          <p class="disc">EatVera v0.5 · Scores are informational only and not medical advice.</p>
         </section>
 
       </div>
 
-      <!-- BOTTOM NAV -->
+      <!-- BOTTOM NAV: quality & meal scans are separate actions -->
       <nav class="nav">
         <button data-t="home" class="on" onclick="go('home')"><svg class="ni"><use href="#i-home"/></svg>Home</button>
-        <button data-t="explore" onclick="go('explore')"><svg class="ni"><use href="#i-book"/></svg>Guides</button>
-        <button data-t="scan" class="scanbtn" onclick="go('scan')">
-          <span class="fab"><svg width="30" height="30"><use href="#ev-logo"/></svg></span>
-        </button>
+        <button data-t="feed" onclick="go('feed')"><svg class="ni"><use href="#i-users"/></svg>Friends</button>
+        <div class="scanduo">
+          <button data-t="qscan" onclick="startScan('label')">
+            <span class="fab q"><svg width="28" height="28"><use href="#ev-logo"/></svg></span>Quality
+          </button>
+          <button data-t="mscan" onclick="startScan('meal')">
+            <span class="fab m">🍽️</span>Log
+          </button>
+        </div>
         <button data-t="track" onclick="go('track')"><svg class="ni"><use href="#i-chart"/></svg>Track</button>
         <button data-t="profile" onclick="go('profile')"><svg class="ni"><use href="#i-user"/></svg>Profile</button>
       </nav>
@@ -753,10 +997,10 @@
         <div class="sheet">
           <div class="biglogo"><svg width="64" height="64"><use href="#ev-logo"/></svg></div>
           <h2>Welcome to Eat<i>Vera</i></h2>
-          <p>One app, two jobs: check how clean your food is, and log your macros — in two taps.</p>
-          <div class="feat"><div class="ic">📷</div><div><b>Check quality</b><p>Scan a label → instant 0–100 clean score + swaps</p></div></div>
-          <div class="feat"><div class="ic">🍽️</div><div><b>Log a meal</b><p>Snap your plate → calories &amp; macros tracked</p></div></div>
-          <div class="feat"><div class="ic">🔥</div><div><b>Stay on streak</b><p>Daily rings, water, and 661 rated foods</p></div></div>
+          <p>One app, two jobs — with your friends along for the ride.</p>
+          <div class="feat"><div class="ic">📷</div><div><b>Check quality</b><p>Green button → clean score, flags &amp; swaps</p></div></div>
+          <div class="feat"><div class="ic">🍽️</div><div><b>Log a meal</b><p>Orange button → calories &amp; macros tracked</p></div></div>
+          <div class="feat"><div class="ic">🏆</div><div><b>Compete &amp; share</b><p>Friends feed, weekly Clean Report, restaurant mode</p></div></div>
           <button class="cta-btn" onclick="hideIntro()">Get started</button>
         </div>
       </div>
@@ -767,7 +1011,7 @@
 <script>
   const U = (id,w,h)=>`https://images.unsplash.com/${id}?w=${w}&h=${h}&fit=crop&q=80`;
 
-  // ---- category data (verified, widely-used Unsplash photos) ----
+  // ---- categories ----
   const CATS = [
     {emoji:'🍎', img:'photo-1568702846914-96b305d2aaeb', name:'Fruits',      rated:67, tag:'ewg',  tagText:'EWG data'},
     {emoji:'🥩', img:'photo-1558030006-450675393462',    name:'Meats',       rated:58, tag:'ewg',  tagText:'Grass-fed'},
@@ -797,6 +1041,23 @@
       <span class="inner"><h4>${c.name}</h4><p>${c.rated} rated</p></span>
     </button>`).join('');
 
+  // ---- friends stories (feed) ----
+  const FRIENDS = [
+    ['You','photo-1438761681033-6461ffad8d80',''],
+    ['Maya','photo-1494790108377-be9c29b29330',''],
+    ['Jake','photo-1500648767791-00dcc994a43e','orange'],
+    ['Sofia','photo-1534528741775-53994a69daeb',''],
+    ['Leo','photo-1507003211169-0a1dd7228f2d','orange']
+  ];
+  document.getElementById('feedStories').innerHTML =
+    `<button class="story fstory-add" onclick="startScan('label')"><span class="ringy"><span class="plus">＋</span></span><span>Your scan</span></button>` +
+    FRIENDS.slice(1).map(([n,img,cls])=>
+    `<button class="story ${cls}" onclick="toast('${n}\\'s scans — coming soon')">
+      <span class="ringy"><span class="ph" data-emoji="🙂"><img src="${U(img,140,140)}" alt="${n}" loading="lazy" onerror="this.remove()"></span></span>
+      <span>${n}</span>
+    </button>`).join('');
+
+  // ---- profile history grid ----
   const HISTORY = [
     ['photo-1512621776951-a57141f2eefd',88],['photo-1599490659213-e2b9527bd087',72],
     ['photo-1488477181946-6428a0291777',94],['photo-1517093157656-b9eccef91cb1',92],
@@ -833,10 +1094,11 @@
       requestAnimationFrame(()=>requestAnimationFrame(()=>{ b.style.width = b.dataset.w; }));
     });
     view.querySelectorAll('[data-count]').forEach(el=>{
-      const target = +el.dataset.count, t0 = performance.now(), dur = 1100;
+      const target = +el.dataset.count, suffix = el.querySelector('small'), t0 = performance.now(), dur = 1100;
       function tick(t){
         const k = Math.min((t - t0) / dur, 1);
-        el.textContent = Math.round(target * (1 - Math.pow(1 - k, 3)));
+        const val = Math.round(target * (1 - Math.pow(1 - k, 3)));
+        if(suffix){ el.childNodes[0].textContent = val; } else { el.textContent = val; }
         if(k < 1) requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
@@ -844,26 +1106,36 @@
   }
 
   // ---- router ----
+  let mode = 'label';
   function go(id){
     document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));
-    const tab = (id==='result') ? 'scan' : id;
-    document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===tab));
+    let tab = id;
+    if(id==='explore'||id==='menu'||id==='report') tab='home';
+    if(id==='result') tab='qscan';
+    if(id==='scan') tab = (mode==='label') ? 'qscan' : 'mscan';
+    document.querySelectorAll('.nav [data-t]').forEach(b=>{
+      const on = b.dataset.t===tab;
+      b.classList.toggle('on',on);
+      b.classList.toggle('mealtab', on && b.dataset.t==='mscan');
+    });
     document.getElementById('app').scrollTop=0;
     animate(document.getElementById(id));
   }
 
-  // ---- REAL SCANNING: camera + upload ----
-  let mode = 'label', stream = null;
-
+  // ---- scanner (mode set by which button you tapped) ----
+  let stream = null;
   function setMode(m){
     mode = m;
-    document.getElementById('modeLabel').classList.toggle('on', m==='label');
-    document.getElementById('modeMeal').classList.toggle('on', m==='meal');
+    document.getElementById('scanTitle').textContent = m==='label' ? 'Check quality' : 'Log a meal';
+    document.getElementById('scanSub').textContent  = m==='label' ? 'Point at a label — get the clean score.' : 'Frame your plate — macros land in your log.';
+    document.getElementById('vfBox').classList.toggle('mealmode', m==='meal');
+    document.getElementById('shutterBtn').classList.toggle('meal', m==='meal');
     setStatus(stream ? 'LIVE' : 'DEMO FEED');
     const img = document.getElementById('vfImg');
     if(img && !stream) img.src = m==='label' ? U('photo-1556767576-cf0a4a80e5b8',760,700) : U('photo-1490645935967-10de6ba17061',760,700);
   }
   function setStatus(s){ document.getElementById('vfStatus').textContent = 'AI VISION · ' + s; }
+  function startScan(m){ setMode(m); go('scan'); }
 
   async function enableCam(){
     try{
@@ -872,16 +1144,11 @@
       v.srcObject = stream;
       v.style.display = 'block';
       const btn = document.getElementById('camBtn');
-      btn.textContent = '● Camera live';
-      btn.classList.add('live');
-      btn.disabled = true;
+      btn.textContent = '● Camera live'; btn.classList.add('live'); btn.disabled = true;
       setStatus('LIVE');
-      toast('Camera on — aim and tap the leaf');
-    }catch(e){
-      toast('Camera unavailable — try Upload photo');
-    }
+      toast('Camera on — aim and tap the button');
+    }catch(e){ toast('Camera unavailable — try Upload photo'); }
   }
-
   function shoot(){
     const fx = document.getElementById('flashfx');
     fx.classList.remove('on'); void fx.offsetWidth; fx.classList.add('on');
@@ -890,11 +1157,8 @@
       cv.width = v.videoWidth || 720; cv.height = v.videoHeight || 720;
       cv.getContext('2d').drawImage(v, 0, 0, cv.width, cv.height);
       finish(cv.toDataURL('image/jpeg', .85));
-    }else{
-      finish(null); // demo capture
-    }
+    }else{ finish(null); }
   }
-
   function fromFile(input){
     const f = input.files && input.files[0];
     if(!f) return;
@@ -903,8 +1167,6 @@
     r.readAsDataURL(f);
     input.value = '';
   }
-
-  // route the captured photo into the result (label) or the food log (meal)
   function finish(dataUrl){
     setStatus('ANALYZING…');
     setTimeout(()=>{
@@ -922,21 +1184,110 @@
           document.getElementById('mealList').insertAdjacentHTML('afterbegin',
             `<div class="meal">
               <div class="ph mimg" data-emoji="🍽️"><img src="${dataUrl}" alt="Your scanned meal"></div>
-              <div class="body">
-                <h4>Scanned meal</h4>
-                <p>~520 kcal · ${hh}</p>
+              <div class="body"><h4>Scanned meal</h4><p>~520 kcal · ${hh}</p>
                 <div class="mpills"><span class="mpill p"><i></i>31g P</span><span class="mpill c"><i></i>44g C</span><span class="mpill f"><i></i>21g F</span></div>
               </div>
               <div class="sc">86</div>
             </div>`);
-          toast('Meal analyzed &amp; logged <b>+520 kcal</b>');
+          toast('Meal analyzed & logged <b>+520 kcal</b>');
         }
         go('track');
       }
     }, 800);
   }
 
-  function startScan(m){ setMode(m); go('scan'); }
+  // ---- feed: likes + double-tap hearts ----
+  function like(btn){
+    const n = btn.querySelector('span');
+    const liked = btn.classList.toggle('liked');
+    n.textContent = +n.textContent + (liked ? 1 : -1);
+    btn.firstChild.textContent = liked ? '❤️ ' : '♡ ';
+  }
+  function heart(media, likeId){
+    const h = media.querySelector('.bigheart');
+    h.classList.remove('pop'); void h.offsetWidth; h.classList.add('pop');
+    const btn = document.getElementById(likeId);
+    if(btn && !btn.classList.contains('liked')) like(btn);
+  }
+
+  // ---- restaurant mode: Tinder deck ----
+  const DISHES = [
+    {name:'Grilled salmon bowl', img:'photo-1467003909585-2f8a72700288', kcal:640, p:42, c:38, f:28, score:91},
+    {name:'Avocado toast',       img:'photo-1541519227354-08fa5d50c44d', kcal:430, p:14, c:41, f:24, score:84},
+    {name:'Margherita pizza',    img:'photo-1513104890138-7c749659a591', kcal:870, p:32, c:98, f:36, score:62},
+    {name:'Crispy chicken burger',img:'photo-1568901346375-23c9450c58cd',kcal:980, p:35, c:74, f:52, score:48},
+    {name:'Garden salad',        img:'photo-1546793665-c74683f339c1',   kcal:320, p:12, c:24, f:18, score:95},
+    {name:'Truffle pasta',       img:'photo-1473093295043-cdd812d0e601',kcal:760, p:22, c:88, f:34, score:58}
+  ];
+  let deckIdx = 0, picks = 0;
+  function renderDeck(){
+    const deck = document.getElementById('deck');
+    const rest = DISHES.slice(deckIdx, deckIdx+3);
+    if(!rest.length){
+      deck.innerHTML = `<div class="deckdone"><div class="de">🎉</div><h3>Menu conquered</h3><p>${picks} dish${picks===1?'':'es'} picked. Order confidently — macros go straight to your log.</p></div>`;
+      return;
+    }
+    deck.innerHTML = rest.map((d,i)=>{
+      const z = 10-i, s = 1 - i*.04, y = i*12;
+      return `<div class="dish" data-i="${deckIdx+i}" style="z-index:${z};transform:translateY(${y}px) scale(${s})">
+        <span class="ph" data-emoji="🍽️"><img src="${U(d.img,760,860)}" alt="${d.name}" loading="lazy" onerror="this.remove()"></span>
+        <span class="dscrim"></span>
+        <span class="dscore ${d.score<60?'low':''}">${d.score}</span>
+        <span class="stamp yes">ORDER</span>
+        <span class="stamp no">SKIP</span>
+        <div class="dinner">
+          <h3>${d.name}</h3>
+          <div class="dmeta">
+            <span class="dpill">🔥 ${d.kcal} kcal</span>
+            <span class="dpill">${d.p}g P</span>
+            <span class="dpill">${d.c}g C</span>
+            <span class="dpill">${d.f}g F</span>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+    attachDrag(deck.querySelector('.dish'));
+  }
+  function attachDrag(card){
+    if(!card) return;
+    let x0=0, dx=0, dragging=false;
+    card.addEventListener('pointerdown', e=>{
+      dragging=true; x0=e.clientX; card.classList.add('dragging'); card.setPointerCapture(e.pointerId);
+    });
+    card.addEventListener('pointermove', e=>{
+      if(!dragging) return;
+      dx = e.clientX - x0;
+      card.style.transform = `translateX(${dx}px) rotate(${dx/14}deg)`;
+      card.querySelector('.stamp.yes').style.opacity = Math.min(dx/70,1);
+      card.querySelector('.stamp.no').style.opacity  = Math.min(-dx/70,1);
+    });
+    card.addEventListener('pointerup', ()=>{
+      dragging=false; card.classList.remove('dragging');
+      if(Math.abs(dx)>90){ fly(card, dx>0); }
+      else{ card.style.transform=''; card.querySelectorAll('.stamp').forEach(s=>s.style.opacity=0); }
+      dx=0;
+    });
+  }
+  function fly(card, yes){
+    card.classList.add('fly');
+    card.style.transform = `translateX(${yes?480:-480}px) rotate(${yes?28:-28}deg)`;
+    card.style.opacity = 0;
+    if(yes){ picks++; document.getElementById('pickCount').textContent = `${picks} dish${picks===1?'':'es'}`; toast('Added to your picks <b>♥</b>'); }
+    deckIdx++;
+    setTimeout(renderDeck, 260);
+  }
+  function swipe(yes){
+    const card = document.querySelector('#deck .dish');
+    if(card) fly(card, yes);
+  }
+  renderDeck();
+
+  // ---- report share ----
+  function shareReport(){
+    const txt = 'My EatVera Clean Report — Week 26: 84 avg score, 12-day streak 🔥🌿';
+    if(navigator.share){ navigator.share({text:txt}).catch(()=>{}); }
+    else{ toast('Report copied — paste it anywhere ✓'); }
+  }
 
   // ---- toast + log bridge ----
   let toastTimer;
