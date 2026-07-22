@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Dark forest green rounded square background -->
+  <rect width="32" height="32" rx="7" fill="#0B3D2E"/>
+  <!-- Leaf shape: a stylized single leaf pointing up-right -->
+  <path d="M16 6 C16 6, 26 8, 26 18 C26 24, 20 27, 16 27 C16 27, 16 18, 10 14 C10 14, 14 14, 16 6 Z" fill="#3FA34D"/>
+  <!-- Leaf vein -->
+  <path d="M16 26 C16 26, 16 16, 22 11" stroke="#0B3D2E" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+</svg>
